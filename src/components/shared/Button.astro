@@ -1,0 +1,73 @@
+---
+export interface Props {
+  className?: string;
+  color: "primary" | "secondary" | "cta";
+  variant: "solid" | "outline" | "gradient";
+}
+
+const { className = "", color = "primary", variant = "solid" } = Astro.props;
+
+const getVariantStyle = (
+  variant: "solid" | "outline" | "gradient" = "solid",
+  color: "primary" | "secondary" | "cta" = "primary"
+) => {
+  let classList = "";
+  if (variant === "solid") {
+    classList = `border-transparent  `;
+    if (color === "primary") {
+      classList += `bg-primary-500 hover:bg-primary-600 active:bg-primary-700 disabled:bg-primary-200 `;
+      classList += `text-accent disabled:text-primary-700 `;
+    } else if (color === "secondary") {
+      classList += `bg-secondary-500 hover:bg-secondary-600 active:bg-secondary-700 disabled:bg-secondary-200 `;
+      classList += `text-accent disabled:text-secondary-700 `;
+    } else if (color === "cta") {
+      classList += `bg-cta-500 hover:bg-cta-600 active:bg-cta-700 disabled:bg-cta-200 `;
+      classList += `text-accent disabled:text-cta-700 `;
+    }
+    return classList;
+  }
+  if (variant === "outline") {
+    classList = ` `;
+    if (color === "primary") {
+      classList += `border-primary-700 bg-transparent hover:bg-primary-500/10 active:bg-primary-500/10 `;
+      classList += `text-primary-700 `;
+    } else if (color === "secondary") {
+      classList += `border-secondary-700 bg-transparent hover:bg-secondary-500/10 active:bg-secondary-500/10 `;
+      classList += `text-secondary-700 `;
+    } else if (color === "cta") {
+      classList += `border-cta-700 bg-transparent hover:bg-cta-500/10 active:bg-cta-500/10 `;
+      classList += `text-cta-700 `;
+    }
+    return classList;
+  }
+  if (variant === "gradient") {
+    classList = `border-transparent  `;
+    if (color === "primary") {
+      classList += `bg-gradient-to-br from-primary-400 to-primary-600 hover:from-primary-500 hover:to-primary-700 active:from-primary-600 active:to-primary-800 disabled:from-primary-100 disabled:to-primary-300 `;
+      classList += `text-accent disabled:text-primary-700 `;
+    } else if (color === "secondary") {
+      classList += `bg-gradient-to-br from-secondary-400 to-secondary-600 hover:from-secondary-500 hover:to-secondary-700 active:from-secondary-600 active:to-secondary-800 disabled:from-secondary-100 disabled:to-secondary-300 `;
+      classList += `text-secondary-700 `;
+    } else if (color === "cta") {
+      classList += `bg-gradient-to-br from-cta-400 to-cta-600 hover:from-cta-500 hover:to-cta-700 active:from-cta-600 active:to-cta-800 disabled:from-cta-100 disabled:to-cta-300 `;
+      classList += `text-cta-700 `;
+    }
+    return classList;
+  }
+};
+
+const base =
+  "rounded-lg outline-none relative overflow-hidden px-6 py-3 border";
+const animation = `duration-300 ease-linear`;
+---
+
+<button
+  class={`
+   ${base} 
+    ${animation}
+    ${getVariantStyle(variant, color)}
+    ${className}
+  `}
+>
+  <slot />
+</button>

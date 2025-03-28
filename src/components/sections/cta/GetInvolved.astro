@@ -1,0 +1,45 @@
+---
+import Container from "../../shared/Container.astro";
+import GradiantText from "../../shared/GradiantText.astro";
+import SubTitle2 from "../../shared/SubTitle2.astro";
+import Title2 from "../../shared/Title2.astro";
+import EmailForm from "./components/EmailForm.astro";
+import InvolvementCard from "./components/InvolvementCard.astro";
+import { getInvolvedSection } from "./data.ts";
+
+export interface Props {
+  className?: string;
+}
+const { className } = Astro.props;
+---
+
+<section id="cta" class=`${className}`>
+  <Container
+    className="mx-auto flex flex-col items-center justify-center text-center"
+  >
+    <Title2>{getInvolvedSection.title}</Title2>
+    <SubTitle2>
+      <GradiantText>{getInvolvedSection.subheading1_1}</GradiantText>
+      {getInvolvedSection.subheading1_2}
+    </SubTitle2>
+  </Container>
+  <Container className="space-y-10 md:sapce-y-12">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+      {
+        getInvolvedSection.initiatives.map((initiative) => {
+          return (
+            <InvolvementCard
+              title={initiative.title}
+              description={initiative.description}
+              visual={initiative.visual}
+            />
+          );
+        })
+      }
+    </div>
+
+    <div class="flex justify-center">
+      <EmailForm />
+    </div>
+  </Container>
+</section>

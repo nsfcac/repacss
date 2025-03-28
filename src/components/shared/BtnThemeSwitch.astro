@@ -1,0 +1,81 @@
+---
+export interface Props {
+  className?: string;
+  variant: "primary" | "secondary" | "cta";
+}
+
+const { className, variant } = Astro.props;
+
+const getThemeStyle = (variant: "primary" | "secondary" | "cta") => {
+  if (variant === "primary") {
+    return "bg-transparent border-primary hover:border-primary-800 hover:bg-primary-100 dark:hover:bg-primary-900";
+  }
+  if (variant === "secondary") {
+    return "bg-transparent border-secondary hover:border-secondary-800";
+  }
+  if (variant === "cta") {
+    return "bg-transparent border-cta hover:border-cta-800";
+  }
+  return "";
+};
+
+const getTextColor = (variant: "primary" | "secondary" | "cta") => {
+  if (variant === "primary") {
+    return "text-accent dark:text-accent-light";
+  }
+  if (variant === "secondary") {
+    return "text-secondary dark:text-secondary-light";
+  }
+  if (variant === "cta") {
+    return "text-cta dark:text-cta-light";
+  }
+  return "";
+};
+
+const base =
+  "outline-none flex relative text-heading-2 rounded-full p-2 lg:p-3 border";
+const animation = "duration-300 ease-linear";
+---
+
+<button
+  data-switch-theme
+  class={`
+  ${base} 
+  ${animation}
+  ${getTextColor(variant)}
+  ${getThemeStyle(variant)}
+  hover:after:opacity-100 hover:after:scale-[2.5]
+  ${className}
+  `}
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke-width="1.5"
+    stroke="currentColor"
+    class="w-6 h-6 dark:flex hidden"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"
+    ></path>
+  </svg>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke-width="1.5"
+    stroke="currentColor"
+    class="w-6 h-6 dark:hidden"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
+    ></path>
+  </svg>
+
+  <span class="sr-only">switch theme</span>
+</button>

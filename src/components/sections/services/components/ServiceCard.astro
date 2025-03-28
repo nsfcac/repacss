@@ -1,0 +1,70 @@
+---
+import Paragraph from "../../../shared/Paragraph.astro";
+import { Image } from "astro:assets";
+import Title2 from "../../../shared/Title2.astro";
+import Title3 from "../../../shared/Title3.astro";
+import LazyImage from "../../../shared/LazyImage.astro";
+
+export interface Props {
+  title: string;
+  description: string;
+  visual: ImageMetadata;
+}
+
+const { title, description, visual } = Astro.props;
+const animation = `duration-300 ease-linear`;
+---
+
+<div class=`
+  ${animation} group
+  relative overflow-hidden rounded-lg h-full
+  `>
+  <LazyImage
+    src={visual}
+    alt="Hero"
+    height="400"
+    class=`
+    w-full h-96 object-cover
+    ${animation} group-hover:scale-125
+    `
+  />
+  <!-- <Image
+    src={visual}
+    alt="Hero"
+    width="2350"
+    height="2359"
+    class=`
+    w-full h-96 object-cover
+    ${animation} group-hover:scale-125
+    `
+  /> -->
+  <div
+    class=`
+  absolute top-0 h-full w-full bg-gradi
+  bg-gradient-to-b from-black/20 to-black/60 
+  ${animation} group-hover:bg-black/60
+  `
+  >
+  </div>
+  <div
+    class=`
+    absolute flex flex-col bottom-0 w-full 
+    translate-y-[calc(100%-7.5rem)] group-hover:translate-y-0
+    content-center
+    ${animation}
+    `
+  >
+    <div class=`m-6 text-white ${animation}`>
+      <Title3 className="mb-0">
+        {title}
+      </Title3>
+    </div>
+    <div
+      class=`self-baseline m-6 opacity-0 group-hover:opacity-100 ${animation}`
+    >
+      <div class="text-md text-white">
+        {description}
+      </div>
+    </div>
+  </div>
+</div>

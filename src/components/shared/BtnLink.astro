@@ -1,0 +1,63 @@
+---
+import Button from "./Button.astro";
+
+export interface Props {
+  href: string;
+  text: string;
+  className?: string;
+  variant: "primary" | "secondary" | "cta";
+}
+
+const { href, text, className, variant } = Astro.props;
+
+const getThemeStyle = (variant: "primary" | "secondary" | "cta") => {
+  if (variant === "primary") {
+    return "bg-primary relative border-primary hover:border-primary-800";
+  }
+  if (variant === "secondary") {
+    return "bg-secondary relative border-secondary hover:border-secondary-800";
+  }
+  if (variant === "cta") {
+    return "bg-cta relative border-cta hover:border-cta-800";
+  }
+  return "";
+};
+
+const getTextColor = (variant: "primary" | "secondary" | "cta") => {
+  if (variant === "primary") {
+    return "text-accent font-medium";
+  }
+  if (variant === "secondary") {
+    return "text-accent font-medium";
+  }
+  if (variant === "cta") {
+    return "text-accent font-medium";
+  }
+  return "";
+};
+
+const base =
+  "rounded-lg outline-none relative overflow-hidden px-6 py-3 border";
+const animation = "duration-300 ease-linear";
+---
+
+<a
+  href={href}
+  class={` 
+    ${base} 
+    ${animation}
+    ${getTextColor(variant)}
+    ${getThemeStyle(variant)}
+    ${className}`}
+>
+  <span class={`relative z-10`}>
+    {text}
+  </span>
+</a>
+<!-- <Button
+  color={"primary"}
+  variant={"outline"}
+  className={"min-w-max hover:bg-primary-950/40"}
+>
+  <span class="relative z-10"> {text} </span>
+</Button> -->
