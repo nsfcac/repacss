@@ -1,6 +1,6 @@
 ---
 import { Image, Picture } from "astro:assets";
-import heroImg from "./assets/wind3.jpg";
+import heroImg from "./assets/racks.png";
 import CtaButton from "../../shared/CtaButton.astro";
 import GradiantText from "../../shared/GradiantText.astro";
 import SubTitle from "../../shared/SubTitle.astro";
@@ -8,14 +8,13 @@ import Title from "../../shared/Title.astro";
 import LazyImage from "../../shared/LazyImage.astro";
 
 const heroSection = {
-  headline1: "Powering",
-  headline2: "Tomorrow,",
-  headline3: "Sustainably",
-  headline4: "Today!",
-  subheading1: "Join us in the green energy revolution",
-  subheading2: "and be part of a sustainable future",
-  subheading3: "for generations to come.",
-  buttonText: "Get Powered Today!",
+  headline1: "Accelerating",
+  headline2: "Discovery,",
+  headline3: "Reducing",
+  headline4: "Emissions",
+  subheading1: "Focuses on developing a high-performance computing ",
+  subheading2: "infrastructure prototype that demonstrates the feasibility of ",
+  subheading3: "using renewable energy for advanced computing tasks.",
   backgroundImage: "hero-background-image.jpg",
 };
 
@@ -26,8 +25,8 @@ export interface Props {
 const { className = "" } = Astro.props;
 ---
 
-<section class=`relative  ${className} w-full h-[80vh]` id="hero">
-  <div class="w-full h-[80vh] pt-[100px]">
+<section class=`relative  ${className} w-full h-[60vh]` id="hero">
+  <div class="w-full h-[60vh] pt-[80px]">
     <div
       class="w-full h-full grid grid-cols-1 md:grid-cols-2 justify-end bg-base-100 dark:bg-base-dark-900"
     >
@@ -40,20 +39,17 @@ const { className = "" } = Astro.props;
             {" " + heroSection.headline3}
           </GradiantText>{heroSection.headline4}
         </Title>
-        <SubTitle className=" mt-10 leading-9 italic">
+        <SubTitle className="mt-6 leading-8 italic">
           {heroSection.subheading1}
           <br />
           {heroSection.subheading2}<br />
           {heroSection.subheading3}
         </SubTitle>
-        <div class="pt-10">
-          <CtaButton>{heroSection.buttonText}</CtaButton>
-        </div>
       </div>
-      <div class="flex relative pt-10 md:p-0">
+      <div class="flex relative pt-8 md:p-0">
         <LazyImage
           src={heroImg}
-          alt="A picture of a wind turbine."
+          alt="A picture of the REPACSS cluster."
           className="w-full h-full object-cover"
         />
         <svg

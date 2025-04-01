@@ -1,29 +1,29 @@
-import imgGrid from "./assets/inno-grid.webp";
-import imgSolar from "./assets/inno-panel.webp";
-import imgWind from "./assets/inno-wind.webp";
+import img_control from "./assets/rmt_ctrl.png";
+import img_schedule from "./assets/schedule.png";
+import img_checkpoint from "./assets/checkpoint.png";
 
 export const innovationsSection = {
   title: "Latest Innovations",
   subheading1_1: "Discover Our Cutting-edge",
-  subheading1_2: " Green Energy Technologies",
+  subheading1_2: " HPC Management Technologies",
   innovations: [
     {
-      title: "Smart Grid Integration",
+      title: "Remote Data Center Management",
       description:
-        "Revolutionize energy distribution with our smart grid technology, optimizing efficiency, minimizing wastage, and adapting to demand fluctuations. Stay connected with innovative solutions for a sustainable, cost-effective energy ecosystem. Embrace the future with our cutting-edge smart grid integration, enhancing reliability and paving the way for efficiency and sustainability.",
-      visual: imgGrid,
+        "Effective management of data centers powered by renewable energy necessitates advanced remote monitoring and control systems. REPACSS is developing sophisticated tools that enable real-time oversight and intervention, ensuring optimal performance, swift issue resolution, and seamless adaptation to the variable nature of renewable energy availability.",
+      visual: img_control,
     },
     {
-      title: "Advanced Solar Panel Design",
+      title: "Workflow Scheduling Integration",
       description:
-        "Boost solar efficiency with our state-of-the-art solar panel designs. Our innovative technologies capture more sunlight, ensuring maximum energy production for your home or business. Experience enhanced sustainability and increased energy output with our advanced solar solutions.",
-      visual: imgSolar,
+        "Aligning computational workloads with fluctuating energy availability is critical for efficiency. REPACSS is creating intelligent scheduling algorithms that synchronize scientific computing tasks with energy production forecasts. This integration enhances resource utilization, minimizes downtime, and leverages periods of peak renewable energy generation.",
+      visual: img_schedule,
     },
     {
-      title: "Next-gen Wind Turbines",
+      title: "Checkpointing and Restore Techniques",
       description:
-        "Transform your wind energy experience with our next-generation wind turbines. Our sleek design, enhanced efficiency, and minimal environmental impact underscore our commitment to innovation. Elevate your sustainable energy journey with cutting-edge wind solutions that prioritize both performance and environmental responsibility.",
-      visual: imgWind,
+        "To safeguard ongoing computations against potential energy disruptions, REPACSS is implementing advanced checkpointing and restore methods. These techniques allow scientific applications to save their current state periodically, facilitating rapid recovery and continuity in the event of power variability, thereby ensuring data integrity and computational reliability.",
+      visual: img_checkpoint,
     },
   ],
   visual: "innovations-section-image.jpg",

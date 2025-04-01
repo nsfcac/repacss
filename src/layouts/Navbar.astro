@@ -9,34 +9,30 @@ const navItems = [
     href: "#",
     text: "Home",
   },
-  // {
-  //   href: "#hero",
-  //   text: "Hero",
-  // },
   {
-    href: "#services",
-    text: "Services",
+    href: "#About",
+    text: "About Us",
   },
   {
     href: "#innovations",
     text: "Innovations",
   },
   {
-    href: "#testimonials",
-    text: "Testimonials",
+    href: "#products",
+    text: "Products",
   },
   {
-    href: "#environment",
-    text: "Environment",
+    href: "#meetings",
+    text: "Meetings & Events",
   },
   {
-    href: "#projects",
-    text: "Projects",
+    href: "#gallery",
+    text: "Gallery",
   },
 ];
 ---
 
-<header class="absolute inset-x-0 top-0 z-50 py-6 px-6">
+<header class="fixed inset-x-0 top-0 z-50 py-6 px-6 bg-base-100/80 dark:bg-base-dark-900/80 backdrop-filter backdrop-blur-sm shadow-sm">
   <!-- <Container> -->
   <nav class="w-full flex justify-between gap-6 relative">
     <!-- logo -->
@@ -73,16 +69,6 @@ const navItems = [
         }
       </ul>
 
-      <div
-        class="lg:min-w-max flex items-center sm:w-max w-full pb-6 lg:pb-0 border-b border-box-bg lg:border-0 px-6 lg:px-0"
-      >
-        <BtnLink
-          text="Get Started"
-          href="#cta"
-          className="flex justify-center w-full sm:w-max text-lg text-heading-2"
-          variant="cta"
-        />
-      </div>
     </div>
 
     <div class="min-w-max flex items-center gap-x-3">
