@@ -12,7 +12,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between; /* Ensures even spacing */
-  min-height: 300px; /* Set a consistent minimum height */
+  min-height: 350px; /* Set a consistent minimum height */
   padding: 1.5rem;
   background-color: #ffffff;
   border-radius: 12px;
