@@ -1,0 +1,42 @@
+---
+import fs from 'fs';
+import path from 'path';
+import Layout from "../../layouts/Layout.astro";
+
+// Export getStaticPaths so Astro knows which group pages to build.
+export async function getStaticPaths() {
+  const galleryDir = path.resolve('./public/gallery');
+  const groupFolders = fs.readdirSync(galleryDir).filter(name =>
+    fs.statSync(path.join(galleryDir, name)).isDirectory()
+  );
+  
+  return groupFolders.map(name => ({
+    params: { group: name }
+  }));
+}
+
+const { group } = Astro.params;
+const groupDir = path.join(path.resolve('./public/gallery'), group);
+
+// Get all photo files excluding the cover image and info.md
+const files = fs.readdirSync(groupDir).filter(file =>
+  !/^cover\.(jpg|jpeg|png)$/i.test(file) && file !== 'info.md'
+);
+
+// Build the photo URLs, taking into account the base path.
+const basePath = Astro.site ? new URL(Astro.site).pathname : '/repacss';
+const photos = files.map(file => `${basePath}/gallery/${group}/${file}`);
+---
+<Layout title="REPACSS Gallery">
+  <main class="flex flex-col gap-y-20 md:gap-y-40 overflow-hidden pt-20 md:pt-32 px-4 md:px-8">
+    <div class="masonry gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {photos.map(photo => (
+        <div class="masonry-item shadow-lg">
+          <img src={photo} alt={`Photo in ${group}`} class="w-full object-contain transition-transform duration-300 rounded-lg" />
+        </div>
+      ))}
+    </div>
+  </main>
+</Layout>
+
+

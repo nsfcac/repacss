@@ -1,0 +1,75 @@
+---
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
+import Layout from "../layouts/Layout.astro";
+
+// Determine the base path from Astro.site or fallback to '/repacss'
+const basePath = Astro.site ? new URL(Astro.site).pathname : '/repacss';
+
+// Path to the gallery folder in the public directory
+const galleryDir = path.resolve('./public/gallery');
+
+// Read and sort group folders (alphabetically as a fallback)
+const groupFolders = fs.readdirSync(galleryDir)
+  .filter(name => fs.statSync(path.join(galleryDir, name)).isDirectory());
+
+// Process groups and extract metadata
+const groups = groupFolders.map(name => {
+  const groupDir = path.join(galleryDir, name);
+  const files = fs.readdirSync(groupDir);
+  
+  // Find cover image file (jpg, jpeg, png)
+  const coverFile = files.find(file => /^cover\.(jpg|jpeg|png)$/i.test(file));
+  const cover = coverFile
+    ? `${basePath}/gallery/${name}/${coverFile}`
+    : `${basePath}/default-cover.jpg`; // Fallback if no cover is found
+
+  const infoPath = path.join(groupDir, 'info.md');
+  let title = name;
+  let description = '';
+  let order = Number.MAX_SAFE_INTEGER; // Default to a high number if order is not specified
+
+  if (fs.existsSync(infoPath)) {
+    try {
+      const fileContent = fs.readFileSync(infoPath, 'utf-8');
+      const { data } = matter(fileContent);
+      title = data.title || name;
+      description = data.description || '';
+      if (data.order !== undefined) {
+        order = Number(data.order);
+      }
+    } catch (e) {
+      console.error(`Error parsing info.md for group ${name}:`, e);
+    }
+  }
+  
+  return { name, title, description, cover, order };
+});
+
+// Sort groups by the 'order' property, then by title as a fallback.
+groups.sort((a, b) => {
+  if (a.order === b.order) {
+    return a.title.localeCompare(b.title);
+  }
+  return a.order - b.order;
+});
+---
+
+<Layout title="REPACSS Gallery">
+  <main class="flex flex-col gap-y-20 md:gap-y-40 overflow-hidden pt-20 md:pt-32 px-4 md:px-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {groups.map(group => (
+        <a href={`${basePath}/gallery/${group.name}`} class="group relative block overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <div class="cover-container relative">
+            <img src={group.cover} alt={`Cover of ${group.title}`} class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105" />
+            <div class="overlay absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center text-center text-white p-4">
+              <h2 class="text-xl font-bold">{group.title}</h2>
+              <p class="text-sm">{group.description}</p>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </main>
+</Layout>
