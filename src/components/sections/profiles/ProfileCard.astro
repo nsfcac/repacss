@@ -1,0 +1,23 @@
+---
+// src/components/sections/profiles/ProfileCard.astro
+const { photo, name, position, description, website } = Astro.props;
+const photoUrl = (typeof photo === 'object' && photo.src) ? photo.src : photo;
+---
+
+{website ? (
+  <a href={website} target="_blank" rel="noopener noreferrer" class="profile-link">
+  <div class="profile-card bg-white rounded-lg shadow-lg p-6 text-center">
+    <img src={photoUrl} alt={`${name} photo`} class="profile-photo w-24 h-24 rounded-full mx-auto mb-4 object-cover shadow-md" />
+    <h2 class="profile-name text-lg font-semibold text-gray-800">{name}</h2>
+    <p class="profile-position text-sm text-gray-500 mb-2">{position}</p>
+    <p class="profile-description text-sm text-gray-600">{description}</p>
+  </div>
+  </a>
+) : (
+<div class="profile-card bg-white rounded-lg shadow-lg p-6 text-center">
+  <img src={photoUrl} alt={`${name} photo`} class="profile-photo w-24 h-24 rounded-full mx-auto mb-4 object-cover shadow-md" />
+  <h2 class="profile-name text-lg font-semibold text-gray-800">{name}</h2>
+  <p class="profile-position text-sm text-gray-500 mb-2">{position}</p>
+  <p class="profile-description text-sm text-gray-600">{description}</p>
+</div>
+)}

@@ -1,0 +1,47 @@
+/* Profiles container grid */
+.profiles-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+
+/* Profile card styles */
+.profile-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between; /* Ensures even spacing */
+  min-height: 300px; /* Set a consistent minimum height */
+  padding: 1.5rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.profile-card:hover {
+  transform: scale(1.05);
+}
+
+.profile-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+.profile-name {
+  font-size: 1.25rem;
+  margin: 0.5rem 0;
+}
+
+.profile-position {
+  color: #777;
+  font-size: 1rem;
+  margin: 0.25rem 0;
+}
+
+.profile-description {
+  font-size: 0.9rem;
+  color: #555;
+}

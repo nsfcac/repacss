@@ -1,0 +1,57 @@
+---
+import Container from "../../shared/Container.astro";
+import GradiantText from "../../shared/GradiantText.astro";
+import SubTitle2 from "../../shared/SubTitle2.astro";
+import Title2 from "../../shared/Title2.astro";
+import ProfileCard from './ProfileCard.astro';
+import yong from './assets/yong_chen.png';
+import alan from './assets/alan_sill.png';
+import dang from './assets/dang.jpg';
+import mengel from './assets/mengel.jpg';
+
+const team = [
+  {
+    photo: yong,
+    name: 'Yong Chen',
+    position: 'Principal Investigator',
+    description: 'Professor and Director of the Data-Intensive Scalable Computing Laboratory at Texas Tech University.',
+    website: 'http://www.myweb.ttu.edu/yonchen/'
+  },
+  {
+    photo: alan,
+    name: 'Alan Sill',
+    position: 'Co-Principal Investigator',
+    description: 'Managing Director of the High Performance Computing Center and Adjunct Professor of Physics at Texas Tech University.',
+    website: 'https://www.depts.ttu.edu/hpcc/about/staff.php'
+  },
+  {
+    photo: dang,
+    name: 'Tommy Dang',
+    position: 'Co-Principal Investigator',
+    description: 'Associate Professor of Computer Science at Texas Tech University.',
+    website: 'http://www.myweb.ttu.edu/tnhondan'
+  },
+  {
+    photo: mengel,
+    name: 'Susan Mengel',
+    position: 'Co-Principal Investigator',
+    description: 'Associate Professor of Computer Science at Texas Tech University',
+    website: 'https://www.depts.ttu.edu/cs/faculty/susan_a._mengel/index.php'
+  }
+];
+
+---
+<section id="about-us" class="about-us-section bg-gray-50 py-16 px-6 md:px-12">
+  <Container
+    className="mx-auto flex flex-col items-center justify-center text-center"
+  >
+    <Title2>Meet the team behind this project</Title2>
+  </Container>
+
+  <div class="profiles-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 min-h-[300px]">
+    {team.map(member => (
+      <ProfileCard {...member} />
+    ))}
+  </div>
+</section>
+
