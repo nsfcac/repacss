@@ -3,9 +3,10 @@ import tailwind from "@astrojs/tailwind";
 import react from "@astrojs/react";
 
 // https://astro.build/config
+// https://nsfcac.github.io/repacss
 export default defineConfig({
   integrations: [tailwind(), react()],
-  site: "https://nsfcac.github.io/repacss",
+  site: "https://repacss.org",
   base: "/repacss",
   output: 'static',
   image: {
