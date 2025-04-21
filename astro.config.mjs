@@ -8,7 +8,7 @@ import react from "@astrojs/react";
 export default defineConfig({
   integrations: [tailwind(), react()],
   site: "https://repacss.org",
-  // base: "/repacss",
+  base: "/repacss",
   output: 'static',
   image: {
     service: { entrypoint: 'astro/assets/services/sharp' }
