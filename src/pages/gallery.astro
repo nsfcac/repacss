@@ -6,7 +6,7 @@ import Layout from "../layouts/Layout.astro";
 import Container from "../components/shared/Container.astro";
 
 // Determine the base path from Astro.site or fallback to '/repacss'
-const basePath = Astro.site ? new URL(Astro.site).pathname : '/repacss';
+const basePath = Astro.site ? new URL(Astro.site).pathname : '';
 
 // Path to the gallery folder in the public directory
 const galleryDir = path.resolve('./public/gallery');

@@ -4,7 +4,7 @@ This is the official website for REPACSS (Empowering Scientific Discovery throug
 
 ## Website
 
-Visit our website at: [https://nsfcac.github.io/repacss](https://nsfcac.github.io/repacss)
+Visit our website at: [https://repacss.org](https://repacss.org)
 
 ## Development
 
