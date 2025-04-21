@@ -5,8 +5,6 @@ import matter from 'gray-matter';
 import Layout from "../layouts/Layout.astro";
 import Container from "../components/shared/Container.astro";
 
-// Determine the base path from Astro.site or fallback to '/repacss'
-const basePath = Astro.site ? new URL(Astro.site).pathname : '';
 
 // Path to the gallery folder in the public directory
 const galleryDir = path.resolve('./public/gallery');
@@ -23,8 +21,8 @@ const groups = groupFolders.map(name => {
   // Find cover image file (jpg, jpeg, png)
   const coverFile = files.find(file => /^cover\.(jpg|jpeg|png)$/i.test(file));
   const cover = coverFile
-    ? `${basePath}/gallery/${name}/${coverFile}`
-    : `${basePath}/default-cover.jpg`; // Fallback if no cover is found
+    ? `/gallery/${name}/${coverFile}`
+    : `/default-cover.jpg`; // Fallback if no cover is found
 
   const infoPath = path.join(groupDir, 'info.md');
   let title = name;
@@ -63,7 +61,7 @@ groups.sort((a, b) => {
       <Container className="mx-auto flex flex-col items-center justify-center text-center">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {groups.map(group => (
-            <a href={`${basePath}/gallery/${group.name}`} class="group relative block overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <a href={`/gallery/${group.name}`} class="group relative block overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
               <div class="cover-container relative">
                 <img src={group.cover} alt={`Cover of ${group.title}`} class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105" />
                 <div class="overlay absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center text-center text-white p-4">
