@@ -25,8 +25,7 @@ const files = fs.readdirSync(groupDir).filter(file =>
 );
 
 // Build the photo URLs, taking into account the base path.
-const basePath = Astro.site ? new URL(Astro.site).pathname : '';
-const photos = files.map(file => `${basePath}/gallery/${group}/${file}`);
+const photos = files.map(file => `/gallery/${group}/${file}`);
 ---
 <Layout title="REPACSS Gallery">
   <main class="flex flex-col gap-y-20 md:gap-y-40 overflow-hidden pt-20 md:pt-32 px-4 md:px-8">
