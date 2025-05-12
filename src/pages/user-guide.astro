@@ -1,0 +1,19 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Container from "../components/shared/Container.astro";
+import Profiles from '../components/sections/profiles/Profiles.astro';
+---
+
+<Layout title="About Us">
+  <main class="flex flex-col gap-y-10 md:gap-y-40 overflow-hidden pt-20 md:pt-32 px-4 md:px-8">
+
+    <!-- Vision Section -->
+    <Container className="mx-auto flex flex-col gap-y-4 text-left max-w-4xl -mt-8">
+      <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">User Guide</h2>
+      <p class="text-lg text-gray-600 dark:text-gray-400">
+        The REPACSS user Guide.
+      </p>
+    </Container>
+
+  </main>
+</Layout>
