@@ -11,8 +11,11 @@ import tommy from './assets/dang.jpg';
 import stephen from './assets/StephenBayne.png';
 import susan from './assets/mengel.jpg';
 import argenis from './assets/argenis-bilbao.jpg';
+// add actual images for placeholders
+import placeholderProfile from './assets/generic-avatar.jpg';
 
-const team = [
+// Faculty members
+const faculty = [
   {
     photo: yong,
     name: 'Yong Chen',
@@ -62,6 +65,85 @@ const team = [
     description: 'Senior Director of the GLEAMM center at Texas Tech University',
     website: 'https://www.depts.ttu.edu/research/staff/ArgenisBilbao.php'
   }
+  
+];
+
+// Postdoctoral staff
+const postdocs = [
+  {
+    photo: placeholderProfile,
+    name: 'Elham Hojati',
+    position: 'Postdoctoral Researcher',
+    description: 'Computer Science',
+    website: '#'
+  },
+  {
+    photo: placeholderProfile,
+    name: 'Jie Li',
+    position: 'Postdoctoral Researcher',
+    description: 'Computer Science',
+    website: '#'
+  }
+  
+];
+// Student researchers
+const students = [
+  {
+    photo: placeholderProfile,
+    name: 'Manoj Khatri',
+    position: 'PhD Student',
+    description: 'High Performance Computing',
+    website: '#'
+  },
+  {
+    photo: placeholderProfile,
+    name: 'Ashlesha Malla',
+    position: 'PhD Student',
+    description: 'Computer Science',
+    website: '#'
+  },
+  {
+    photo: placeholderProfile,
+    name: 'Phornsawan Roemsri',
+    position: 'PhD Student',
+    description: 'Computer Science',
+    website: '#'
+  },
+  {
+    photo: placeholderProfile,
+    name: 'Tongyang Wang',
+    position: 'PhD Student',
+    description: 'Computer Science',
+    website: '#'
+  },
+  {
+    photo: placeholderProfile,
+    name: 'Samuel Abiola',
+    position: 'PhD Student',
+    description: 'High Performance Computing',
+    website: '#'
+  },
+  {
+    photo: placeholderProfile,
+    name: 'Yongjian Zhao',
+    position: 'PhD Student',
+    description: 'Computer Science',
+    website: '#'
+  },
+  {
+    photo: placeholderProfile,
+    name: 'Chenxu Niu',
+    position: 'PhD Student',
+    description: 'Computer Science',
+    website: '#'
+  },
+  {
+    photo: placeholderProfile,
+    name: 'Amauri Ribeiro',
+    position: 'PhD Student',
+    description: 'Computer Science',
+    website: '#'
+  }
 ];
 
 const { className = "" } = Astro.props;
@@ -73,10 +155,43 @@ const { className = "" } = Astro.props;
     <Title2>Meet the team behind this project</Title2>
   </Container>
 
-  <div class="profiles-container grid gap-8 mx-auto w-full max-w-7xl">
-    {team.map(member => (
-      <ProfileCard {...member} />
-    ))}
-  </div>
+  <!-- Faculty Section -->
+  <Container className="mx-auto mt-12">
+    <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-6 text-center">Faculty</h3>
+    <div class="profiles-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mx-auto w-full max-w-7xl">
+      {faculty.map(member => (
+        <ProfileCard {...member} />
+      ))}
+    </div>
+  </Container>
+
+  <!-- Postdoctoral Staff Section -->
+  <Container className="mx-auto mt-16">
+    <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-6 text-center">Postdoctoral Staff</h3>
+    <div class="flex justify-center w-full max-w-6xl mx-auto">
+      <div class="profiles-container grid grid-cols-1 sm:grid-cols-2 gap-12 mx-auto">
+        {postdocs.map(member => (
+          <div class="transform scale-110">
+            <ProfileCard {...member} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </Container>
+
+  <!-- Students Section -->
+  <Container className="mx-auto mt-16">
+    <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-6 text-center">Student Researchers</h3>
+    <div class="profiles-container grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-4 mx-auto w-full max-w-5xl">
+      {students.map(member => (
+          <div class="transform scale-90">
+            <ProfileCard {...member} />
+          </div>
+      ))}
+    </div>
+  </Container>
 </section>
+
+
+
 
