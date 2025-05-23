@@ -1,0 +1,99 @@
+---
+// This component only contains global styles for documentation
+const brandGreen = "#30d158"; // REPACSS brand green color
+---
+
+<style define:vars={{ brandGreen }}>
+  :root {
+    --brand-green: var(--brandGreen);
+  }
+
+  .docs-content h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: var(--brand-green);
+  }
+  
+  .docs-content h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .docs-content p {
+    margin-bottom: 1rem;
+  }
+  
+  .docs-content pre {
+    background-color: #1a1a1a;
+    border-radius: 0.375rem;
+    padding: 1rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+    border-left: 4px solid var(--brand-green);
+  }
+  
+  .docs-content code {
+    font-family: monospace;
+    padding: 0.2rem 0.4rem;
+    background-color: rgba(48, 209, 88, 0.1);
+    border-radius: 0.25rem;
+  }
+  
+  .docs-content pre code {
+    background-color: transparent;
+    padding: 0;
+  }
+  
+  .docs-content ul,
+  .docs-content ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .docs-content li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .docs-content a {
+    color: var(--brand-green);
+    text-decoration: none;
+  }
+  
+  .docs-content a:hover {
+    text-decoration: underline;
+    color: #4cdd70; /* Slightly lighter green for hover */
+  }
+
+  /* Add styling for blockquotes */
+  .docs-content blockquote {
+    border-left: 4px solid var(--brand-green);
+    padding-left: 1rem;
+    margin-left: 0;
+    margin-right: 0;
+    font-style: italic;
+    color: #718096;
+  }
+
+  /* Table styles */
+  .docs-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+  }
+
+  .docs-content th {
+    background-color: rgba(48, 209, 88, 0.1);
+    font-weight: 600;
+    text-align: left;
+    padding: 0.5rem;
+  }
+
+  .docs-content td {
+    padding: 0.5rem;
+    border-top: 1px solid #e2e8f0;
+  }
+</style>
