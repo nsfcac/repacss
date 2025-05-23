@@ -1,0 +1,86 @@
+---
+// Props for active section highlighting if needed
+export interface Props {
+  activePage: string;
+}
+
+const { activePage } = Astro.props;
+
+// REPACSS brand color with opacity
+const brandGreen = "#30d158";
+const sidebarBgWithOpacity = "rgba(11, 52, 24, 0.92)"; // Dark green with opacity
+---
+
+<aside class="w-64 h-screen bg-primary-50/80 dark:bg-primary-950/40 border-r border-primary-100 dark:border-primary-900 pt-6 hidden md:block overflow-y-auto">
+  <div class="px-6">
+    <h2 class="text-lg font-semibold text-primary-700 dark:text-primary-300 mb-4">
+      Main REPACSS Documentation
+    </h2>
+    
+    <!-- Navigation sections -->
+    <div class="space-y-6">
+      <!-- Tutorial Section -->
+      <div>
+        <h3 class="uppercase text-sm font-bold text-primary-600 dark:text-primary-400 mb-3 tracking-wider">
+          TUTORIAL
+        </h3>
+        <ul class="space-y-2">
+          <li>
+            <a href="/user-guide/basic-installation" class="block py-1 px-2 rounded-md text-gray-800 dark:text-gray-200 hover:bg-primary-100 hover:text-primary-700 dark:hover:bg-primary-900/60 dark:hover:text-primary-300">
+              Basic Installation Tutorial
+            </a>
+          </li>
+          <li>
+            <a href="/user-guide/environments" class="block py-1 px-2 rounded-md text-gray-800 dark:text-gray-200 hover:bg-primary-100 hover:text-primary-700 dark:hover:bg-primary-900/60 dark:hover:text-primary-300">
+              Environments Tutorial
+            </a>
+          </li>
+          <li>
+            <a href="/user-guide/configuration" class="block py-1 px-2 rounded-md text-gray-800 dark:text-gray-200 hover:bg-primary-100 hover:text-primary-700 dark:hover:bg-primary-900/60 dark:hover:text-primary-300">
+              Configuration Tutorial
+            </a>
+          </li>
+          <li>
+            <a href="/user-guide/package-creation" class="block py-1 px-2 rounded-md text-gray-800 dark:text-gray-200 hover:bg-primary-100 hover:text-primary-700 dark:hover:bg-primary-900/60 dark:hover:text-primary-300">
+              Package Creation Tutorial
+            </a>
+          </li>
+        </ul>
+      </div>
+      
+      <!-- Additional Sections -->
+      <div>
+        <h3 class="uppercase text-sm font-bold text-primary-600 dark:text-primary-400 mb-3 tracking-wider">
+          ADDITIONAL SECTIONS
+        </h3>
+        <ul class="space-y-2">
+          <li>
+            <a href="/user-guide/advanced-topics" class="block py-1 px-2 rounded-md text-gray-800 dark:text-gray-200 hover:bg-primary-100 hover:text-primary-700 dark:hover:bg-primary-900/60 dark:hover:text-primary-300">
+              Advanced Topics
+            </a>
+          </li>
+          <li>
+            <a href="/user-guide/build-systems" class="block py-1 px-2 rounded-md text-gray-800 dark:text-gray-200 hover:bg-primary-100 hover:text-primary-700 dark:hover:bg-primary-900/60 dark:hover:text-primary-300">
+              REPACSS Build Systems
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<style define:vars={{ brandGreen, sidebarBgWithOpacity }}>
+  .docs-sidebar {
+    width: 300px;
+    border-right: 1px solid rgba(26, 26, 26, 0.5);
+    background-color: var(--sidebarBgWithOpacity);
+    backdrop-filter: blur(3px); /* Adds subtle blur effect */
+  }
+  
+  /* Use CSS variables for easy color management */
+  :root {
+    --brand-green: var(--brandGreen);
+    --sidebar-bg: var(--sidebarBgWithOpacity);
+  }
+</style>

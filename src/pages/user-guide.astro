@@ -1,19 +1,86 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Container from "../components/shared/Container.astro";
-import Profiles from '../components/sections/profiles/Profiles.astro';
+import DocsSidebar from "../components/docs/DocsSidebar.astro";
+import DocStyles from "../components/docs/DocStyles.astro";
+import DocsHeader from "../components/docs/DocsHeader.astro";
+import BreadcrumbNav from "../components/docs/BreadcrumbNav.astro";
+import ResourcesSection from "../components/docs/ResourcesSection.astro";
+import TutorialGrid from "../components/docs/TutorialGrid.astro";
+import DocsFooter from "../components/docs/DocsFooter.astro";
+
+// Current page is the overview
+const activePage = "overview";
+const title = "REPACSS User Guide";
 ---
 
-<Layout title="About Us">
-  <main class="flex flex-col gap-y-10 md:gap-y-40 overflow-hidden pt-20 md:pt-32 px-4 md:px-8">
+<Layout title={title}>
+  <DocStyles />
+  
+  <!-- Documentation layout with fixed header and sidebar -->
+  <div class="flex flex-col min-h-screen">
+    <DocsHeader />
 
-    <!-- Vision Section -->
-    <Container className="mx-auto flex flex-col gap-y-4 text-left max-w-4xl -mt-8">
-      <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">User Guide</h2>
-      <p class="text-lg text-gray-600 dark:text-gray-400">
-        The REPACSS user Guide.
-      </p>
-    </Container>
+    <!-- Main content area with sidebar and content -->
+    <div class="flex flex-1 pt-16">
+      <!-- Sidebar -->
+      <aside class="fixed top-16 left-0 w-64 h-[calc(100vh-4rem)] border-r border-gray-200 dark:border-gray-800 overflow-y-auto bg-white dark:bg-gray-900 z-20">
+        <DocsSidebar activePage={activePage} />
+      </aside>
+      
+      <!-- Main content -->
+      <main class="flex-1 ml-64 p-8 max-w-4xl">
+        <BreadcrumbNav currentPage="User Guide" />
 
-  </main>
+        <!-- Main content -->
+        <h1 class="text-3xl font-bold mb-6">REPACSS User Guide</h1>
+        
+        <div class="docs-content">
+          <p class="mb-6 text-lg text-gray-700 dark:text-gray-300">
+            This is an introduction to REPACSS with comprehensive tutorials and guides. 
+            Use these materials to learn how to use REPACSS effectively.
+          </p>
+
+          <h2>Getting Started</h2>
+          
+          <p>
+            You can use these materials to learn about REPACSS or to teach others. 
+            The sidebar navigation will guide you through available topics.
+          </p>
+
+          <h3>Installation</h3>
+
+          <pre><code>$ npm install repacss
+$ npx repacss init</code></pre>
+
+          <ResourcesSection />
+          <TutorialGrid />
+        </div>
+
+        <DocsFooter />
+      </main>
+    </div>
+  </div>
 </Layout>
+
+<script>
+  document.getElementById('docsearch')?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      const target = e.target as HTMLInputElement;
+      const searchTerm = target?.value;
+      if (searchTerm) {
+        window.location.href = `/search?q=${encodeURIComponent(searchTerm)}`;
+      }
+    }
+  });
+</script>
+
+<style>
+  pre {
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+  code {
+    font-family: monospace;
+  }
+</style>
