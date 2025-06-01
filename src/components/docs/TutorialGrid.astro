@@ -35,27 +35,3 @@ const additionalResources = [
     description: "Integrating with various build systems"
   }
 ];
----
-
-<div class="mb-8">
-  <h3>Tutorial Sections</h3>
-  
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
-    {tutorialSections.map(tutorial => (
-      <a href={tutorial.href} class="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-[#30d158] dark:hover:border-[#30d158] transition-colors">
-        <h4 class="font-medium text-[#30d158]">{tutorial.title}</h4>
-        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">{tutorial.description}</p>
-      </a>
-    ))}
-  </div>
-
-  <h4 class="font-medium mb-3">Additional Resources</h4>
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-    {additionalResources.map(resource => (
-      <a href={resource.href} class="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-[#30d158] dark:hover:border-[#30d158] transition-colors">
-        <h4 class="font-medium text-[#30d158]">{resource.title}</h4>
-        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">{resource.description}</p>
-      </a>
-    ))}
-  </div>
-</div>
