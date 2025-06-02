@@ -1,0 +1,321 @@
+---
+// Props for active section highlighting
+export interface Props {
+  activePage: string;
+}
+
+const { activePage } = Astro.props;
+
+// Navigation items based on your user guide content structure
+const navItems = [
+  // Main sections
+  {
+    title: "Getting Started",
+    href: "/user-guide/getting-started",
+    active: activePage === "getting-started",
+    keywords: "account setup login configuration installation vpn ssh"
+  },
+  {
+    title: "System Overview", 
+    href: "/user-guide/system-overview",
+    active: activePage === "system-overview",
+    keywords: "hardware architecture nodes cpu gpu storage network infrastructure"
+  },
+  {
+    title: "Running Jobs",
+    href: "/user-guide/running-jobs", 
+    active: activePage === "running-jobs",
+    keywords: "job submission slurm sbatch squeue scancel batch interactive queue"
+  },
+  {
+    title: "File Management",
+    href: "/user-guide/file-management",
+    active: activePage === "file-management",
+    keywords: "files storage data transfer backup sharing scp rsync directories"
+  },
+  {
+    title: "Software",
+    href: "/user-guide/software",
+    active: activePage === "software",
+    keywords: "applications modules libraries tools compilers languages"
+  },
+  {
+    title: "Python Environment Setup",
+    href: "/user-guide/python-environment",
+    active: activePage === "python-environment",
+    keywords: "python conda miniforge packages pip virtual environments jupyter"
+  },
+  {
+    title: "Support",
+    href: "/user-guide/support", 
+    active: activePage === "support",
+    keywords: "help tickets contact assistance troubleshooting problems issues"
+  },
+  {
+    title: "FAQ",
+    href: "/user-guide/faq",
+    active: activePage === "faq",
+    keywords: "questions answers common problems"
+  },
+  {
+    title: "Security", 
+    href: "/user-guide/security",
+    active: activePage === "security",
+    keywords: "access credentials passwords ssh keys authentication authorization"
+  },
+  {
+    title: "System Status",
+    href: "/user-guide/system-status",
+    active: activePage === "system-status",
+    keywords: "uptime downtime maintenance alerts outages availability"
+  },
+  {
+    title: "Training",
+    href: "/user-guide/training",
+    active: activePage === "training",
+    keywords: "tutorials workshops learning education courses materials"
+  },
+  {
+    title: "Maintenance", 
+    href: "/user-guide/maintenance",
+    active: activePage === "maintenance",
+    keywords: "scheduled downtime updates upgrades outages planned maintenance"
+  },
+  {
+    title: "Calendar",
+    href: "/user-guide/calendar",
+    active: activePage === "calendar",
+    keywords: "schedule events training maintenance dates times"
+  },
+  {
+    title: "Feedback",
+    href: "/user-guide/feedback",
+    active: activePage === "feedback",
+    keywords: "suggestions improvements comments ratings survey"
+  },
+  {
+    title: "Contact",
+    href: "/user-guide/contact",
+    active: activePage === "contact",
+    keywords: "email phone support help reach out communication"
+  }
+];
+---
+
+<!-- REPACSS sidebar -->
+<aside class="w-64 bg-gray-800 fixed left-0 top-20 z-30 h-[calc(100vh-5rem)] overflow-y-auto border-r border-gray-700">
+  <!-- Header Section -->
+  <div class="bg-[#30d158] text-white px-4 py-3 border-b border-[#2ba149]">
+    <div class="flex items-center space-x-2">
+      <div class="w-5 h-5 bg-white rounded flex items-center justify-center">
+        <span class="text-[#30d158] font-bold text-xs">R</span>
+      </div>
+      <span class="font-medium text-sm">REPACSS User Documentation</span>
+    </div>
+  </div>
+  
+  <!-- Search bar section -->
+  <div class="p-3 border-b border-gray-700">
+    <div class="relative">
+      <input 
+        type="search" 
+        id="docs-search"
+        placeholder="Search docs" 
+        class="w-full px-3 py-1.5 text-sm bg-gray-700 text-gray-200 rounded border border-gray-600 focus:border-[#30d158] focus:outline-none placeholder-gray-400"
+      />
+      <svg class="absolute right-2 top-2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+      </svg>
+      
+      <!-- Search results dropdown -->
+      <div id="search-results" class="absolute top-full left-0 right-0 mt-1 bg-gray-700 border border-gray-600 rounded shadow-lg z-50 hidden max-h-64 overflow-y-auto">
+        <!-- Results will be populated here -->
+      </div>
+    </div>
+  </div>
+  
+  <!-- Navigation items-->
+  <nav class="py-2" id="sidebar-nav">
+    <ul>
+      {navItems.map((item) => (
+        <li>
+          <a 
+            href={item.href}
+            class={`block px-4 py-2 text-sm transition-colors duration-150 ${
+              item.active 
+                ? 'text-[#30d158] bg-gray-750 border-r-2 border-[#30d158] font-medium' 
+                : 'text-gray-300 hover:text-white hover:bg-gray-750'
+            }`}
+            data-keywords={item.keywords}
+          >
+            {item.title}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</aside>
+
+<script>
+  // Search functionality
+  document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('docs-search') as HTMLInputElement;
+    const searchResults = document.getElementById('search-results') as HTMLDivElement;
+    const sidebarLinks = document.querySelectorAll('#sidebar-nav a');
+    
+    // Create search index from the sidebar links
+    const searchIndex = Array.from(sidebarLinks).map(link => {
+      return {
+        title: link.textContent?.trim() || '',
+        url: link.getAttribute('href') || '',
+        keywords: link.getAttribute('data-keywords') || '',
+        active: link.classList.contains('text-[#30d158]')
+      };
+    });
+    
+    searchInput?.addEventListener('input', () => {
+      const query = searchInput.value.trim().toLowerCase();
+      
+      if (query === '') {
+        searchResults.classList.add('hidden');
+        return;
+      }
+      
+      // Search for matches
+      const matches = searchIndex.filter(item => {
+        const searchText = `${item.title} ${item.keywords}`.toLowerCase();
+        const queryTerms = query.split(/\s+/);
+        return queryTerms.some(term => searchText.includes(term));
+      });
+      
+      // Display results
+      if (matches.length === 0) {
+        searchResults.innerHTML = '<div class="px-4 py-2 text-sm text-gray-400">No matches found</div>';
+      } else {
+        searchResults.innerHTML = matches.map(match => {
+          return `
+            <a href="${match.url}" class="block px-4 py-2 text-sm hover:bg-gray-600 ${match.active ? 'text-[#30d158]' : 'text-gray-200'}">
+              ${highlightMatch(match.title, query)}
+              <div class="text-xs text-gray-400">
+                ${highlightMatch(truncateKeywords(match.keywords), query)}
+              </div>
+            </a>
+          `;
+        }).join('');
+      }
+      
+      searchResults.classList.remove('hidden');
+    });
+    
+    // Hide results when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!searchResults.contains(e.target as Node) && e.target !== searchInput) {
+        searchResults.classList.add('hidden');
+      }
+    });
+    
+    // Focus input: show results if there's content
+    searchInput?.addEventListener('focus', () => {
+      if (searchInput.value.trim()) {
+        const event = new Event('input');
+        searchInput.dispatchEvent(event);
+      }
+    });
+    
+    // Helper functions
+    function highlightMatch(text: string, query: string): string {
+      const terms = query.toLowerCase().split(/\s+/);
+      let result = text;
+      
+      terms.forEach(term => {
+        if (term.length > 0) {
+          const regex = new RegExp(`(${escapeRegExp(term)})`, 'gi');
+          result = result.replace(regex, '<mark class="bg-[#30d158] text-black px-0.5 rounded-sm">$1</mark>');
+        }
+      });
+      
+      return result;
+    }
+    
+    function truncateKeywords(keywords: string): string {
+      return keywords.length > 60 ? keywords.slice(0, 60) + '...' : keywords;
+    }
+    
+    function escapeRegExp(string: string): string {
+      return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+    
+    // Keyboard navigation
+    searchInput?.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        
+        const links = searchResults.querySelectorAll('a');
+        if (!links.length) return;
+        
+        const activeLink = searchResults.querySelector('a:focus');
+        const index = activeLink ? Array.from(links).indexOf(activeLink as HTMLAnchorElement) : -1;
+        
+        let nextIndex;
+        if (e.key === 'ArrowDown') {
+          nextIndex = index < links.length - 1 ? index + 1 : 0;
+        } else {
+          nextIndex = index > 0 ? index - 1 : links.length - 1;
+        }
+        
+        (links[nextIndex] as HTMLAnchorElement).focus();
+      } else if (e.key === 'Enter' && !searchResults.classList.contains('hidden')) {
+        const activeLink = searchResults.querySelector('a:focus') as HTMLAnchorElement;
+        if (activeLink) {
+          e.preventDefault();
+          window.location.href = activeLink.href;
+        }
+      } else if (e.key === 'Escape') {
+        searchResults.classList.add('hidden');
+        searchInput.blur();
+      }
+    });
+  });
+</script>
+
+<style>
+  /* Custom scrollbar */
+  aside::-webkit-scrollbar, 
+  #search-results::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  aside::-webkit-scrollbar-track,
+  #search-results::-webkit-scrollbar-track {
+    background: #374151;
+  }
+  
+  aside::-webkit-scrollbar-thumb,
+  #search-results::-webkit-scrollbar-thumb {
+    background: #30d158;
+    border-radius: 3px;
+  }
+  
+  aside::-webkit-scrollbar-thumb:hover,
+  #search-results::-webkit-scrollbar-thumb:hover {
+    background: #4cdd70;
+  }
+
+  /* Hover state for sidebar items */
+  .gray-750 {
+    background-color: #374151;
+  }
+  
+  /* Search results styling */
+  #search-results {
+    max-height: 300px;
+  }
+  
+  #search-results a {
+    transition: background-color 0.15s;
+  }
+  
+  #search-results a:hover {
+    background-color: rgba(48, 209, 88, 0.1);
+  }
+</style>

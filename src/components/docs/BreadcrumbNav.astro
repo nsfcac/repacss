@@ -1,0 +1,13 @@
+---
+export interface Props {
+  currentPage: string;
+}
+
+const { currentPage } = Astro.props;
+---
+
+<div class="mb-8 text-sm text-gray-500 dark:text-gray-400">
+  <a href="/" class="hover:text-[#30d158] dark:hover:text-[#30d158]">Home</a>
+  <span class="mx-2">/</span>
+  <span class="text-gray-900 dark:text-white">{currentPage}</span>
+</div>
