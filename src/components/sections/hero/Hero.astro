@@ -8,58 +8,61 @@ import Title from "../../shared/Title.astro";
 import LazyImage from "../../shared/LazyImage.astro";
 
 const heroSection = {
-  headline1: "Accelerating",
-  headline2: "Discovery,",
-  headline3: "Reducing",
-  headline4: "Costs",
-  subheading1: "Focuses on developing a high-performance computing ",
-  subheading2: "infrastructure prototype that demonstrates the feasibility of ",
-  subheading3: "using renewable energy for advanced computing tasks, with the goal of reducing operational costs.",
-  backgroundImage: "hero-background-image.jpg",
+    headline1: "Accelerating",
+    headline2: "Discovery,",
+    headline3: "Reducing",
+    headline4: "Costs",
+    subheading1:
+        "Focuses on developing a high-performance computing data center and",
+    subheading2:
+        "AI infrastructure prototype that demonstrates the feasibility of ",
+    subheading3:
+        "using variable energy for advanced computing tasks, with the goal of reducing operational costs.",
+    backgroundImage: "hero-background-image.jpg",
 };
 
 export interface Props {
-  className?: string;
+    className?: string;
 }
 
 const { className = "" } = Astro.props;
 ---
 
 <section class=`relative  ${className} w-full h-[60vh]` id="hero">
-  <div class="w-full h-[60vh] pt-[80px]">
-    <div
-      class="w-full h-full grid grid-cols-1 md:grid-cols-2 justify-end bg-base-100 dark:bg-base-dark-900"
-    >
-      <div class="justify-center flex flex-col text-center md:ml-auto">
-        <Title className="">
-          {heroSection.headline1}
-          <GradiantText
-            >{" " + heroSection.headline2}
-            <br />
-            {" " + heroSection.headline3}
-          </GradiantText>{heroSection.headline4}
-        </Title>
-        <SubTitle className="mt-6 leading-8 italic">
-          {heroSection.subheading1}
-          <br />
-          {heroSection.subheading2}<br />
-          {heroSection.subheading3}
-        </SubTitle>
-      </div>
-      <div class="flex relative pt-8 md:p-0 overflow-hidden">
-        <LazyImage
-          src={heroImg}
-          alt="A picture of the REPACSS cluster."
-          className="w-full h-full object-cover"
-        />
-        <svg
-          class="fill-base-100 dark:fill-base-dark-900 z-10 absolute top-0 start-0 h-full hidden md:block"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 500 400"
+    <div class="w-full h-[60vh] pt-[80px]">
+        <div
+            class="w-full h-full grid grid-cols-1 md:grid-cols-2 justify-end bg-base-100 dark:bg-base-dark-900"
         >
-          <path d="M0 0l0 400L100 0Z"> </path>
-        </svg>
-      </div>
+            <div class="justify-center flex flex-col text-center md:ml-auto">
+                <Title className="">
+                    {heroSection.headline1}
+                    <GradiantText
+                        >{" " + heroSection.headline2}
+                        <br />
+                        {" " + heroSection.headline3}
+                    </GradiantText>{heroSection.headline4}
+                </Title>
+                <SubTitle className="mt-6 leading-8 italic">
+                    {heroSection.subheading1}
+                    <br />
+                    {heroSection.subheading2}<br />
+                    {heroSection.subheading3}
+                </SubTitle>
+            </div>
+            <div class="flex relative pt-8 md:p-0 overflow-hidden">
+                <LazyImage
+                    src={heroImg}
+                    alt="A picture of the REPACSS cluster."
+                    className="w-full h-full object-cover"
+                />
+                <svg
+                    class="fill-base-100 dark:fill-base-dark-900 z-10 absolute top-0 start-0 h-full hidden md:block"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 500 400"
+                >
+                    <path d="M0 0l0 400L100 0Z"> </path>
+                </svg>
+            </div>
+        </div>
     </div>
-  </div>
 </section>
