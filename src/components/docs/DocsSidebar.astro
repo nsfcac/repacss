@@ -6,98 +6,113 @@ export interface Props {
 
 const { activePage } = Astro.props;
 
-// Navigation items based on your user guide content structure
+// Navigation items with direct GitHub links
 const navItems = [
   // Main sections
   {
     title: "Getting Started",
-    href: "/user-guide/getting-started",
+    href: "https://github.com/nsfcac/repacss-user-guide/blob/main/src/quick-links/getting-started.md",
     active: activePage === "getting-started",
-    keywords: "account setup login configuration installation vpn ssh"
+    keywords: "account setup login configuration installation vpn ssh",
+    target: "_blank"
   },
   {
     title: "System Overview", 
-    href: "/user-guide/system-overview",
+    href: "https://github.com/nsfcac/repacss-user-guide/blob/main/src/quick-links/system-overview.md",
     active: activePage === "system-overview",
-    keywords: "hardware architecture nodes cpu gpu storage network infrastructure"
+    keywords: "hardware architecture nodes cpu gpu storage network infrastructure",
+    target: "_blank"
   },
   {
     title: "Running Jobs",
-    href: "/user-guide/running-jobs", 
+    href: "https://github.com/nsfcac/repacss-user-guide/blob/main/src/quick-links/running-jobs.md", 
     active: activePage === "running-jobs",
-    keywords: "job submission slurm sbatch squeue scancel batch interactive queue"
+    keywords: "job submission slurm sbatch squeue scancel batch interactive queue",
+    target: "_blank"
   },
   {
     title: "File Management",
-    href: "/user-guide/file-management",
+    href: "https://github.com/nsfcac/repacss-user-guide/blob/main/src/quick-links/file-management.md",
     active: activePage === "file-management",
-    keywords: "files storage data transfer backup sharing scp rsync directories"
+    keywords: "files storage data transfer backup sharing scp rsync directories",
+    target: "_blank"
   },
   {
     title: "Software",
-    href: "/user-guide/software",
+    href: "https://github.com/nsfcac/repacss-user-guide/blob/main/src/quick-links/software.md",
     active: activePage === "software",
-    keywords: "applications modules libraries tools compilers languages"
+    keywords: "applications modules libraries tools compilers languages",
+    target: "_blank"
   },
   {
     title: "Python Environment Setup",
-    href: "/user-guide/python-environment",
+    href: "https://github.com/nsfcac/repacss-user-guide/blob/main/src/quick-links/python.md",
     active: activePage === "python-environment",
-    keywords: "python conda miniforge packages pip virtual environments jupyter"
+    keywords: "python conda miniforge packages pip virtual environments jupyter",
+    target: "_blank"
   },
   {
     title: "Support",
-    href: "/user-guide/support", 
+    href: "https://github.com/nsfcac/repacss-user-guide/blob/main/src/support&resources/support.md", 
     active: activePage === "support",
-    keywords: "help tickets contact assistance troubleshooting problems issues"
+    keywords: "help tickets contact assistance troubleshooting problems issues",
+    target: "_blank"
   },
   {
     title: "FAQ",
-    href: "/user-guide/faq",
+    href: "https://github.com/nsfcac/repacss-user-guide/blob/main/src/support&resources/faq.md",
     active: activePage === "faq",
-    keywords: "questions answers common problems"
+    keywords: "questions answers common problems",
+    target: "_blank"
   },
   {
     title: "Security", 
-    href: "/user-guide/security",
+    href: "https://github.com/nsfcac/repacss-user-guide/blob/main/src/support&resources/security.md",
     active: activePage === "security",
-    keywords: "access credentials passwords ssh keys authentication authorization"
+    keywords: "access credentials passwords ssh keys authentication authorization",
+    target: "_blank"
   },
   {
     title: "System Status",
-    href: "/user-guide/system-status",
+    href: "https://github.com/nsfcac/repacss-user-guide/blob/main/src/support&resources/system-status.md",
     active: activePage === "system-status",
-    keywords: "uptime downtime maintenance alerts outages availability"
+    keywords: "uptime downtime maintenance alerts outages availability",
+    target: "_blank"
   },
   {
     title: "Training",
-    href: "/user-guide/training",
+    href: "https://github.com/nsfcac/repacss-user-guide/blob/main/src/support&resources/training.md",
     active: activePage === "training",
-    keywords: "tutorials workshops learning education courses materials"
+    keywords: "tutorials workshops learning education courses materials",
+    target: "_blank"
   },
   {
     title: "Maintenance", 
-    href: "/user-guide/maintenance",
+    href: "https://github.com/nsfcac/repacss-user-guide/blob/main/src/support&resources/maintenance.md",
     active: activePage === "maintenance",
-    keywords: "scheduled downtime updates upgrades outages planned maintenance"
+    keywords: "scheduled downtime updates upgrades outages planned maintenance",
+    target: "_blank"
   },
   {
     title: "Calendar",
-    href: "/user-guide/calendar",
+    href: "https://github.com/nsfcac/repacss-user-guide/blob/main/src/support&resources/calendar.md",
     active: activePage === "calendar",
-    keywords: "schedule events training maintenance dates times"
+    keywords: "schedule events training maintenance dates times",
+    target: "_blank"
   },
   {
     title: "Feedback",
-    href: "/user-guide/feedback",
+    href: "https://github.com/nsfcac/repacss-user-guide/blob/main/src/support&resources/feedback.md",
     active: activePage === "feedback",
-    keywords: "suggestions improvements comments ratings survey"
+    keywords: "suggestions improvements comments ratings survey",
+    target: "_blank"
   },
   {
     title: "Contact",
-    href: "/user-guide/contact",
+    href: "https://github.com/nsfcac/repacss-user-guide/blob/main/src/support&resources/contact.md",
     active: activePage === "contact",
-    keywords: "email phone support help reach out communication"
+    keywords: "email phone support help reach out communication",
+    target: "_blank"
   }
 ];
 ---
@@ -141,6 +156,7 @@ const navItems = [
         <li>
           <a 
             href={item.href}
+            target={item.target || ""}
             class={`block px-4 py-2 text-sm transition-colors duration-150 ${
               item.active 
                 ? 'text-primary bg-gray-750 border-r-2 border-primary font-medium' 
@@ -194,7 +210,7 @@ const navItems = [
       } else {
         searchResults.innerHTML = matches.map(match => {
           return `
-            <a href="${match.url}" class="block px-4 py-2 text-sm hover:bg-gray-600 ${match.active ? 'text-primary' : 'text-gray-200'}">
+            <a href="${match.url}" target="_blank" class="block px-4 py-2 text-sm hover:bg-gray-600 ${match.active ? 'text-primary' : 'text-gray-200'}">
               ${highlightMatch(match.title, query)}
               <div class="text-xs text-gray-400">
                 ${highlightMatch(truncateKeywords(match.keywords), query)}
@@ -265,10 +281,12 @@ const navItems = [
         
         (links[nextIndex] as HTMLAnchorElement).focus();
       } else if (e.key === 'Enter' && !searchResults.classList.contains('hidden')) {
+        // Modified behavior - remove preventDefault() and manual navigation
+        // Let the browser handle the link click naturally to avoid popup blocking
         const activeLink = searchResults.querySelector('a:focus') as HTMLAnchorElement;
         if (activeLink) {
-          e.preventDefault();
-          window.location.href = activeLink.href;
+          // Natural link click will occur
+          activeLink.click();
         }
       } else if (e.key === 'Escape') {
         searchResults.classList.add('hidden');
@@ -292,13 +310,13 @@ const navItems = [
   
   aside::-webkit-scrollbar-thumb,
   #search-results::-webkit-scrollbar-thumb {
-    background: #30d158;
+    background: #959595;
     border-radius: 3px;
   }
   
   aside::-webkit-scrollbar-thumb:hover,
   #search-results::-webkit-scrollbar-thumb:hover {
-    background: #4cdd70;
+    background: #959595;
   }
 
   /* Hover state for sidebar items */
