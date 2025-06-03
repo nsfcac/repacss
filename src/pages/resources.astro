@@ -4,110 +4,311 @@ import Container from "../components/shared/Container.astro";
 ---
 
 <Layout title="Facility Overview">
-  <main class="flex flex-col gap-y-10 md:gap-y-20 overflow-hidden pt-20 md:pt-32 px-4 md:px-8">
+    <main
+        class="flex flex-col gap-y-10 md:gap-y-20 overflow-hidden pt-20 md:pt-32 px-4 md:px-8"
+    >
+        <!-- Header Section -->
+        <Container
+            className="mx-auto flex flex-col gap-y-4 text-left max-w-4xl -mt-8"
+        >
+            <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">
+                REPACSS Facility Overview
+            </h2>
+            <p class="text-lg text-gray-600 dark:text-gray-400">
+                The <span class="text-primary dark:text-primary-light"
+                    >REPACSS</span
+                > is a high-performance computing data center and AI infrastructure
+                designed to support intensive computational and data-driven research,
+                powered by variable energy sources. The system consists of a combination
+                of compute, GPU, and storage nodes, interconnected with high-speed
+                networking to ensure efficient data transfer and processing. The
+                facility is structured to accommodate diverse workloads, including
+                large-scale simulations, AI training, and data analytics.
+            </p>
+        </Container>
 
-    <!-- Header Section -->
-    <Container className="mx-auto flex flex-col gap-y-4 text-left max-w-4xl -mt-8">
-      <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">REPACSS Facility Overview</h2>
-      <p class="text-lg text-gray-600 dark:text-gray-400">
-        The <span class="text-primary dark:text-primary-light">REPACSS</span> is a high-performance computing (HPC) infrastructure designed to support intensive computational and data-driven research, powered by renewable energy. The system consists of a combination of compute, GPU, and storage nodes, interconnected with high-speed networking to ensure efficient data transfer and processing. The facility is structured to accommodate diverse workloads, including large-scale simulations, artificial intelligence (AI) training, and data analytics.
-      </p>
-    </Container>
+        <!-- System Components Section -->
+        <Container
+            className="mx-auto flex flex-col gap-y-4 text-left max-w-4xl -mt-8"
+        >
+            <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">
+                System Components
+            </h2>
+            <ul
+                class="list-disc list-inside text-lg text-gray-600 dark:text-gray-400"
+            >
+                <li>
+                    <span class="font-bold">Compute Nodes:</span> REPACSS features
+                    110 AMD-based compute nodes, each equipped with dual AMD EPYC
+                    9754 processors, totaling 256 cores and 1.5TB of DDR5 memory
+                    per node. These nodes are designed to provide robust concurrent
+                    processing capabilities for demanding scientific computations.
+                </li>
+                <li>
+                    <span class="font-bold">GPU Nodes:</span> The system incorporates
+                    8 GPU nodes, each featuring dual Intel Xeon Gold 6448Y processors
+                    and 4 NVIDIA H100 NVL GPUs with NVLink interconnects. These nodes
+                    are optimized for machine learning and deep learning applications,
+                    offering a total of 32 GPUs with 94GB of HBM memory per unit.
+                </li>
+                <li>
+                    <span class="font-bold">Storage Nodes:</span> A multi-tiered
+                    storage system is implemented with a total of 9 storage nodes,
+                    delivering a cumulative capacity of approximately 2.94 petabytes
+                    (PB). These nodes include high-speed NVMe drives and large-capacity
+                    HDDs to balance performance and storage density.
+                </li>
+                <li>
+                    <span class="font-bold">Networking & Infrastructure:</span> The
+                    infrastructure is supported by Dell PowerSwitch S5248-ON and
+                    S5232-ON switches, ensuring high-speed interconnectivity. All
+                    nodes are housed in 2U rack-mounted chassis with redundant power
+                    supplies for reliability.
+                </li>
+            </ul>
+        </Container>
 
-    <!-- System Components Section -->
-    <Container className="mx-auto flex flex-col gap-y-4 text-left max-w-4xl -mt-8">
-      <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">System Components</h2>
-      <ul class="list-disc list-inside text-lg text-gray-600 dark:text-gray-400">
-        <li>
-          <span class="font-bold">Compute Nodes:</span> REPACSS features 110 AMD-based compute nodes, each equipped with dual AMD EPYC 9754 processors, totaling 256 cores and 1.5TB of DDR5 memory per node. These nodes are designed to provide robust parallel processing capabilities for demanding scientific computations.
-        </li>
-        <li>
-          <span class="font-bold">GPU Nodes:</span> The system incorporates 8 GPU nodes, each featuring dual Intel Xeon Gold 6448Y processors and 4 NVIDIA H100 NVL GPUs with NVLink interconnects. These nodes are optimized for machine learning and deep learning applications, offering a total of 32 GPUs with 94GB of HBM memory per unit.
-        </li>
-        <li>
-          <span class="font-bold">Storage Nodes:</span> A multi-tiered storage system is implemented with a total of 9 storage nodes, delivering a cumulative capacity of approximately 2.94 petabytes (PB). These nodes include high-speed NVMe drives and large-capacity HDDs to balance performance and storage density.
-        </li>
-        <li>
-          <span class="font-bold">Networking & Infrastructure:</span> The infrastructure is supported by Dell PowerSwitch S5248-ON and S5232-ON switches, ensuring high-speed interconnectivity. All nodes are housed in 2U rack-mounted chassis with redundant power supplies for reliability.
-        </li>
-      </ul>
-    </Container>
-
-    <!-- System Specifications Section -->
-    <Container className="mx-auto flex flex-col gap-y-4 text-left max-w-4xl -mt-8">
-      <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">REPACSS System Specifications</h2>
-      <div class="overflow-x-auto">
-        <table class="table-fixed w-full border-collapse border border-gray-300 dark:border-gray-700 text-sm text-gray-600 dark:text-gray-400">
-          <thead>
-            <tr class="bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200">
-              <th class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words">Node Type</th>
-              <th class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words">Total Nodes</th>
-              <th class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words">CPU Model</th>
-              <th class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words">CPUs/Node</th>
-              <th class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words">Cores/Node</th>
-              <th class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words">Memory/Node</th>
-              <th class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words">Storage/Node</th>
-              <th class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words">GPUs/Node</th>
-              <th class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words">GPU Model</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words">CPU Nodes</td>
-              <td class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words">110</td>
-              <td class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words">AMD EPYC 9754</td>
-              <td class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words">2</td>
-              <td class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words">256</td>
-              <td class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words">1.5TB</td>
-              <td class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words">1.92TB NVMe</td>
-              <td class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words">-</td>
-              <td class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words">-</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words">GPU Nodes</td>
-              <td class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words">8</td>
-              <td class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words">Intel Xeon Gold 6448Y</td>
-              <td class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words">2</td>
-              <td class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words">64</td>
-              <td class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words">512GB</td>
-              <td class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words">1.92TB SSD</td>
-              <td class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words">4</td>
-              <td class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words">NVIDIA H100 NVL (94GB)</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words">Login Nodes</td>
-              <td class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words">3</td>
-              <td class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words">AMD EPYC 9254</td>
-              <td class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words">2</td>
-              <td class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words">48</td>
-              <td class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words">256GB</td>
-              <td class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words">1.92TB NVMe</td>
-              <td class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words">-</td>
-              <td class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words">-</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words">Storage Nodes</td>
-              <td class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words">9</td>
-              <td class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words">Intel Xeon Gold (varied)</td>
-              <td class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words">2</td>
-              <td class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words">32/24/8</td>
-              <td class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words">1024GB/512GB</td>
-              <td class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words">25.6TB-583.68TB</td>
-              <td class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words">-</td>
-              <td class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words">-</td>
-            </tr>
-              <tr>
-              <td class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words font-bold">Total</td>
-              <td class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words font-bold">130 Nodes</td>
-              <td colspan="2" class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words font-bold">260 CPUs, 32 GPUs</td>
-              <td class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words font-bold">28,984 Cores</td>
-              <td class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words font-bold">176 TB Memory</td>
-              <td class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words font-bold">3.2 PB Storage</td>
-              <td colspan="2" class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words font-bold">3 TB GPU Memory</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </Container>
-  </main>
+        <!-- System Specifications Section -->
+        <Container
+            className="mx-auto flex flex-col gap-y-4 text-left max-w-4xl -mt-8"
+        >
+            <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">
+                REPACSS System Specifications
+            </h2>
+            <div class="overflow-x-auto">
+                <table
+                    class="table-fixed w-full border-collapse border border-gray-300 dark:border-gray-700 text-sm text-gray-600 dark:text-gray-400"
+                >
+                    <thead>
+                        <tr
+                            class="bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200"
+                        >
+                            <th
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
+                                >Node Type</th
+                            >
+                            <th
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
+                                >Total Nodes</th
+                            >
+                            <th
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
+                                >CPU Model</th
+                            >
+                            <th
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
+                                >CPUs/Node</th
+                            >
+                            <th
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
+                                >Cores/Node</th
+                            >
+                            <th
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
+                                >Memory/Node</th
+                            >
+                            <th
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
+                                >Storage/Node</th
+                            >
+                            <th
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
+                                >GPUs/Node</th
+                            >
+                            <th
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
+                                >GPU Model</th
+                            >
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
+                                >CPU Nodes</td
+                            >
+                            <td
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
+                                >110</td
+                            >
+                            <td
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
+                                >AMD EPYC 9754</td
+                            >
+                            <td
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
+                                >2</td
+                            >
+                            <td
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
+                                >256</td
+                            >
+                            <td
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
+                                >1.5TB</td
+                            >
+                            <td
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
+                                >1.92TB NVMe</td
+                            >
+                            <td
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
+                                >-</td
+                            >
+                            <td
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
+                                >-</td
+                            >
+                        </tr>
+                        <tr>
+                            <td
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
+                                >GPU Nodes</td
+                            >
+                            <td
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
+                                >8</td
+                            >
+                            <td
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
+                                >Intel Xeon Gold 6448Y</td
+                            >
+                            <td
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
+                                >2</td
+                            >
+                            <td
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
+                                >64</td
+                            >
+                            <td
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
+                                >512GB</td
+                            >
+                            <td
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
+                                >1.92TB SSD</td
+                            >
+                            <td
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
+                                >4</td
+                            >
+                            <td
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
+                                >NVIDIA H100 NVL (94GB)</td
+                            >
+                        </tr>
+                        <tr>
+                            <td
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
+                                >Login Nodes</td
+                            >
+                            <td
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
+                                >3</td
+                            >
+                            <td
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
+                                >AMD EPYC 9254</td
+                            >
+                            <td
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
+                                >2</td
+                            >
+                            <td
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
+                                >48</td
+                            >
+                            <td
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
+                                >256GB</td
+                            >
+                            <td
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
+                                >1.92TB NVMe</td
+                            >
+                            <td
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
+                                >-</td
+                            >
+                            <td
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
+                                >-</td
+                            >
+                        </tr>
+                        <tr>
+                            <td
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
+                                >Storage Nodes</td
+                            >
+                            <td
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
+                                >9</td
+                            >
+                            <td
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
+                                >Intel Xeon Gold (varied)</td
+                            >
+                            <td
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
+                                >2</td
+                            >
+                            <td
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
+                                >32/24/8</td
+                            >
+                            <td
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
+                                >1024GB/512GB</td
+                            >
+                            <td
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
+                                >25.6TB-583.68TB</td
+                            >
+                            <td
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
+                                >-</td
+                            >
+                            <td
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
+                                >-</td
+                            >
+                        </tr>
+                        <tr>
+                            <td
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words font-bold"
+                                >Total</td
+                            >
+                            <td
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words font-bold"
+                                >130 Nodes</td
+                            >
+                            <td
+                                colspan="2"
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words font-bold"
+                                >260 CPUs, 32 GPUs</td
+                            >
+                            <td
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words font-bold"
+                                >28,984 Cores</td
+                            >
+                            <td
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words font-bold"
+                                >176 TB Memory</td
+                            >
+                            <td
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words font-bold"
+                                >3.2 PB Storage</td
+                            >
+                            <td
+                                colspan="2"
+                                class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words font-bold"
+                                >3 TB GPU Memory</td
+                            >
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </Container>
+    </main>
 </Layout>
