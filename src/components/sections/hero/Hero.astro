@@ -10,8 +10,10 @@ import LazyImage from "../../shared/LazyImage.astro";
 const heroSection = {
     headline1: "Accelerating",
     headline2: "Discovery,",
-    headline3: "Reducing Costs,",
-    headline4: "Improving Efficiency",
+    headline3: "Reducing",
+    headline4: "Costs,",
+    headline5: "Improving",
+    headline6: "Efficiency",
     subheading1:
         "Focuses on developing a high-performance computing data center and",
     subheading2:
@@ -36,11 +38,11 @@ const { className = "" } = Astro.props;
             <div class="justify-center flex flex-col text-center md:ml-auto">
                 <Title className="">
                     {heroSection.headline1}
-                    <GradiantText
-                        >{" " + heroSection.headline2}
-                        <br />
-                        {" " + heroSection.headline3}
-                    </GradiantText>{heroSection.headline4}
+                    <GradiantText>{" " + heroSection.headline2}<br /></GradiantText>
+                    {heroSection.headline3}
+                    <GradiantText>{heroSection.headline4}</GradiantText>
+                    {heroSection.headline5}
+                    <GradiantText>{heroSection.headline6}</GradiantText>
                 </Title>
                 <SubTitle className="mt-6 leading-8 italic">
                     {heroSection.subheading1}
