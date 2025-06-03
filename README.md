@@ -1,6 +1,6 @@
 # REPACSS Website
 
-This is the official website for REPACSS (Empowering Scientific Discovery through Renewable Energy Powered Advanced Computing Systems and Services).
+This is the official website for REPACSS.
 
 ## Website
 
