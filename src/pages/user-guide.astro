@@ -66,8 +66,8 @@ const title = "REPACSS User Guide";
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <a
-                                href="https://github.com/nsfcac/repacss-user-guide/blob/main/src/quick-links/getting-started.md"
-                                target="_blank"
+                                href="/user-guide/getting-started"
+                                target=""
                                 class="group p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-primary transition-all duration-200 hover:shadow-sm"
                             >
                                 <h4
@@ -400,6 +400,31 @@ const title = "REPACSS User Guide";
         </main>
     </div>
 </Layout>
+
+<script>
+  import { event } from '../utils/analytics.ts';
+  
+  // Track user guide page view
+  event({
+    action: 'view_page',
+    category: 'documentation',
+    label: 'user_guide_overview',
+  });
+  
+  // Track quick link clicks
+  document.querySelectorAll('a[href^="/user-guide/"], a[href*="github.com"]').forEach(link => {
+    link.addEventListener('click', () => {
+      const linkText = link.querySelector('h4')?.textContent?.trim() || 'unknown_link';
+      const isExternal = link.getAttribute('href')?.includes('github.com');
+      
+      event({
+        action: isExternal ? 'click_external_link' : 'click_internal_link',
+        category: 'user_guide',
+        label: linkText,
+      });
+    });
+  });
+</script>
 
 <style>
     /* Additional styling for content */

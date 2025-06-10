@@ -312,3 +312,56 @@ import Container from "../components/shared/Container.astro";
         </Container>
     </main>
 </Layout>
+
+<script>
+  import { event } from '../utils/analytics.ts';
+  
+  // Track resource page view
+  event({
+    action: 'view_page',
+    category: 'resources',
+    label: 'facility_overview',
+  });
+  
+  // Track table row interactions
+  document.querySelectorAll('table tbody tr').forEach((row, index) => {
+    row.addEventListener('click', () => {
+      const systemName = row.querySelector('td')?.textContent?.trim() || `system_${index + 1}`;
+      event({
+        action: 'click_table_row',
+        category: 'resources',
+        label: `specifications_${systemName}`,
+      });
+    });
+  });
+  
+  // Track any external links on the page
+  document.querySelectorAll('a[href^="http"]').forEach(link => {
+    link.addEventListener('click', () => {
+      event({
+        action: 'click_external_link',
+        category: 'resources',
+        label: link.getAttribute('href') || 'unknown_link',
+      });
+    });
+  });
+  
+  // Track section scrolling engagement
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const sectionTitle = entry.target.querySelector('h2')?.textContent?.trim() || 'unknown_section';
+        event({
+          action: 'view_section',
+          category: 'resources',
+          label: sectionTitle.toLowerCase().replace(/\s+/g, '_'),
+        });
+      }
+    });
+  }, { threshold: 0.5 });
+  
+  // Observe main sections
+  document.querySelectorAll('main > .mx-auto').forEach(section => {
+    observer.observe(section);
+  });
+</script>

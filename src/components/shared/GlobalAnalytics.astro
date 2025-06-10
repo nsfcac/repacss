@@ -1,0 +1,61 @@
+<!-- filepath: src/components/shared/GlobalAnalytics.astro -->
+<script>
+  // Analytics functions (inline implementation)
+  function trackExternalLinkClick(url: string, context: string) {
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'click_external_link', {
+        event_category: 'navigation',
+        event_label: `${context}: ${url}`,
+      });
+    }
+  }
+
+  function trackEvent(action: string, category: string, label?: string) {
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', action, {
+        event_category: category,
+        event_label: label,
+      });
+    }
+  }
+
+  // Declare gtag for TypeScript
+  declare global {
+    interface Window {
+      gtag: (...args: any[]) => void;
+    }
+  }
+
+  // Wait for DOM to be ready
+  document.addEventListener('DOMContentLoaded', () => {
+    // Global external link tracking
+    document.addEventListener('click', (e) => {
+      const target = (e.target as Element).closest('a') as HTMLAnchorElement;
+      if (target && target.hostname !== window.location.hostname) {
+        const context = target.closest('nav') ? 'navigation' : 
+                       target.closest('footer') ? 'footer' : 
+                       target.closest('aside') ? 'sidebar' : 'content';
+        
+        trackExternalLinkClick(target.href, context);
+      }
+    });
+    
+    // Track theme switches (your existing theme switch code)
+    const themeSwitch = document.querySelector('[data-switch-theme]');
+    if (themeSwitch) {
+      themeSwitch.addEventListener('click', () => {
+        const currentTheme = localStorage.getItem('theme') || 'system';
+        trackEvent('toggle_theme', 'ui_interaction', `from_${currentTheme}`);
+      });
+    }
+    
+    // Track mobile menu usage (your existing mobile menu code)
+    const mobileToggle = document.querySelector('[data-toggle-nav]');
+    if (mobileToggle) {
+      mobileToggle.addEventListener('click', () => {
+        const isOpen = mobileToggle.getAttribute('data-open-nav') === 'true';
+        trackEvent('toggle_mobile_menu', 'ui_interaction', isOpen ? 'close' : 'open');
+      });
+    }
+  });
+</script>

@@ -11,10 +11,10 @@ const navItems = [
   // Main sections
   {
     title: "Getting Started",
-    href: "https://github.com/nsfcac/repacss-user-guide/blob/main/src/quick-links/getting-started.md",
+    href: "/user-guide/getting-started",
     active: activePage === "getting-started",
     keywords: "account setup login configuration installation vpn ssh",
-    target: "_blank"
+    target: "" 
   },
   {
     title: "System Overview", 
@@ -27,14 +27,14 @@ const navItems = [
     title: "Running Jobs",
     href: "https://github.com/nsfcac/repacss-user-guide/blob/main/src/quick-links/running-jobs.md", 
     active: activePage === "running-jobs",
-    keywords: "job submission slurm sbatch squeue scancel batch interactive queue",
+    keywords: "job submission slurm ",
     target: "_blank"
   },
   {
     title: "File Management",
     href: "https://github.com/nsfcac/repacss-user-guide/blob/main/src/quick-links/file-management.md",
     active: activePage === "file-management",
-    keywords: "files storage data transfer backup sharing scp rsync directories",
+    keywords: "files storage data",
     target: "_blank"
   },
   {
@@ -294,6 +294,83 @@ const navItems = [
       }
     });
   });
+</script>
+
+<script>
+  // Analytics functions (inline implementation)
+  function trackDocumentationAccess(documentName: string) {
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'access_documentation', {
+        event_category: 'user_guide',
+        event_label: documentName,
+      });
+    }
+  }
+
+  function trackSearchQuery(query: string, resultsCount: number) {
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'search', {
+        event_category: 'documentation',
+        event_label: query,
+        value: resultsCount,
+      });
+    }
+  }
+
+  function trackExternalLinkClick(url: string, context: string) {
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'click_external_link', {
+        event_category: 'navigation',
+        event_label: `${context}: ${url}`,
+      });
+    }
+  }
+
+  // Declare gtag for TypeScript
+  declare global {
+    interface Window {
+      gtag: (...args: any[]) => void;
+    }
+  }
+
+  // Track sidebar navigation clicks
+  document.querySelectorAll('#sidebar-nav a').forEach(link => {
+    link.addEventListener('click', (e) => {
+      const linkText = link.textContent?.trim() || '';
+      const href = link.getAttribute('href') || '';
+      
+      if (href.includes('github.com')) {
+        trackExternalLinkClick(href, 'documentation_sidebar');
+      } else {
+        trackDocumentationAccess(linkText);
+      }
+    });
+  });
+
+  // Enhanced search tracking - modify your existing search listener
+  // Find your existing searchInput event listener and add this tracking
+  const originalInput = document.getElementById('docs-search') as HTMLInputElement;
+  const originalResults = document.getElementById('search-results') as HTMLDivElement;
+  
+  if (originalInput) {
+    let searchAnalyticsTimeout: ReturnType<typeof setTimeout>;
+    
+    originalInput.addEventListener('input', (e) => {
+      const query = (e.target as HTMLInputElement).value.trim().toLowerCase();
+      
+      // Clear existing analytics timeout
+      clearTimeout(searchAnalyticsTimeout);
+      
+      // Track search analytics after search is performed
+      if (query.length > 2) {
+        searchAnalyticsTimeout = setTimeout(() => {
+          // Count current visible results
+          const visibleResults = originalResults?.querySelectorAll('a:not(.hidden)').length || 0;
+          trackSearchQuery(query, visibleResults);
+        }, 1000);
+      }
+    });
+  }
 </script>
 
 <style>

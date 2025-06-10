@@ -45,3 +45,67 @@ import Layout from "../layouts/Layout.astro";
 
   </main>
 </Layout>
+
+<script>
+  // Google Analytics tracking ID from environment variables
+  const GA_TRACKING_ID = import.meta.env.PUBLIC_GA_TRACKING_ID || 'G-837FYSF17X';
+
+  // Extend Window interface for gtag
+  declare global {
+    interface Window {
+      gtag: (...args: any[]) => void;
+      dataLayer: any[];
+    }
+  }
+
+  // Event tracking function
+  export function event({
+    action,
+    category,
+    label,
+    value
+  }: {
+    action: string;
+    category: string;
+    label?: string;
+    value?: number;
+  }) {
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', action, {
+        event_category: category,
+        event_label: label,
+        value: value,
+      });
+    }
+  }
+
+  // Page view tracking
+  export function pageview(url: string) {
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('config', GA_TRACKING_ID, {
+        page_path: url,
+      });
+    }
+  }
+  
+  // Track homepage view
+  event({
+    action: 'view_page',
+    category: 'homepage',
+    label: 'homepage_load',
+  });
+  
+  // Track CTA button clicks
+  document.querySelectorAll('button, a').forEach(element => {
+    const text = element.textContent?.trim().toLowerCase();
+    if (text?.includes('get started') || text?.includes('learn more') || text?.includes('explore')) {
+      element.addEventListener('click', () => {
+        event({
+          action: 'click_cta_button',
+          category: 'homepage',
+          label: text || 'unknown_cta',
+        });
+      });
+    }
+  });
+</script>

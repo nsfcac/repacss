@@ -88,4 +88,27 @@ import Profiles from "../components/sections/profiles/Profiles.astro";
         <!-- Profiles Section -->
         <Profiles className="mx-auto -mt-36" />
     </main>
+
+    <script>
+      import { event } from '../utils/analytics.ts';
+      
+      // Track about page view
+      event({
+        action: 'view_page',
+        category: 'about',
+        label: 'about_repacss',
+      });
+      
+      // Track profile interactions if profiles section exists
+      document.querySelectorAll('[class*="profile"], [class*="team"]').forEach((profile, index) => {
+        profile.addEventListener('click', () => {
+          const name = profile.querySelector('h3, h4, .name')?.textContent?.trim() || `profile_${index + 1}`;
+          event({
+            action: 'click_team_profile',
+            category: 'about',
+            label: name,
+          });
+        });
+      });
+    </script>
 </Layout>
