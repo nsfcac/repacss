@@ -19,6 +19,15 @@ import samuel from './assets/SamuelAbiola.jpg';
 import ashlesha from './assets/AshleshaMalla.jpg';
 import chenxu from './assets/ChenxuNiu.png'; 
 import manoj from './assets/ManojKhatri.jpg';
+import ElhamHojati from './assets/ElhamHojati.jpg';
+import PhornsawanRoemsri from './assets/PhornsawanRoemsri.jpg';
+import danstanzione from './assets/danstanzione.jpg';
+import danielkatz from './assets/danielkatz.png';
+import HongfengYu from './assets/HongfengYu.jpg';
+import TatineniMahi from './assets/TatineniMahi.jpg';
+import fernandaFoertter from './assets/fernandaFoertter.jpg';
+import andrewGrimshaw from './assets/andrewGrimshaw.jpg'; // Change to lowercase 'a'
+
 // add actual images for placeholders
 import placeholderProfile from './assets/generic-avatar.jpg';
 
@@ -79,7 +88,7 @@ const faculty = [
 // Postdoctoral staff
 const postdocs = [
   {
-    photo: placeholderProfile,
+    photo: ElhamHojati,
     name: 'Elham Hojati',
     position: 'Postdoctoral Researcher',
     description: 'Computer Science',
@@ -111,7 +120,7 @@ const students = [
     website: '#'
   },
   {
-    photo: placeholderProfile,
+    photo: PhornsawanRoemsri,
     name: 'Phornsawan Roemsri',
     position: 'PhD Student',
     description: 'Computer Science',
@@ -151,6 +160,52 @@ const students = [
     position: 'PhD Student',
     description: 'Computer Science',
     website: '#'
+  }
+];
+
+// External Advisory Board
+const advisoryBoard = [
+  {
+    photo: danstanzione,
+    name: 'Dan Stanzione',
+    position: 'Executive Director, Texas Advanced Computing Center',
+    description: 'Associate Vice President for Research, The University of Texas at Austin',
+    website: 'https://tacc.utexas.edu/about/staff-directory/dan-stanzione/'
+  },
+  {
+    photo: danielkatz,
+    name: 'Daniel S. Katz',
+    position: 'Chief Scientist at NCSA',
+    description: 'Research Professor in the Siebel School of Computing and Data Science, Research Professor in the School of Information Sciences (iSchool) at the University of Illinois Urbana-Champaign',
+    website: 'https://danielskatz.org/'
+  },
+  {
+    photo: HongfengYu,
+    name: 'Hongfeng Yu',
+    position: 'Associate Professor, University of Nebraska-Lincoln',
+    description: 'Director of Holland Computing Center',
+    website: 'https://cse.unl.edu/~yu/'
+  },
+  {
+    photo: TatineniMahi,
+    name: 'Mahidhar Tatineni',
+    position: 'User Services Director of SDSC',
+    description: 'Research Programmer Analyst of SDSC',
+    website: 'https://www.sdsc.edu/research/experts/tatineni_mahidhar.html'
+  },
+  {
+    photo: fernandaFoertter,
+    name: 'Fernanda Foertter',
+    position: 'Senior HPC Engineer',
+    description: 'Oak Ridge National Laboratory (Scientific Computing, AI, ML, Data)',
+    website: 'https://foertter.com/about/'
+  },
+  {
+    photo: andrewGrimshaw, 
+    name: 'Andrew Grimshaw',
+    position: 'Emeritus Professor of University of Virginia',
+    description: 'Retired President of Lancium Compute',
+    website: 'https://www.cs.virginia.edu/~grimshaw/'
   }
 ];
 
@@ -195,6 +250,18 @@ const { className = "" } = Astro.props;
           <div class="transform scale-90">
             <ProfileCard {...member} />
           </div>
+      ))}
+    </div>
+  </Container>
+
+  <!-- External Advisory Board Section -->
+  <Container className="mx-auto mt-16">
+    <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-6 text-center">External Advisory Board</h3>
+    <div class="profiles-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mx-auto w-full max-w-6xl">
+      {advisoryBoard.map(member => (
+        <div class="transform scale-90">
+          <ProfileCard {...member} />
+        </div>
       ))}
     </div>
   </Container>
