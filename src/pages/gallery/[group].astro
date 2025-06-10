@@ -41,4 +41,29 @@ const photos = files.map(file => `/gallery/${group}/${file}`);
   </main>
 </Layout>
 
+<script>
+  import { event } from '../../utils/analytics.ts';
+  
+  // Track individual image views in gallery
+  const galleryName = window.location.pathname.split('/').pop();
+  
+  // Track page view
+  event({
+    action: 'view_gallery_detail',
+    category: 'gallery',
+    label: galleryName || 'unknown_gallery',
+  });
+  
+  // Track image interactions
+  document.querySelectorAll('img').forEach((img, index) => {
+    img.addEventListener('click', () => {
+      event({
+        action: 'click_gallery_image',
+        category: 'gallery',
+        label: `${galleryName}_image_${index + 1}`,
+      });
+    });
+  });
+</script>
+
 

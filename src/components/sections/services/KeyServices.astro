@@ -67,3 +67,51 @@ const { className } = Astro.props;
     </div>
   </Container>
 </section>
+
+<script>
+  // Google Analytics event tracking
+  function gtag(...args: any[]) {
+    (window as any).dataLayer = (window as any).dataLayer || [];
+    (window as any).dataLayer.push(arguments);
+  }
+
+  function event({ action, category, label, value }: {
+    action: string;
+    category: string;
+    label?: string;
+    value?: number;
+  }) {
+    if (typeof window !== 'undefined' && (window as any).gtag) {
+      (window as any).gtag('event', action, {
+        event_category: category,
+        event_label: label,
+        value: value,
+      });
+    }
+  }
+  
+  // Track service card clicks
+  document.querySelectorAll('[data-service-card]').forEach(card => {
+    card.addEventListener('click', () => {
+      const serviceName = card.querySelector('h3')?.textContent?.trim() || 'Unknown Service';
+      event({
+        action: 'click_service_card',
+        category: 'services',
+        label: serviceName,
+      });
+    });
+  });
+  
+  // Track "Explore More" button clicks
+  document.querySelectorAll('button, a').forEach(button => {
+    if (button.textContent?.includes('Explore More') || button.textContent?.includes('Learn More')) {
+      button.addEventListener('click', () => {
+        event({
+          action: 'click_explore_more',
+          category: 'services',
+          label: 'explore_services_button',
+        });
+      });
+    }
+  });
+</script>

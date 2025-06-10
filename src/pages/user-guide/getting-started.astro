@@ -1,16 +1,325 @@
 ---
-// Redirect to GitHub in a new tab
+// filepath: /Users/amauriribeiro/repacss/src/pages/user-guide/getting-started.astro
+import Layout from "../../layouts/Layout.astro";
+import Container from "../../components/shared/Container.astro";
+import DocsSidebar from "../../components/docs/DocsSidebar.astro";
+import DocsFooter from "../../components/docs/DocsFooter.astro";
+
+const title = "Getting Started - REPACSS User Guide";
 ---
 
-<script>
-  window.open("https://github.com/nsfcac/repacss-user-guide/blob/main/src/quick-links/getting-started.md", "_blank");
-</script>
+<Layout title={title}>
+    <div class="flex min-h-screen pt-20">
+        <DocsSidebar activePage="getting-started" />
+        
+        <main class="flex-1 ml-64 p-6 max-w-none">
+            <div class="docs-content max-w-4xl mx-auto">
+                <!-- Breadcrumb -->
+                <nav class="text-sm text-gray-500 mb-6">
+                    <a href="/" class="hover:text-primary">Home</a>
+                    <span class="mx-2">/</span>
+                    <a href="/user-guide" class="hover:text-primary">User Guide</a>
+                    <span class="mx-2">/</span>
+                    <span class="text-gray-900 dark:text-gray-100">Getting Started</span>
+                </nav>
 
-  <script>
-    // Redirect back to main documentation page after a short delay
-    setTimeout(function() {
-      window.location.href = "/user-guide";
-    }, 2000);
-  </script>
-</body>
-</html>
+                <!-- Page header -->
+                <div class="mb-8">
+                    <h1 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+                        Getting Started
+                    </h1>
+                    <p class="text-lg text-gray-600 dark:text-gray-400">
+                        Learn how to set up your account and access the REPACSS HPC cluster.
+                    </p>
+                </div>
+
+                <!-- Prerequisites Section -->
+                <section class="mb-12">
+                    <h2 id="prerequisites" class="text-2xl font-semibold text-primary mb-6">
+                        Prerequisites
+                    </h2>
+
+                    <div class="mb-8">
+                        <h3 class="text-xl font-medium text-gray-900 dark:text-gray-100 mb-4">
+                            Account Requirements
+                        </h3>
+                        
+                        <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-4 mb-6">
+                            <h4 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">
+                                Current Status (TTU Test Users Only)
+                            </h4>
+                            <ul class="list-disc list-inside text-gray-700 dark:text-gray-300 space-y-1">
+                                <li>Valid TTU eRaider account</li>
+                                <li>GlobalProtect VPN access</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-4 mb-6">
+                            <h4 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">
+                                Future Status (ACCESS Integration)
+                            </h4>
+                            <ul class="list-disc list-inside text-gray-700 dark:text-gray-300 space-y-1">
+                                <li>TTU users: TTU eRaider account</li>
+                                <li>ACCESS users: ACCESS account</li>
+                                <li>Active project allocation</li>
+                                <li>Completed training requirements</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="mb-8">
+                        <h3 class="text-xl font-medium text-gray-900 dark:text-gray-100 mb-4">
+                            System Requirements
+                        </h3>
+                        <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
+                            <li>SSH client (e.g., MobaXterm for Windows, Terminal for Mac/Linux)</li>
+                            <li>GlobalProtect VPN client</li>
+                            <li>Two-factor authentication (2FA) setup</li>
+                            <li>Basic knowledge of Linux command line</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Initial Setup Section -->
+                <section class="mb-12">
+                    <h2 id="setup" class="text-2xl font-semibold text-primary mb-6">
+                        Initial Setup
+                    </h2>
+
+                    <div class="mb-8">
+                        <h3 class="text-xl font-medium text-gray-900 dark:text-gray-100 mb-4">
+                            Request Access
+                        </h3>
+                        <ol class="list-decimal list-inside text-gray-600 dark:text-gray-400 space-y-2">
+                            <li>Ensure you have a valid TTU eRaider account</li>
+                            <li>Install and configure GlobalProtect VPN</li>
+                            <li>Set up two-factor authentication</li>
+                            <li>Contact system administrators for access approval</li>
+                        </ol>
+                    </div>
+
+                    <div class="mb-8">
+                        <h3 class="text-xl font-medium text-gray-900 dark:text-gray-100 mb-4">
+                            Connect to REPACSS
+                        </h3>
+                        
+                        <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-4 mb-6">
+                            <p class="text-gray-800 dark:text-gray-200">
+                                <strong>Important:</strong> All users off-campus must connect through GlobalProtect VPN 
+                            </p>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <!-- Windows Users -->
+                            <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                                <h4 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                                    Windows Users
+                                </h4>
+                                <ol class="list-decimal list-inside text-gray-600 dark:text-gray-400 space-y-2">
+                                    <li>Download and install MobaXterm</li>
+                                    <li>Open MobaXterm and create a new SSH session</li>
+                                    <li>Enter the following connection details:</li>
+                                </ol>
+                                <div class="bg-gray-100 dark:bg-gray-800 rounded p-3 mt-3">
+                                    <code class="text-sm">
+                                        Host: repacss.ttu.edu<br>
+                                        Username: your_eRaider_username
+                                    </code>
+                                </div>
+                            </div>
+
+                            <!-- Mac/Linux Users -->
+                            <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                                <h4 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                                    Mac/Linux Users
+                                </h4>
+                                <ol class="list-decimal list-inside text-gray-600 dark:text-gray-400 space-y-2">
+                                    <li>Open Terminal</li>
+                                    <li>Type in the following command:</li>
+                                </ol>
+                                <div class="bg-gray-100 dark:bg-gray-800 rounded p-3 mt-3">
+                                    <code class="text-sm">
+                                        ssh username@repacss.ttu.edu
+                                    </code>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Welcome Message -->
+                        <div class="mt-6 bg-gray-50 dark:bg-gray-800 rounded-lg p-6">
+                            <h4 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-3">
+                                Successful Connection
+                            </h4>
+                            <p class="text-gray-600 dark:text-gray-400 mb-3">
+                                After entering your password, you'll see the welcome message:
+                            </p>
+                            <pre class="bg-gray-900 text-white-400 p-4 rounded text-sm overflow-x-auto">
+***************************************************************
+           Welcome to the REPACSS HPC Cluster
+
+          ▗▄▄▖ ▗▄▄▄▖▗▄▄▖  ▗▄▖  ▗▄▄▖ ▗▄▄▖ ▗▄▄▖
+          ▐▌ ▐▌▐▌   ▐▌ ▐▌▐▌ ▐▌▐▌   ▐▌   ▐▌
+          ▐▛▀▚▖▐▛▀▀▘▐▛▀▘ ▐▛▀▜▌▐▌    ▝▀▚▖ ▝▀▚▖
+          ▐▌ ▐▌▐▙▄▄▖▐▌   ▐▌ ▐▌▝▚▄▄▖▗▄▄▞▘▗▄▄▞▘
+</pre>
+                        </div>
+                    </div>
+
+                    <div class="mb-8">
+                        <h3 class="text-xl font-medium text-gray-900 dark:text-gray-100 mb-4">
+                            Environment Setup
+                        </h3>
+                        <div class="bg-gray-100 dark:bg-gray-800 rounded p-4">
+                            <pre class="text-sm"><code># Load required modules
+module load &lt;module_name&gt;
+
+# Set up your environment
+source ~/.bashrc
+
+# For Python users, set up Miniforge (see Python Environment Setup guide)</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Basic Commands Section -->
+                <section class="mb-12">
+                    <h2 id="commands" class="text-2xl font-semibold text-primary mb-6">
+                        Basic Commands
+                    </h2>
+
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <!-- Navigation -->
+                        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                                Navigation
+                            </h3>
+                            <div class="space-y-2 text-sm">
+                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">pwd</code> - Current directory</div>
+                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">ls</code> - List files</div>
+                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">cd</code> - Change directory</div>
+                            </div>
+                        </div>
+
+                        <!-- File Operations -->
+                        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                                File Operations
+                            </h3>
+                            <div class="space-y-2 text-sm">
+                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">cp</code> - Copy files</div>
+                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">mv</code> - Move files</div>
+                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">rm</code> - Remove files</div>
+                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">mkdir</code> - Create directory</div>
+                            </div>
+                        </div>
+
+                        <!-- Job Management -->
+                        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                                Job Management
+                            </h3>
+                            <div class="space-y-2 text-sm">
+                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">sbatch script.sh</code> - Submit a job</div>
+                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">squeue -u username</code> - Check job status</div>
+                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">scancel job_id</code> - Cancel a job</div>
+                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">sinfo</code> - Check cluster status</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Next Steps Section -->
+                <section class="mb-12">
+                    <h2 id="next" class="text-2xl font-semibold text-primary mb-6">
+                        Next Steps
+                    </h2>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <a href="https://github.com/nsfcac/repacss-user-guide/blob/main/src/quick-links/system-overview.md" 
+                           target="_blank" 
+                           class="group p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-primary transition-all duration-200 hover:shadow-sm">
+                            <h4 class="font-medium text-primary group-hover:text-primary-400 mb-1">
+                                System Overview
+                            </h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">
+                                Understand REPACSS architecture
+                            </p>
+                        </a>
+
+                        <a href="https://github.com/nsfcac/repacss-user-guide/blob/main/src/quick-links/running-jobs.md" 
+                           target="_blank" 
+                           class="group p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-primary transition-all duration-200 hover:shadow-sm">
+                            <h4 class="font-medium text-primary group-hover:text-primary-400 mb-1">
+                                Running Jobs
+                            </h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">
+                                Learn about computational tasks
+                            </p>
+                        </a>
+
+                        <a href="https://github.com/nsfcac/repacss-user-guide/blob/main/src/quick-links/file-management.md" 
+                           target="_blank" 
+                           class="group p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-primary transition-all duration-200 hover:shadow-sm">
+                            <h4 class="font-medium text-primary group-hover:text-primary-400 mb-1">
+                                File Management
+                            </h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">
+                                Master efficient data handling
+                            </p>
+                        </a>
+
+                        <a href="https://github.com/nsfcac/repacss-user-guide/blob/main/src/quick-links/software.md" 
+                           target="_blank" 
+                           class="group p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-primary transition-all duration-200 hover:shadow-sm">
+                            <h4 class="font-medium text-primary group-hover:text-primary-400 mb-1">
+                                Software
+                            </h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">
+                                Explore available tools
+                            </p>
+                        </a>
+                    </div>
+                </section>
+
+                <!-- Related Resources -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-semibold text-primary mb-6">
+                        Related Resources
+                    </h2>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <a href="https://github.com/nsfcac/repacss-user-guide/blob/main/src/support&resources/training.md" 
+                           target="_blank" 
+                           class="text-primary hover:underline">Training</a>
+                        <a href="https://github.com/nsfcac/repacss-user-guide/blob/main/src/support&resources/support.md" 
+                           target="_blank" 
+                           class="text-primary hover:underline">Support</a>
+                        <a href="https://github.com/nsfcac/repacss-user-guide/blob/main/src/support&resources/faq.md" 
+                           target="_blank" 
+                           class="text-primary hover:underline">FAQ</a>
+                        <a href="/user-guide" 
+                           class="text-primary hover:underline">Documentation</a>
+                        <a href="https://github.com/nsfcac/repacss-user-guide/blob/main/src/quick-links/python.md" 
+                           target="_blank" 
+                           class="text-primary hover:underline">Python Environment Setup</a>
+                    </div>
+                </section>
+
+                <DocsFooter />
+            </div>
+        </main>
+    </div>
+</Layout>
+
+<style>
+    .docs-content h2 {
+        border-bottom: 1px solid #e5e7eb;
+        padding-bottom: 0.5rem;
+    }
+
+    .dark .docs-content h2 {
+        border-bottom-color: #374151;
+    }
+
+    .docs-content code {
+        font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    }
+</style>

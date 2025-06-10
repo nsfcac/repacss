@@ -6,6 +6,7 @@ import Title2 from "../../shared/Title2.astro";
 import EmailForm from "./components/EmailForm.astro";
 import InvolvementCard from "./components/InvolvementCard.astro";
 import { getInvolvedSection } from "./data.ts";
+import { event } from '../../../utils/analytics.ts';
 
 export interface Props {
   className?: string;
@@ -43,3 +44,19 @@ const { className } = Astro.props;
     </div>
   </Container>
 </section>
+
+<script>
+  import { event } from '../../../utils/analytics.ts';
+  
+  // Track initiative card interactions
+  document.querySelectorAll('.group').forEach((card, index) => {
+    card.addEventListener('click', () => {
+      const title = card.querySelector('h3')?.textContent?.trim() || `Initiative ${index + 1}`;
+      event({
+        action: 'click_initiative_card',
+        category: 'get_involved',
+        label: title,
+      });
+    });
+  });
+</script>

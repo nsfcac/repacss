@@ -76,3 +76,19 @@ groups.sort((a, b) => {
   </main>
   </Layout>
 
+<script>
+  import { event } from '../utils/analytics.ts';
+  
+  // Track gallery group clicks
+  document.querySelectorAll('a[href^="/gallery/"]').forEach(link => {
+    link.addEventListener('click', () => {
+      const galleryName = link.getAttribute('href')?.split('/').pop() || 'unknown';
+      event({
+        action: 'view_gallery_group',
+        category: 'gallery',
+        label: galleryName,
+      });
+    });
+  });
+</script>
+
