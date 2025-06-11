@@ -6,6 +6,12 @@ export default {
   darkMode: "class",
   theme: {
     extend: {
+      fontSize: {
+        sm: '14px',
+        base: '18px', // this changes the default font size
+        lg: '20px',
+        xl: '24px',
+      },
       colors: {
         base: {
           50: "#f9f9f9",

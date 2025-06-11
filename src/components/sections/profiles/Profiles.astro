@@ -234,9 +234,7 @@ const { className = "" } = Astro.props;
     <div class="flex justify-center w-full max-w-6xl mx-auto">
       <div class="profiles-container grid grid-cols-1 sm:grid-cols-2 gap-12 mx-auto">
         {postdocs.map(member => (
-          <div class="transform scale-110">
-            <ProfileCard {...member} />
-          </div>
+          <ProfileCard {...member} />
         ))}
       </div>
     </div>
@@ -247,9 +245,7 @@ const { className = "" } = Astro.props;
     <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-6 text-center">Student Researchers</h3>
     <div class="profiles-container grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-4 mx-auto w-full max-w-5xl">
       {students.map(member => (
-          <div class="transform scale-90">
-            <ProfileCard {...member} />
-          </div>
+        <ProfileCard {...member} />
       ))}
     </div>
   </Container>
@@ -259,9 +255,7 @@ const { className = "" } = Astro.props;
     <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-6 text-center">External Advisory Board</h3>
     <div class="profiles-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mx-auto w-full max-w-6xl">
       {advisoryBoard.map(member => (
-        <div class="transform scale-90">
-          <ProfileCard {...member} />
-        </div>
+        <ProfileCard {...member} />
       ))}
     </div>
   </Container>
