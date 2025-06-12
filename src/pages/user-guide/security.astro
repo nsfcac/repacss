@@ -1,14 +1,313 @@
 ---
-// Redirect to GitHub immediately
+import Layout from '../../layouts/Layout.astro';
+import DocsSidebar from '../../components/docs/DocsSidebar.astro';
+import DocsFooter from '../../components/docs/DocsFooter.astro';
+
+const title = "Security - REPACSS User Guide";
 ---
 
-<script>
-  window.open("https://github.com/nsfcac/repacss-user-guide/blob/main/src/support&resources/security.md", "_blank");
-</script>
+<Layout title={title}>
+    <div class="flex min-h-screen pt-20">
+        <DocsSidebar activePage="security" />
+        
+        <main class="flex-1 ml-64">
+            <div class="docs-content max-w-4xl mx-auto px-8 py-12">
+                <!-- Breadcrumb -->
+                <nav class="mb-8">
+                    <ol class="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
+                        <li><a href="/" class="hover:text-primary">Home</a></li>
+                        <li class="before:content-['/'] before:mx-2">
+                            <a href="/user-guide" class="hover:text-primary">User Guide</a>
+                        </li>
+                        <li class="before:content-['/'] before:mx-2 text-gray-900 dark:text-gray-100">Security</li>
+                    </ol>
+                </nav>
 
-<script>
-    // Redirect back to main documentation page after a short delay
-    setTimeout(function() {
-      window.location.href = "/user-guide";
-    }, 2000);
-  </script>
+                <!-- Page Header -->
+                <div class="mb-12">
+                    <h1 class="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+                        Security
+                    </h1>
+                    <p class="text-xl text-gray-600 dark:text-gray-400">
+                        Security policies and best practices for REPACSS
+                    </p>
+                </div>
+
+                <!-- Table of Contents -->
+                <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-6 mb-8">
+                    <h2 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">On This Page</h2>
+                    <nav class="space-y-2">
+                        <a href="#account" class="block text-primary hover:underline">Account Security</a>
+                        <a href="#data" class="block text-primary hover:underline">Data Security</a>
+                        <a href="#system" class="block text-primary hover:underline">System Security</a>
+                        <a href="#best-practices" class="block text-primary hover:underline">Best Practices</a>
+                        <a href="#compliance" class="block text-primary hover:underline">Compliance</a>
+                        <a href="#next" class="block text-primary hover:underline">Related Resources</a>
+                    </nav>
+                </div>
+
+                <!-- Account Security Section -->
+                <section class="mb-12">
+                    <h2 id="account" class="text-2xl font-semibold text-primary mb-6">
+                        Account Security
+                    </h2>
+
+                    <div class="space-y-6">
+                        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                                Password Policy
+                            </h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-4">
+                                To ensure the security and integrity of user accounts and sensitive information, the following password policy must be followed:
+                            </p>
+                            
+                            <div class="space-y-4">
+                                <div>
+                                    <h4 class="font-medium text-gray-900 dark:text-gray-100 mb-2">Minimum Length</h4>
+                                    <p class="text-gray-600 dark:text-gray-400">
+                                        Passwords must be at least 8 characters long. This baseline helps prevent simple or easily guessed passwords and increases resistance to brute-force attacks.
+                                    </p>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-medium text-gray-900 dark:text-gray-100 mb-2">Character Complexity</h4>
+                                    <p class="text-gray-600 dark:text-gray-400">
+                                        Passwords must include a mix of character types, such as uppercase letters, lowercase letters, numbers, and special characters (e.g., @, #, $). This complexity helps strengthen passwords against common password-cracking methods.
+                                    </p>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-medium text-gray-900 dark:text-gray-100 mb-2">Regular Changes</h4>
+                                    <p class="text-gray-600 dark:text-gray-400">
+                                        Users are required to change their passwords regularly. Regular password updates reduce the risk of long-term unauthorized access if a password is compromised without the user's knowledge.
+                                    </p>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-medium text-gray-900 dark:text-gray-100 mb-2">No Reuse of Passwords</h4>
+                                    <p class="text-gray-600 dark:text-gray-400">
+                                        Users must not reuse previous passwords. This prevents attackers from exploiting old, known credentials and ensures each password is unique and secure.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                                Two-Factor Authentication
+                            </h3>
+                            <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-1">
+                                <li>Required for all users</li>
+                                <li>Use authenticator app</li>
+                                <li>Backup codes provided</li>
+                                <li>Report lost devices</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Data Security Section -->
+                <section class="mb-12">
+                    <h2 id="data" class="text-2xl font-semibold text-primary mb-6">
+                        Data Security
+                    </h2>
+
+                    <div class="space-y-6">
+                        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                                Data Classification
+                            </h3>
+                            <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-1">
+                                <li>Public data</li>
+                                <li>Internal data</li>
+                                <li>Confidential data</li>
+                                <li>Restricted data</li>
+                            </ul>
+                        </div>
+
+                        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                                Data Handling
+                            </h3>
+                            <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-1">
+                                <li>Use appropriate storage</li>
+                                <li>Follow retention policy</li>
+                                <li>Encrypt sensitive data</li>
+                                <li>Report incidents</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- System Security Section -->
+                <section class="mb-12">
+                    <h2 id="system" class="text-2xl font-semibold text-primary mb-6">
+                        System Security
+                    </h2>
+
+                    <div class="space-y-6">
+                        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                                Access Control
+                            </h3>
+                            
+                            <div class="space-y-4">
+                                <div>
+                                    <h4 class="font-medium text-gray-900 dark:text-gray-100 mb-2">Use SSH Keys</h4>
+                                    <p class="text-gray-600 dark:text-gray-400">
+                                        Always use SSH keys instead of passwords when accessing REPACSS or other remote systems. SSH keys provide a more secure, encrypted method of authentication that is significantly harder to compromise than traditional credentials. Make sure your private key is stored securely and never shared.
+                                    </p>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-medium text-gray-900 dark:text-gray-100 mb-2">Limit File Permissions</h4>
+                                    <p class="text-gray-600 dark:text-gray-400">
+                                        Restrict file permissions to only those who absolutely need access. This reduces the risk of unauthorized modifications or data leaks. Use operating system-level tools (like chmod) to ensure sensitive files are only readable or writable by the appropriate users.
+                                    </p>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-medium text-gray-900 dark:text-gray-100 mb-2">Follow the Principle of Least Privilege</h4>
+                                    <p class="text-gray-600 dark:text-gray-400">
+                                        Grant users and applications the minimum level of access necessary to perform their tasks. Avoid giving more privileges unless absolutely required. This limits potential damage in case of compromised accounts or software vulnerabilities.
+                                    </p>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-medium text-gray-900 dark:text-gray-100 mb-2">Report Unauthorized Access</h4>
+                                    <p class="text-gray-600 dark:text-gray-400">
+                                        If you detect any suspicious behavior or unauthorized access to systems or data, report it immediately to your security team or system administrator. Timely reporting helps prevent further damage, ensures incident response teams can act quickly, and contributes to overall system integrity.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Best Practices Section -->
+                <section class="mb-12">
+                    <h2 id="best-practices" class="text-2xl font-semibold text-primary mb-6">
+                        Best Practices
+                    </h2>
+
+                    <div class="space-y-6">
+                        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                                Keep Software Updated
+                            </h3>
+                            <p class="text-gray-600 dark:text-gray-400">
+                                Regularly update all software, including operating systems, applications, and security tools. Applying patches and updates ensures protection against known vulnerabilities and reduces the risk of exploitation by attackers. Enable automatic updates when possible, and establish a routine schedule for checking and applying critical fixes.
+                            </p>
+                        </div>
+
+                        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                                Use Secure Connections
+                            </h3>
+                            <p class="text-gray-600 dark:text-gray-400">
+                                Always use encrypted connections, such as HTTPS, SFTP, and SSH—to protect data in transit. Avoid unsecured protocols like HTTP or FTP, especially when handling sensitive information. Ensure SSL/TLS certificates are valid and up to date for all web-facing services.
+                            </p>
+                        </div>
+
+                        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                                Monitor System Activity
+                            </h3>
+                            <p class="text-gray-600 dark:text-gray-400">
+                                Continuously monitor system activity to detect unusual behavior or unauthorized access and in real time. Anomalies in system performance, login patterns, or network traffic should be reported to be investigated promptly.
+                            </p>
+                        </div>
+
+                        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                                Report Vulnerabilities
+                            </h3>
+                            <p class="text-gray-600 dark:text-gray-400">
+                                If you identify a potential vulnerability, please report it immediately through the appropriate channels. Prompt reporting enables faster mitigation and reduces the window of risk.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Compliance Section -->
+                <section class="mb-12">
+                    <h2 id="compliance" class="text-2xl font-semibold text-primary mb-6">
+                        Compliance
+                    </h2>
+
+                    <div class="space-y-6">
+                        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                                Policies
+                            </h3>
+                            <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-1">
+                                <li>Acceptable use</li>
+                                <li>Data protection</li>
+                                <li>Security incident</li>
+                                <li>Privacy policy</li>
+                            </ul>
+                        </div>
+
+                        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                                Requirements
+                            </h3>
+                            <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-1">
+                                <li>Follow guidelines</li>
+                                <li>Complete training</li>
+                                <li>Report violations</li>
+                                <li>Maintain compliance</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Related Resources Section -->
+                <section class="mb-12">
+                    <h2 id="next" class="text-2xl font-semibold text-primary mb-6">
+                        Related Resources
+                    </h2>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <a href="/user-guide/support" 
+                           class="block p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                            <div class="text-primary font-medium mb-2">Support</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400">Get help and support</div>
+                        </a>
+                        <a href="/user-guide/training" 
+                           class="block p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                            <div class="text-primary font-medium mb-2">Training</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400">Training materials and resources</div>
+                        </a>
+                        <a href="/user-guide/faq" 
+                           class="block p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                            <div class="text-primary font-medium mb-2">FAQ</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400">Frequently asked questions</div>
+                        </a>
+                        <a href="mailto:repacss.support@ttu.edu" 
+                           class="block p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                            <div class="text-primary font-medium mb-2">Contact</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400">Get in touch with support</div>
+                        </a>
+                    </div>
+                </section>
+
+                <DocsFooter />
+            </div>
+        </main>
+    </div>
+</Layout>
+
+<style>
+    .docs-content h2 {
+        border-bottom: 1px solid #e5e7eb;
+        padding-bottom: 0.5rem;
+    }
+
+    .dark .docs-content h2 {
+        border-bottom-color: #374151;
+    }
+
+    .docs-content code {
+        font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    }
+</style>
