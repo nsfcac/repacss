@@ -1,14 +1,418 @@
 ---
-// Redirect to GitHub immediately
+import Layout from "../../layouts/Layout.astro";
+import Container from "../../components/shared/Container.astro";
+import DocsSidebar from "../../components/docs/DocsSidebar.astro";
+import DocsFooter from "../../components/docs/DocsFooter.astro";
+
+const title = "Python Environment Setup - REPACSS User Guide";
 ---
 
-<script>
-  window.open("https://github.com/nsfcac/repacss-user-guide/blob/main/src/quick-links/python.md", "_blank");
-</script>
+<Layout title={title}>
+    <div class="flex min-h-screen pt-20">
+        <DocsSidebar activePage="python-environment" />
+        
+        <main class="flex-1 ml-64 p-6 max-w-none">
+            <div class="docs-content max-w-4xl mx-auto">
+                <!-- Breadcrumb -->
+                <nav class="text-sm text-gray-500 mb-6">
+                    <a href="/" class="hover:text-primary">Home</a>
+                    <span class="mx-2">/</span>
+                    <a href="/user-guide" class="hover:text-primary">User Guide</a>
+                    <span class="mx-2">/</span>
+                    <span class="text-gray-900 dark:text-gray-100">Python Environment Setup</span>
+                </nav>
 
-<script>
-    // Redirect back to main documentation page after a short delay
-    setTimeout(function() {
-      window.location.href = "/user-guide";
-    }, 2000);
-  </script>
+                <!-- Page header -->
+                <div class="mb-8">
+                    <h1 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+                        Python Environment Setup
+                    </h1>
+                    <p class="text-lg text-gray-600 dark:text-gray-400">
+                        Learn how to set up and manage Python environments on REPACSS using Miniforge.
+                    </p>
+                </div>
+
+                <!-- Overview Section -->
+                <section class="mb-12">
+                    <h2 id="overview" class="text-2xl font-semibold text-primary mb-6">
+                        Overview
+                    </h2>
+
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">
+                        REPACSS provides Python through the module system, but for better control and reproducibility, users are encouraged to set up their own conda environments. This guide will help you create and manage your Python environments using Miniforge.
+                    </p>
+
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">
+                        Miniforge is a minimal installer for Conda that includes the Mamba libraries. It allows users to install the Conda package manager with conda-forge set as the default channel. We recommend Miniforge over Miniconda or Anaconda for several reasons:
+                    </p>
+
+                    <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2 mb-6">
+                        <li><strong>Community-Focused:</strong> Miniforge is a community-driven project specifically designed to work seamlessly with the conda-forge channel, ensuring access to a vast and frequently updated collection of packages.</li>
+                        <li><strong>No Default Channels:</strong> Unlike Anaconda and Miniconda, which include the "defaults" channel that may lead to outdated packages or conflicts, Miniforge sets up and is only dependent on conda-forge, providing a more consistent and reliable package management experience.</li>
+                        <li><strong>Lightweight Installation:</strong> Miniforge provides a minimal installer, which means it occupies less disk space and allows users to install only the packages they need.</li>
+                        <li><strong>Enhanced Compatibility:</strong> Using conda-forge as the primary channel improves compatibility with numerous scientific packages that may not be available in the default channels.</li>
+                    </ul>
+                </section>
+
+                <!-- Prerequisites Section -->
+                <section class="mb-12">
+                    <h2 id="prerequisites" class="text-2xl font-semibold text-primary mb-6">
+                        Prerequisites
+                    </h2>
+
+                    <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
+                        <li>Access to REPACSS login nodes</li>
+                        <li>Basic knowledge of Linux commands</li>
+                        <li>Understanding of Python package management</li>
+                    </ul>
+                </section>
+
+                <!-- Removing Existing Conda Section -->
+                <section class="mb-12">
+                    <h2 id="removing-conda" class="text-2xl font-semibold text-primary mb-6">
+                        Removing Existing Conda Installations
+                    </h2>
+
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">
+                        Before installing Miniforge, it's recommended to remove any existing conda installations to avoid conflicts.
+                    </p>
+
+                    <h3 class="text-xl font-medium text-gray-900 dark:text-gray-100 mb-4">
+                        Check for Existing Conda Installations
+                    </h3>
+
+                    <div class="space-y-4">
+                        <div>
+                            <p class="text-gray-600 dark:text-gray-400 mb-2">Check if conda is installed:</p>
+                            <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-4">
+                                <code class="text-sm">conda --version</code>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-400 mt-2 text-sm">
+                                If conda is not installed, you will receive a "command not found" error and can proceed with the installation.
+                            </p>
+                        </div>
+
+                        <div>
+                            <p class="text-gray-600 dark:text-gray-400 mb-2">Verify existing conda installations:</p>
+                            <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-4">
+                                <code class="text-sm">ls -al | grep conda</code>
+                            </div>
+                        </div>
+
+                        <div>
+                            <p class="text-gray-600 dark:text-gray-400 mb-2">Remove any existing conda-related directories and files:</p>
+                            <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-4">
+                                <code class="text-sm">find . -maxdepth 1 -name \*conda\* -exec rm -ir {} +</code>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-400 mt-2 text-sm">
+                                This command will ask for confirmation before deleting each file or directory. Answer:
+                            </p>
+                            <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 ml-4 mt-2 text-sm">
+                                <li><code>y</code> to remove the item</li>
+                                <li><code>n</code> to keep the item</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Setting Up Miniforge Section -->
+                <section class="mb-12">
+                    <h2 id="miniforge-setup" class="text-2xl font-semibold text-primary mb-6">
+                        Setting Up Miniforge
+                    </h2>
+
+                    <h3 class="text-xl font-medium text-gray-900 dark:text-gray-100 mb-4">
+                        Installation
+                    </h3>
+
+                    <div class="space-y-4">
+                        <div>
+                            <p class="text-gray-600 dark:text-gray-400 mb-2">1. Download Miniforge:</p>
+                            <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-4">
+                                <code class="text-sm">wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh</code>
+                            </div>
+                        </div>
+
+                        <div>
+                            <p class="text-gray-600 dark:text-gray-400 mb-2">2. Make the installer executable:</p>
+                            <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-4">
+                                <code class="text-sm">chmod +x Miniforge3-Linux-x86_64.sh</code>
+                            </div>
+                        </div>
+
+                        <div>
+                            <p class="text-gray-600 dark:text-gray-400 mb-2">3. Run the installer:</p>
+                            <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-4">
+                                <code class="text-sm">./Miniforge3-Linux-x86_64.sh</code>
+                            </div>
+                            <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 ml-4 mt-2 text-sm">
+                                <li>Follow the prompts and accept the license agreement</li>
+                                <li>When asked for the installation location, use your home directory: <code>/home/$USER/miniforge3</code></li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <p class="text-gray-600 dark:text-gray-400 mb-2">4. Initialize Miniforge:</p>
+                            <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-4">
+                                <code class="text-sm">source ~/.bashrc</code>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Basic Usage Section -->
+                <section class="mb-12">
+                    <h2 id="basic-usage" class="text-2xl font-semibold text-primary mb-6">
+                        Basic Usage
+                    </h2>
+
+                    <div class="space-y-4">
+                        <div>
+                            <p class="text-gray-600 dark:text-gray-400 mb-2">Create a new environment:</p>
+                            <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-4">
+                                <code class="text-sm">conda create -n myenv python=3.11</code>
+                            </div>
+                        </div>
+
+                        <div>
+                            <p class="text-gray-600 dark:text-gray-400 mb-2">Activate your environment:</p>
+                            <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-4">
+                                <code class="text-sm">conda activate myenv</code>
+                            </div>
+                        </div>
+
+                        <div>
+                            <p class="text-gray-600 dark:text-gray-400 mb-2">Install packages:</p>
+                            <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-4">
+                                <pre class="text-sm"><code>conda install numpy pandas scipy
+# or
+pip install package_name</code></pre>
+                            </div>
+                        </div>
+
+                        <div>
+                            <p class="text-gray-600 dark:text-gray-400 mb-2">Deactivate environment:</p>
+                            <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-4">
+                                <code class="text-sm">conda deactivate</code>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Best Practices Section -->
+                <section class="mb-12">
+                    <h2 id="best-practices" class="text-2xl font-semibold text-primary mb-6">
+                        Best Practices
+                    </h2>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <!-- Environment Management -->
+                        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                                Environment Management
+                            </h3>
+                            <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2 mb-4">
+                                <li>Create separate environments for different projects</li>
+                                <li>Use environment.yml files for reproducibility</li>
+                                <li>Keep your base environment clean</li>
+                                <li>Regularly update conda</li>
+                            </ul>
+                            
+                            <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-3 mt-4">
+                                <pre class="text-sm"><code># Export environment
+conda env export > environment.yml
+
+# Create environment from file
+conda env create -f environment.yml
+
+# Update conda
+conda update conda</code></pre>
+                            </div>
+                        </div>
+
+                        <!-- Storage Considerations -->
+                        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                                Storage Considerations
+                            </h3>
+                            <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2 mb-4">
+                                <li>Store environments in your home directory</li>
+                                <li>Use scratch space for large datasets</li>
+                                <li>Clean up unused environments</li>
+                            </ul>
+                            
+                            <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-3 mt-4">
+                                <pre class="text-sm"><code># Remove unused environment
+conda env remove -n envname</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Running Python Jobs Section -->
+                <section class="mb-12">
+                    <h2 id="running-jobs" class="text-2xl font-semibold text-primary mb-6">
+                        Running Python Jobs
+                    </h2>
+
+                    <div class="mb-8">
+                        <h3 class="text-xl font-medium text-gray-900 dark:text-gray-100 mb-4">
+                            Interactive Sessions
+                        </h3>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <p class="text-gray-600 dark:text-gray-400 mb-2">Request an interactive session:</p>
+                                <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-4">
+                                    <code class="text-sm">interactive -c 8 -p h100</code>
+                                </div>
+                            </div>
+
+                            <div>
+                                <p class="text-gray-600 dark:text-gray-400 mb-2">Activate your environment:</p>
+                                <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-4">
+                                    <code class="text-sm">conda activate myenv</code>
+                                </div>
+                            </div>
+
+                            <div>
+                                <p class="text-gray-600 dark:text-gray-400 mb-2">Run Python:</p>
+                                <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-4">
+                                    <code class="text-sm">python script.py</code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-8">
+                        <h3 class="text-xl font-medium text-gray-900 dark:text-gray-100 mb-4">
+                            Batch Jobs
+                        </h3>
+                        
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">
+                            Create a job script (e.g., <code>run_python.sh</code>):
+                        </p>
+
+                        <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-4 mb-4">
+                            <pre class="text-sm"><code>#!/bin/bash
+#SBATCH --job-name=python_job
+#SBATCH --output=python_job.out
+#SBATCH --error=python_job.err
+#SBATCH --time=01:00:00
+#SBATCH --partition=h100
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=8
+#SBATCH --mem=32G
+
+# Load any required modules
+module load gcc
+
+# Activate conda environment
+source ~/miniforge3/etc/profile.d/conda.sh
+conda activate myenv
+
+# Run Python script
+python script.py</code></pre>
+                        </div>
+
+                        <p class="text-gray-600 dark:text-gray-400 mb-2">Submit the job:</p>
+                        <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-4">
+                            <code class="text-sm">sbatch run_python.sh</code>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Common Issues Section -->
+                <section class="mb-12">
+                    <h2 id="common-issues" class="text-2xl font-semibold text-primary mb-6">
+                        Common Issues and Solutions
+                    </h2>
+
+                    <div class="space-y-6">
+                        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-3">
+                                Environment Activation Fails
+                            </h3>
+                            <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-1">
+                                <li>Ensure Miniforge is properly initialized</li>
+                                <li>Check if the environment exists: <code class="bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-xs">conda env list</code></li>
+                            </ul>
+                        </div>
+
+                        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-3">
+                                Package Installation Issues
+                            </h3>
+                            <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-1">
+                                <li>Try installing from conda-forge channel: <code class="bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-xs">conda install -c conda-forge package_name</code></li>
+                                <li>Use pip as a fallback</li>
+                            </ul>
+                        </div>
+
+                        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-3">
+                                Memory Issues
+                            </h3>
+                            <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-1">
+                                <li>Monitor memory usage: <code class="bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-xs">top</code> or <code class="bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-xs">htop</code></li>
+                                <li>Adjust batch job memory requests</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Next Steps Section -->
+                <section class="mb-12">
+                    <h2 id="next" class="text-2xl font-semibold text-primary mb-6">
+                        Related Resources
+                    </h2>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <a href="/user-guide/getting-started" 
+                           class="block p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                            <div class="text-primary font-medium mb-2">Getting Started</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400">Learn the basics of using REPACSS</div>
+                        </a>
+                        <a href="/user-guide/running-jobs" 
+                           class="block p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                            <div class="text-primary font-medium mb-2">Running Jobs</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400">Submit and manage your computational jobs</div>
+                        </a>
+                        <a href="/user-guide/software" 
+                           class="block p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                            <div class="text-primary font-medium mb-2">Software</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400">Available software and modules</div>
+                        </a>
+                        <a href="/user-guide/file-management" 
+                           class="block p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                            <div class="text-primary font-medium mb-2">File Management</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400">Manage your files and data</div>
+                        </a>
+                        <a href="/user-guide/support" 
+                           class="block p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                            <div class="text-primary font-medium mb-2">Support</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400">Get help and support</div>
+                        </a>
+                    </div>
+                </section>
+
+                <DocsFooter />
+            </div>
+        </main>
+    </div>
+</Layout>
+
+<style>
+    .docs-content h2 {
+        border-bottom: 1px solid #e5e7eb;
+        padding-bottom: 0.5rem;
+    }
+
+    .dark .docs-content h2 {
+        border-bottom-color: #374151;
+    }
+
+    .docs-content code {
+        font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    }
+</style>

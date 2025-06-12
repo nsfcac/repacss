@@ -1,14 +1,260 @@
 ---
-// Redirect to GitHub immediately
+import Layout from '../../layouts/Layout.astro';
+import DocsSidebar from '../../components/docs/DocsSidebar.astro';
+import DocsFooter from '../../components/docs/DocsFooter.astro';
+
+const title = "FAQ - REPACSS User Guide";
 ---
 
-<script>
-  window.open("https://github.com/nsfcac/repacss-user-guide/blob/main/src/support&resources/faq.md", "_blank");
-</script>
+<Layout title={title}>
+    <div class="flex min-h-screen pt-20">
+        <DocsSidebar activePage="faq" />
+        
+        <main class="flex-1 ml-64">
+            <div class="docs-content max-w-4xl mx-auto px-8 py-12">
+                <!-- Breadcrumb -->
+                <nav class="mb-8">
+                    <ol class="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
+                        <li><a href="/" class="hover:text-primary">Home</a></li>
+                        <li class="before:content-['/'] before:mx-2">
+                            <a href="/user-guide" class="hover:text-primary">User Guide</a>
+                        </li>
+                        <li class="before:content-['/'] before:mx-2 text-gray-900 dark:text-gray-100">FAQ</li>
+                    </ol>
+                </nav>
 
-<script>
-    // Redirect back to main documentation page after a short delay
-    setTimeout(function() {
-      window.location.href = "/user-guide";
-    }, 2000);
-  </script>
+                <!-- Page Header -->
+                <div class="mb-12">
+                    <h1 class="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+                        Frequently Asked Questions
+                    </h1>
+                    <p class="text-xl text-gray-600 dark:text-gray-400">
+                        Common questions and answers about using REPACSS
+                    </p>
+                </div>
+
+                <!-- Table of Contents -->
+                <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-6 mb-8">
+                    <h2 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">On This Page</h2>
+                    <nav class="space-y-2">
+                        <a href="#account" class="block text-primary hover:underline">Account & Access</a>
+                        <a href="#jobs" class="block text-primary hover:underline">Jobs & Computing</a>
+                        <a href="#storage" class="block text-primary hover:underline">Storage & Files</a>
+                        <a href="#software" class="block text-primary hover:underline">Software & Environment</a>
+                        <a href="#next" class="block text-primary hover:underline">Related Resources</a>
+                    </nav>
+                </div>
+
+                <!-- Account & Access Section -->
+                <section class="mb-12">
+                    <h2 id="account" class="text-2xl font-semibold text-primary mb-6">
+                        Account & Access
+                    </h2>
+
+                    <div class="space-y-6">
+                        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                                How Do I Get an Account?
+                            </h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-4">
+                                To obtain an account, follow these steps:
+                            </p>
+                            
+                            <div class="space-y-4">
+                                <div>
+                                    <h4 class="font-medium text-gray-900 dark:text-gray-100 mb-2">1. Submit a Request</h4>
+                                    <p class="text-gray-600 dark:text-gray-400">
+                                        Visit repacss.org and fill out the account request form. Make sure to provide all required information accurately, including your contact details, organization, and reason for requesting access.
+                                    </p>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-medium text-gray-900 dark:text-gray-100 mb-2">2. Complete the Required Training</h4>
+                                    <p class="text-gray-600 dark:text-gray-400">
+                                        After submitting your request, you'll need to complete a mandatory training module. This ensures that all users understand the system's functionality, guidelines, and data usage responsibilities.
+                                    </p>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-medium text-gray-900 dark:text-gray-100 mb-2">3. Accept the Usage Policy</h4>
+                                    <p class="text-gray-600 dark:text-gray-400">
+                                        Once training is complete, you'll be asked to review and accept the system's usage policy. This agreement outlines your responsibilities as a user, including data security and proper access protocols.
+                                    </p>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-medium text-gray-900 dark:text-gray-100 mb-2">4. Wait for Approval</h4>
+                                    <p class="text-gray-600 dark:text-gray-400">
+                                        After completing the previous steps, your application will be reviewed by the administrative team. You'll receive a notification once your account is approved and activated.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                                How do I reset my password?
+                            </h3>
+                            <p class="text-gray-600 dark:text-gray-400">
+                                Contact support at <a href="mailto:repacss.support@ttu.edu" class="text-primary hover:underline">repacss.support@ttu.edu</a> for password reset assistance.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Jobs & Computing Section -->
+                <section class="mb-12">
+                    <h2 id="jobs" class="text-2xl font-semibold text-primary mb-6">
+                        Jobs & Computing
+                    </h2>
+
+                    <div class="space-y-6">
+                        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                                How do I submit a job?
+                            </h3>
+                            <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-4 mb-2">
+                                <pre><code class="text-sm">sbatch job.sh
+sbatch -p zen4 job.sh
+sbatch -p h100 job.sh</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                                How do I check job status?
+                            </h3>
+                            <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-4 mb-2">
+                                <pre><code class="text-sm">squeue -u $USER
+squeue -p zen4
+squeue -p h100</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                                How do I cancel a job?
+                            </h3>
+                            <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-4 mb-2">
+                                <pre><code class="text-sm">scancel &lt;job_id&gt;
+scancel -u $USER
+scancel -p zen4</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Storage & Files Section -->
+                <section class="mb-12">
+                    <h2 id="storage" class="text-2xl font-semibold text-primary mb-6">
+                        Storage & Files
+                    </h2>
+
+                    <div class="space-y-6">
+                        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                                What are the storage quotas?
+                            </h3>
+                            <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-1">
+                                <li><strong>Home:</strong> 100GB per user</li>
+                                <li><strong>Scratch:</strong> 1TB per project</li>
+                                <li><strong>Archive:</strong> Custom allocation</li>
+                            </ul>
+                        </div>
+
+                        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                                How do I transfer files?
+                            </h3>
+                            <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-4 mb-2">
+                                <pre><code class="text-sm"># From local to REPACSS
+scp file username@login.repacss.org:destination
+
+# From REPACSS to local
+scp username@login.repacss.org:file destination</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Software & Environment Section -->
+                <section class="mb-12">
+                    <h2 id="software" class="text-2xl font-semibold text-primary mb-6">
+                        Software & Environment
+                    </h2>
+
+                    <div class="space-y-6">
+                        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                                How do I load software?
+                            </h3>
+                            <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-4 mb-2">
+                                <pre><code class="text-sm">module avail
+module load &lt;module-name&gt;
+module list</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                                How do I request new software?
+                            </h3>
+                            <ol class="list-decimal list-inside text-gray-600 dark:text-gray-400 space-y-1">
+                                <li>Submit request to support</li>
+                                <li>Provide documentation</li>
+                                <li>Specify requirements</li>
+                                <li>Wait for approval</li>
+                            </ol>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Related Resources Section -->
+                <section class="mb-12">
+                    <h2 id="next" class="text-2xl font-semibent text-primary mb-6">
+                        Related Resources
+                    </h2>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <a href="/user-guide/support" 
+                           class="block p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                            <div class="text-primary font-medium mb-2">Support</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400">Get help and support</div>
+                        </a>
+                        <a href="/user-guide/training" 
+                           class="block p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                            <div class="text-primary font-medium mb-2">Training</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400">Training materials and resources</div>
+                        </a>
+                        <a href="/system-status" 
+                           class="block p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                            <div class="text-primary font-medium mb-2">System Status</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400">Check current system status</div>
+                        </a>
+                        <a href="mailto:repacss.support@ttu.edu" 
+                           class="block p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                            <div class="text-primary font-medium mb-2">Contact</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400">Get in touch with support</div>
+                        </a>
+                    </div>
+                </section>
+
+                <DocsFooter />
+            </div>
+        </main>
+    </div>
+</Layout>
+
+<style>
+    .docs-content h2 {
+        border-bottom: 1px solid #e5e7eb;
+        padding-bottom: 0.5rem;
+    }
+
+    .dark .docs-content h2 {
+        border-bottom-color: #374151;
+    }
+
+    .docs-content code {
+        font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    }
+</style>

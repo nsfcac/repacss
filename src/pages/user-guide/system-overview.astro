@@ -1,14 +1,320 @@
 ---
-// Redirect to GitHub immediately
+import Layout from "../../layouts/Layout.astro";
+import Container from "../../components/shared/Container.astro";
+import DocsSidebar from "../../components/docs/DocsSidebar.astro";
+import DocsFooter from "../../components/docs/DocsFooter.astro";
+
+const title = "System Overview - REPACSS User Guide";
 ---
 
-<script>
-  window.open("https://github.com/nsfcac/repacss-user-guide/blob/main/src/quick-links/system-overview.md", "_blank");
-</script>
+<Layout title={title}>
+    <div class="flex min-h-screen pt-20">
+        <DocsSidebar activePage="system-overview" />
+        
+        <main class="flex-1 ml-64 p-6 max-w-none">
+            <div class="docs-content max-w-4xl mx-auto">
+                <!-- Breadcrumb -->
+                <nav class="text-sm text-gray-500 mb-6">
+                    <a href="/" class="hover:text-primary">Home</a>
+                    <span class="mx-2">/</span>
+                    <a href="/user-guide" class="hover:text-primary">User Guide</a>
+                    <span class="mx-2">/</span>
+                    <span class="text-gray-900 dark:text-gray-100">System Overview</span>
+                </nav>
 
-<script>
-    // Redirect back to main documentation page after a short delay
-    setTimeout(function() {
-      window.location.href = "/user-guide";
-    }, 2000);
-  </script>
+                <!-- Page header -->
+                <div class="mb-8">
+                    <h1 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+                        System Overview
+                    </h1>
+                    <p class="text-lg text-gray-600 dark:text-gray-400">
+                        Comprehensive overview of REPACSS HPC infrastructure, components, and specifications.
+                    </p>
+                </div>
+
+                <!-- Overview Section -->
+                <section class="mb-12">
+                    <h2 id="overview" class="text-2xl font-semibold text-primary mb-6">
+                        Overview
+                    </h2>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">
+                        The REPACSS is a high-performance computing (HPC) infrastructure designed to support intensive computational and data-driven research, powered by renewable energy. The system consists of compute, GPU, and storage nodes, interconnected with high-speed networking to ensure efficient data transfer and processing. The facility supports diverse workloads, including large-scale simulations, AI training, and data analytics.
+                    </p>
+                </section>
+
+                <!-- Prerequisites Section -->
+                <section class="mb-12">
+                    <h2 id="prerequisites" class="text-2xl font-semibold text-primary mb-6">
+                        Prerequisites
+                    </h2>
+                    <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
+                        <li>Valid TTU eRaider account (for current users)</li>
+                        <li>GlobalProtect VPN access</li>
+                        <li>Basic knowledge of HPC concepts</li>
+                        <li>Familiarity with Linux command line</li>
+                    </ul>
+                </section>
+
+                <!-- System Components Section -->
+                <section class="mb-12">
+                    <h2 id="components" class="text-2xl font-semibold text-primary mb-6">
+                        System Components
+                    </h2>
+
+                    <div class="mb-8">
+                        <h3 class="text-xl font-medium text-gray-900 dark:text-gray-100 mb-4">
+                            Compute Resources
+                        </h3>
+
+                        <div class="grid md:grid-cols-1 gap-6">
+                            <!-- Compute Nodes -->
+                            <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                                <h4 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                                    Compute Nodes: 110 AMD-based nodes
+                                </h4>
+                                <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
+                                    <li>Dual AMD EPYC 9754 processors</li>
+                                    <li>256 cores per node</li>
+                                    <li>1.5TB DDR5 memory per node</li>
+                                    <li>1.92TB NVMe storage</li>
+                                </ul>
+                            </div>
+
+                            <!-- GPU Nodes -->
+                            <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                                <h4 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                                    GPU Nodes: 8 nodes
+                                </h4>
+                                <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
+                                    <li>Dual Intel Xeon Gold 6448Y processors</li>
+                                    <li>64 cores per node</li>
+                                    <li>512GB memory</li>
+                                    <li>4 NVIDIA H100 NVL GPUs (94GB HBM per GPU)</li>
+                                    <li>1.92TB SSD storage</li>
+                                </ul>
+                            </div>
+
+                            <!-- Login Nodes -->
+                            <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                                <h4 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                                    Login Nodes: 3 nodes
+                                </h4>
+                                <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
+                                    <li>Dual AMD EPYC 9254 processors</li>
+                                    <li>48 cores per node</li>
+                                    <li>256GB memory</li>
+                                    <li>1.92TB NVMe storage</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Storage Resources Section -->
+                <section class="mb-12">
+                    <h2 id="storage" class="text-2xl font-semibold text-primary mb-6">
+                        Storage Resources
+                    </h2>
+
+                    <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                        <h4 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                            Storage Nodes: 9 nodes
+                        </h4>
+                        <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
+                            <li>Intel Xeon Gold CPUs</li>
+                            <li>32/24/8 cores</li>
+                            <li>1024GB/512GB memory</li>
+                            <li>25.6TB–583.68TB storage per node</li>
+                            <li>Total ~2.94PB capacity</li>
+                            <li>High-speed NVMe and large-capacity HDDs</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Networking Section -->
+                <section class="mb-12">
+                    <h2 id="networking" class="text-2xl font-semibold text-primary mb-6">
+                        Networking
+                    </h2>
+                    <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
+                        <li>Dell PowerSwitch S5248-ON and S5232-ON</li>
+                        <li>High-speed internal and external connectivity</li>
+                        <li>InfiniBand for storage</li>
+                    </ul>
+                </section>
+
+                <!-- System Specifications Section -->
+                <section class="mb-12">
+                    <h2 id="specifications" class="text-2xl font-semibold text-primary mb-6">
+                        System Specifications
+                    </h2>
+
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full border border-gray-200 dark:border-gray-700 rounded-lg">
+                            <thead class="bg-gray-50 dark:bg-gray-800">
+                                <tr>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider border-b border-gray-200 dark:border-gray-700">Node Type</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider border-b border-gray-200 dark:border-gray-700">Total Nodes</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider border-b border-gray-200 dark:border-gray-700">CPU Model</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider border-b border-gray-200 dark:border-gray-700">CPUs/Node</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider border-b border-gray-200 dark:border-gray-700">Cores/Node</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider border-b border-gray-200 dark:border-gray-700">Memory/Node</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider border-b border-gray-200 dark:border-gray-700">Storage/Node</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider border-b border-gray-200 dark:border-gray-700">GPUs/Node</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider border-b border-gray-200 dark:border-gray-700">GPU Model</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700">
+                                <tr>
+                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">CPU Nodes</td>
+                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">110</td>
+                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">AMD EPYC 9754</td>
+                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">2</td>
+                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">256</td>
+                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">1.5TB</td>
+                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">1.92TB NVMe</td>
+                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">-</td>
+                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">-</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">GPU Nodes</td>
+                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">8</td>
+                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">Intel Xeon Gold 6448Y</td>
+                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">2</td>
+                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">64</td>
+                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">512GB</td>
+                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">1.92TB SSD</td>
+                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">4</td>
+                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">NVIDIA H100 NVL (94GB)</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">Login Nodes</td>
+                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">3</td>
+                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">AMD EPYC 9254</td>
+                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">2</td>
+                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">48</td>
+                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">256GB</td>
+                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">1.92TB NVMe</td>
+                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">-</td>
+                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">-</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">Storage Nodes</td>
+                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">9</td>
+                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">Intel Xeon Gold (varied)</td>
+                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">2</td>
+                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">32/24/8</td>
+                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">1024/512GB</td>
+                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">25.6–583.68TB</td>
+                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">-</td>
+                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">-</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="mt-8">
+                        <h3 class="text-xl font-medium text-gray-900 dark:text-gray-100 mb-4">
+                            Storage Systems
+                        </h3>
+                        <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
+                            <li>Multi-tiered storage, ~2.94PB total</li>
+                            <li>High-speed NVMe and large-capacity HDDs</li>
+                            <li>Home, scratch, and archive spaces</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Related Resources Section -->
+                <section class="mb-12">
+                    <h2 id="resources" class="text-2xl font-semibold text-primary mb-6">
+                        Related Resources
+                    </h2>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <a href="/user-guide/getting-started" 
+                           class="group p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-primary transition-all duration-200 hover:shadow-sm">
+                            <h4 class="font-medium text-primary group-hover:text-primary-400 mb-1">
+                                Getting Started
+                            </h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">
+                                Set up your account and access
+                            </p>
+                        </a>
+
+                        <a href="/user-guide/running-jobs" 
+                           class="group p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-primary transition-all duration-200 hover:shadow-sm">
+                            <h4 class="font-medium text-primary group-hover:text-primary-400 mb-1">
+                                Running Jobs
+                            </h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">
+                                Learn job submission and management
+                            </p>
+                        </a>
+
+                        <a href="/user-guide/software" 
+                           class="group p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-primary transition-all duration-200 hover:shadow-sm">
+                            <h4 class="font-medium text-primary group-hover:text-primary-400 mb-1">
+                                Software
+                            </h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">
+                                Explore available software and modules
+                            </p>
+                        </a>
+
+                        <a href="/user-guide/file-management" 
+                           class="group p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-primary transition-all duration-200 hover:shadow-sm">
+                            <h4 class="font-medium text-primary group-hover:text-primary-400 mb-1">
+                                File Management
+                            </h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">
+                                Master efficient data handling
+                            </p>
+                        </a>
+
+                        <a href="/user-guide/specifications" 
+                           class="group p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-primary transition-all duration-200 hover:shadow-sm">
+                            <h4 class="font-medium text-primary group-hover:text-primary-400 mb-1">
+                                REPACSS System Specifications
+                            </h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">
+                                Detailed technical specifications
+                            </p>
+                        </a>
+                    </div>
+                </section>
+
+                <!-- Next Steps Section -->
+                <section class="mb-12">
+                    <h2 id="next" class="text-2xl font-semibold text-primary mb-6">
+                        Next Steps
+                    </h2>
+                    <div class="p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                        <ol class="list-decimal list-inside text-gray-600 dark:text-gray-400 space-y-2">
+                            <li>Review <a href="/user-guide/getting-started" class="text-primary hover:underline">Getting Started</a> for initial setup</li>
+                            <li>Learn about <a href="/user-guide/running-jobs" class="text-primary hover:underline">Running Jobs</a></li>
+                            <li>Explore available <a href="/user-guide/software" class="text-primary hover:underline">Software</a></li>
+                            <li>Master <a href="/user-guide/file-management" class="text-primary hover:underline">File Management</a></li>
+                        </ol>
+                    </div>
+                </section>
+
+                <DocsFooter />
+            </div>
+        </main>
+    </div>
+</Layout>
+
+<style>
+    .docs-content h2 {
+        border-bottom: 1px solid #e5e7eb;
+        padding-bottom: 0.5rem;
+    }
+
+    .dark .docs-content h2 {
+        border-bottom-color: #374151;
+    }
+
+    .docs-content code {
+        font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    }
+</style>

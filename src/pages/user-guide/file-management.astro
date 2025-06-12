@@ -1,14 +1,331 @@
 ---
-// Redirect to GitHub in a new tab
+import Layout from "../../layouts/Layout.astro";
+import Container from "../../components/shared/Container.astro";
+import DocsSidebar from "../../components/docs/DocsSidebar.astro";
+import DocsFooter from "../../components/docs/DocsFooter.astro";
+
+const title = "File Management - REPACSS User Guide";
 ---
 
-<script>
-  window.open("https://github.com/nsfcac/repacss-user-guide/blob/main/src/quick-links/file-management.md", "_blank");
-</script>
+<Layout title={title}>
+    <div class="flex min-h-screen pt-20">
+        <DocsSidebar activePage="file-management" />
+        
+        <main class="flex-1 ml-64 p-6 max-w-none">
+            <div class="docs-content max-w-4xl mx-auto">
+                <!-- Breadcrumb -->
+                <nav class="text-sm text-gray-500 mb-6">
+                    <a href="/" class="hover:text-primary">Home</a>
+                    <span class="mx-2">/</span>
+                    <a href="/user-guide" class="hover:text-primary">User Guide</a>
+                    <span class="mx-2">/</span>
+                    <span class="text-gray-900 dark:text-gray-100">File Management</span>
+                </nav>
 
-  <script>
-    // Redirect back to main documentation page after a short delay
-    setTimeout(function() {
-      window.location.href = "/user-guide";
-    }, 2000);
-  </script>
+                <!-- Page header -->
+                <div class="mb-8">
+                    <h1 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+                        File Management
+                    </h1>
+                    <p class="text-lg text-gray-600 dark:text-gray-400">
+                        Learn about REPACSS file systems, storage management, and data transfer best practices.
+                    </p>
+                </div>
+
+                <!-- File Systems Section -->
+                <section class="mb-12">
+                    <h2 id="file-systems" class="text-2xl font-semibold text-primary mb-6">
+                        File Systems
+                    </h2>
+
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">
+                        Global file space on REPACSS is available on all compute, gpu, and login nodes. It is organized into the file systems shown in the table below. Access to the allocated file space is through the indicated directories that are setup automatically for every user.
+                    </p>
+
+                    <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-6 mb-6">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-sm">
+                                <thead class="bg-gray-100 dark:bg-gray-700">
+                                    <tr>
+                                        <th class="text-left p-3 font-semibold text-gray-900 dark:text-gray-100">File System</th>
+                                        <th class="text-left p-3 font-semibold text-gray-900 dark:text-gray-100">Directory</th>
+                                        <th class="text-left p-3 font-semibold text-gray-900 dark:text-gray-100">Environment Variable</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-200 dark:divide-gray-600">
+                                    <tr>
+                                        <td class="p-3 font-medium text-gray-900 dark:text-gray-100">Home</td>
+                                        <td class="p-3"><code class="bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-xs">/mnt/GROUPID/home/USERID</code></td>
+                                        <td class="p-3"><code class="bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-xs">$HOME</code></td>
+                                    </tr>
+                                    <tr class="bg-gray-50 dark:bg-gray-800">
+                                        <td class="p-3 font-medium text-gray-900 dark:text-gray-100">Work</td>
+                                        <td class="p-3"><code class="bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-xs">/mnt/GROUPID/work/USERID</code></td>
+                                        <td class="p-3"><code class="bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-xs">$WORK</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 font-medium text-gray-900 dark:text-gray-100">Scratch</td>
+                                        <td class="p-3"><code class="bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-xs">/mnt/GROUPID/scratch/USERID</code></td>
+                                        <td class="p-3"><code class="bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-xs">$SCRATCH</code></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Checking Quotas Section -->
+                <section class="mb-12">
+                    <h2 id="quotas" class="text-2xl font-semibold text-primary mb-6">
+                        Checking Quotas
+                    </h2>
+
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">
+                        REPACSS storage space usage is currently organized by the REPACSS group. Use the following command to display your current file usage:
+                    </p>
+
+                    <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-4 mb-6">
+                        <div class="bg-gray-100 dark:bg-gray-800 rounded p-3">
+                            <code class="text-sm">$ df -h /mnt/$(id -gn)</code>
+                        </div>
+                        <div class="mt-4 bg-gray-100 dark:bg-gray-800 rounded p-3">
+                            <pre class="text-sm"><code>Filesystem              Size  Used Avail Use% Mounted on
+10.102.95.220:/REPACSS  9.1T  162G  9.0T   2% /mnt/REPACSS</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- File Transfer Section -->
+                <section class="mb-12">
+                    <h2 id="transfer" class="text-2xl font-semibold text-primary mb-6">
+                        File Transfer
+                    </h2>
+
+                    <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-4 mb-6">
+                        <p class="text-gray-800 dark:text-gray-200">
+                            <strong>Note:</strong> Please refrain from using scp, sftp, rsync, or direct connections to the login nodes to transfer data. These methods can impact login node performance and are generally slower than Globus Connect.
+                        </p>
+                    </div>
+
+                    <h3 class="text-xl font-medium text-gray-900 dark:text-gray-100 mb-4">
+                        Using Globus Connect
+                    </h3>
+                    
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">
+                        REPACSS provides Globus Connect for efficient data transfer. Benefits include:
+                    </p>
+
+                    <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2 mb-6">
+                        <li>High-speed, reliable transfers</li>
+                        <li>Automatic error detection and retry</li>
+                        <li>Multiple transfer streams</li>
+                        <li>No impact on login nodes</li>
+                        <li>Easy-to-use web interface</li>
+                    </ul>
+
+                    <!-- Setting Up Globus Connect -->
+                    <div class="mb-8">
+                        <h4 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                            Setting Up Globus Connect
+                        </h4>
+
+                        <div class="space-y-4">
+                            <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-4">
+                                <h5 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">
+                                    1. Install Globus Connect Personal on your computer:
+                                </h5>
+                                <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-1">
+                                    <li><a href="#" class="text-primary hover:underline">Windows Installation Guide</a></li>
+                                    <li><a href="#" class="text-primary hover:underline">Mac OS X Installation Guide</a></li>
+                                    <li><a href="#" class="text-primary hover:underline">Linux Installation Guide</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-4">
+                                <h5 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">
+                                    2. Create a Globus Connect collection on your computer
+                                </h5>
+                            </div>
+
+                            <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-4">
+                                <h5 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">
+                                    3. Access REPACSS data:
+                                </h5>
+                                <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-1">
+                                    <li>Set endpoint to "REPACSS"</li>
+                                    <li>Navigate to your storage areas:</li>
+                                    <ul class="list-disc list-inside ml-6 mt-2 space-y-1">
+                                        <li>Home: <code class="bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-xs">/home/USERID</code></li>
+                                        <li>Scratch: <code class="bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-xs">/scratch/USERID</code></li>
+                                        <li>Work: <code class="bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-xs">/work/USERID</code></li>
+                                    </ul>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Transferring Between Sites -->
+                    <div class="mb-8">
+                        <h4 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                            Transferring Between Sites
+                        </h4>
+
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">
+                            Many research organizations have Globus Connect endpoints. To transfer data:
+                        </p>
+
+                        <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-4">
+                            <ol class="list-decimal list-inside text-gray-600 dark:text-gray-400 space-y-2">
+                                <li>Identify the remote site's Globus endpoint</li>
+                                <li>Use the Globus web interface to transfer between endpoints</li>
+                                <li>Set source/destination endpoints:
+                                    <ul class="list-disc list-inside ml-6 mt-2 space-y-1">
+                                        <li>REPACSS: "REPACSS"</li>
+                                        <li>Remote site: Their endpoint name</li>
+                                    </ul>
+                                </li>
+                            </ol>
+                        </div>
+
+                        <div class="mt-4 p-4 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg">
+                            <p class="text-gray-800 dark:text-gray-200">
+                                <strong>Questions?</strong> Submit to <a href="mailto:repacss.globus@ttu.edu" class="text-primary hover:underline">repacss.globus@ttu.edu</a>
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Best Practices Section -->
+                <section class="mb-12">
+                    <h2 id="best-practices" class="text-2xl font-semibold text-primary mb-6">
+                        Best Practices
+                    </h2>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <!-- Storage Management -->
+                        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                                Storage Management
+                            </h3>
+                            <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
+                                <li>Keep home directory clean</li>
+                                <li>Use scratch for active computations</li>
+                                <li>Archive important data</li>
+                                <li>Monitor quotas regularly</li>
+                            </ul>
+                        </div>
+
+                        <!-- File Transfer -->
+                        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                                File Transfer
+                            </h3>
+                            <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
+                                <li>Use Globus for large transfers</li>
+                                <li>Verify transfer completion</li>
+                                <li>Check file integrity</li>
+                                <li>Clean up temporary files</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Next Steps Section -->
+                <section class="mb-12">
+                    <h2 id="next" class="text-2xl font-semibold text-primary mb-6">
+                        Next Steps
+                    </h2>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <a href="/user-guide/getting-started" 
+                           class="group p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-primary transition-all duration-200 hover:shadow-sm">
+                            <h4 class="font-medium text-primary group-hover:text-primary-400 mb-1">
+                                Getting Started
+                            </h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">
+                                Begin your journey with REPACSS
+                            </p>
+                        </a>
+
+                        <a href="/user-guide/running-jobs" 
+                           class="group p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-primary transition-all duration-200 hover:shadow-sm">
+                            <h4 class="font-medium text-primary group-hover:text-primary-400 mb-1">
+                                Running Jobs
+                            </h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">
+                                Learn to submit and manage SLURM jobs
+                            </p>
+                        </a>
+
+                        <a href="/user-guide/software" 
+                           class="group p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-primary transition-all duration-200 hover:shadow-sm">
+                            <h4 class="font-medium text-primary group-hover:text-primary-400 mb-1">
+                                Software
+                            </h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">
+                                Explore available modules and software
+                            </p>
+                        </a>
+
+                        <a href="/user-guide/support" 
+                           class="group p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-primary transition-all duration-200 hover:shadow-sm">
+                            <h4 class="font-medium text-primary group-hover:text-primary-400 mb-1">
+                                Support
+                            </h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">
+                                Get help and technical support
+                            </p>
+                        </a>
+                    </div>
+                </section>
+
+                <!-- Related Resources -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-semibold text-primary mb-6">
+                        Related Resources
+                    </h2>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <a href="/user-guide/getting-started" 
+                           class="text-primary hover:underline">Getting Started</a>
+                        <a href="/user-guide/running-jobs" 
+                           class="text-primary hover:underline">Running Jobs</a>
+                        <a href="/user-guide/software" 
+                           class="text-primary hover:underline">Software</a>
+                        <a href="/user-guide/support" 
+                           class="text-primary hover:underline">Support</a>
+                    </div>
+                </section>
+
+                <DocsFooter />
+            </div>
+        </main>
+    </div>
+</Layout>
+
+<style>
+    .docs-content h2 {
+        border-bottom: 1px solid #e5e7eb;
+        padding-bottom: 0.5rem;
+    }
+
+    .dark .docs-content h2 {
+        border-bottom-color: #374151;
+    }
+
+    .docs-content code {
+        font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    }
+
+    .docs-content table {
+        border-collapse: collapse;
+    }
+
+    .docs-content table th,
+    .docs-content table td {
+        border: 1px solid #e5e7eb;
+    }
+
+    .dark .docs-content table th,
+    .dark .docs-content table td {
+        border-color: #374151;
+    }
+</style>

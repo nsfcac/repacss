@@ -1,14 +1,182 @@
 ---
-// Redirect to GitHub immediately
+import Layout from '../../layouts/Layout.astro';
+import DocsSidebar from '../../components/docs/DocsSidebar.astro';
+import DocsFooter from '../../components/docs/DocsFooter.astro';
+
+const title = "Support - REPACSS User Guide";
 ---
 
-<script>
-  window.open("https://github.com/nsfcac/repacss-user-guide/blob/main/src/support&resources/support.md", "_blank");
-</script>
+<Layout title={title}>
+    <div class="flex min-h-screen pt-20">
+        <DocsSidebar activePage="support" />
+        
+        <main class="flex-1 ml-64">
+            <div class="docs-content max-w-4xl mx-auto px-8 py-12">
+                <!-- Breadcrumb -->
+                <nav class="mb-8">
+                    <ol class="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
+                        <li><a href="/" class="hover:text-primary">Home</a></li>
+                        <li class="before:content-['/'] before:mx-2">
+                            <a href="/user-guide" class="hover:text-primary">User Guide</a>
+                        </li>
+                        <li class="before:content-['/'] before:mx-2 text-gray-900 dark:text-gray-100">Support</li>
+                    </ol>
+                </nav>
 
-<script>
-    // Redirect back to main documentation page after a short delay
-    setTimeout(function() {
-      window.location.href = "/user-guide";
-    }, 2000);
-  </script>
+                <!-- Page Header -->
+                <div class="mb-12">
+                    <h1 class="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+                        Support
+                    </h1>
+                    <p class="text-xl text-gray-600 dark:text-gray-400">
+                        Get help and support for using REPACSS
+                    </p>
+                </div>
+
+                <!-- Table of Contents -->
+                <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-6 mb-8">
+                    <h2 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">On This Page</h2>
+                    <nav class="space-y-2">
+                        <a href="#current-support" class="block text-primary hover:underline">Current Support Channels</a>
+                        <a href="#getting-help" class="block text-primary hover:underline">Getting Help</a>
+                        <a href="#support-process" class="block text-primary hover:underline">Support Process</a>
+                        <a href="#next" class="block text-primary hover:underline">Related Resources</a>
+                    </nav>
+                </div>
+
+                <!-- Current Support Channels Section -->
+                <section class="mb-12">
+                    <h2 id="current-support" class="text-2xl font-semibold text-primary mb-6">
+                        Current Support Channels
+                    </h2>
+
+                    <div class="space-y-6">
+                        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                                Contact Us
+                            </h3>
+                            <div class="space-y-3">
+                                <div class="flex items-center space-x-3">
+                                    <span class="font-medium text-gray-900 dark:text-gray-100">Email:</span>
+                                    <a href="mailto:repacss.support@ttu.edu" class="text-primary hover:underline">
+                                        repacss.support@ttu.edu
+                                    </a>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <span class="font-medium text-gray-900 dark:text-gray-100">Office Hours:</span>
+                                    <span class="text-gray-600 dark:text-gray-400">Mon-Fri, 9AM-5PM CST</span>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <span class="font-medium text-gray-900 dark:text-gray-100">Emergency Support:</span>
+                                    <span class="text-gray-600 dark:text-gray-400">24/7 on-call rotation</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Getting Help Section -->
+                <section class="mb-12">
+                    <h2 id="getting-help" class="text-2xl font-semibold text-primary mb-6">
+                        Getting Help
+                    </h2>
+
+                    <div class="space-y-6">
+                        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                                Documentation
+                            </h3>
+                            <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
+                                <li><a href="/user-guide/getting-started" class="text-primary hover:underline">User Guide</a></li>
+                                <li><a href="/user-guide/faq" class="text-primary hover:underline">FAQ</a></li>
+                                <li>Training Materials</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Support Process Section -->
+                <section class="mb-12">
+                    <h2 id="support-process" class="text-2xl font-semibold text-primary mb-6">
+                        Support Process
+                    </h2>
+
+                    <div class="space-y-6">
+                        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                                1. Check Documentation
+                            </h3>
+                            <p class="text-gray-600 dark:text-gray-400">
+                                Before seeking help, start by reviewing the official documentation. Most common setup instructions, troubleshooting steps, and feature explanations are covered in the user guides or knowledge base. This can save time and help you better understand the system.
+                            </p>
+                        </div>
+
+                        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                                2. Search the FAQ
+                            </h3>
+                            <p class="text-gray-600 dark:text-gray-400">
+                                If the documentation doesn't answer your question, consult the Frequently Asked Questions (FAQ) section. The FAQ typically addresses recurring issues, clarifies confusing points, and offers quick solutions to common problems encountered by other users.
+                            </p>
+                        </div>
+
+                        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                                3. Contact the Support Team
+                            </h3>
+                            <p class="text-gray-600 dark:text-gray-400">
+                                If your issue remains unresolved, reach out to the support team. Be sure to include relevant details like your account information, a clear description of the problem, and any steps you've already taken to troubleshoot.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Next Steps Section -->
+                <section class="mb-12">
+                    <h2 id="next" class="text-2xl font-semibold text-primary mb-6">
+                        Related Resources
+                    </h2>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <a href="/user-guide/training" 
+                           class="block p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                            <div class="text-primary font-medium mb-2">Training</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400">Training materials and resources</div>
+                        </a>
+                        <a href="/user-guide/faq" 
+                           class="block p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                            <div class="text-primary font-medium mb-2">FAQ</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400">Frequently asked questions</div>
+                        </a>
+                        <a href="mailto:repacss.support@ttu.edu" 
+                           class="block p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                            <div class="text-primary font-medium mb-2">Contact</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400">Get in touch with support</div>
+                        </a>
+                        <a href="/system-status" 
+                           class="block p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                            <div class="text-primary font-medium mb-2">System Status</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400">Check current system status</div>
+                        </a>
+                    </div>
+                </section>
+
+                <DocsFooter />
+            </div>
+        </main>
+    </div>
+</Layout>
+
+<style>
+    .docs-content h2 {
+        border-bottom: 1px solid #e5e7eb;
+        padding-bottom: 0.5rem;
+    }
+
+    .dark .docs-content h2 {
+        border-bottom-color: #374151;
+    }
+
+    .docs-content code {
+        font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    }
+</style>
