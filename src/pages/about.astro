@@ -85,6 +85,39 @@ import Profiles from "../components/sections/profiles/Profiles.astro";
             </ul>
         </Container>
 
+        <!-- NSF Funding Notice -->
+        <Container className="mx-auto max-w-3xl -mt-24">
+            <div class="text-center py-8 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                <div class="flex flex-col items-center gap-4 mb-6">
+                    <img src="/images/nsf-logo.png" alt="NSF Logo" class="h-20 w-auto drop-shadow-lg" />
+                    <span class="text-2xl font-semibold text-gray-800 dark:text-gray-200">Funded by NSF</span>
+                </div>
+                
+                <div class="space-y-3 text-base text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+                    <p>
+                        This material is based upon work supported by the <strong>National Science Foundation</strong> 
+                        under Grant No. <strong class="text-primary text-lg">2404438</strong>.
+                    </p>
+                    <p class="text-sm italic">
+                        Any opinions, findings, and conclusions or recommendations expressed in this material 
+                        are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.
+                    </p>
+                </div>
+                
+                <div class="mt-6 pt-4 border-t border-gray-200 dark:border-gray-600">
+                    <p class="text-sm text-gray-600 dark:text-gray-400">
+                        <strong>Project Period:</strong> 2024-2029 • 
+                        <a href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=2404438" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           class="text-primary hover:underline font-medium">
+                            View Award Details
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </Container>
+
         <!-- Profiles Section -->
         <Profiles className="mx-auto -mt-36" />
     </main>

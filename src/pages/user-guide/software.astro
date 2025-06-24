@@ -1,14 +1,309 @@
 ---
-// Redirect to GitHub in a new tab
+import Layout from '../../layouts/Layout.astro';
+import DocsSidebar from '../../components/docs/DocsSidebar.astro';
+import DocsFooter from '../../components/docs/DocsFooter.astro';
+
+const title = "Software - REPACSS User Guide";
 ---
 
-<script>
-  window.open("https://github.com/nsfcac/repacss-user-guide/blob/main/src/quick-links/software.md", "_blank");
-</script>
+<Layout title={title}>
+    <div class="flex min-h-screen pt-20">
+        <DocsSidebar activePage="software" />
+        
+        <main class="flex-1 ml-64">
+            <div class="docs-content max-w-4xl mx-auto px-8 py-12">
+                <!-- Breadcrumb -->
+                <nav class="mb-8">
+                    <ol class="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
+                        <li><a href="/" class="hover:text-primary">Home</a></li>
+                        <li class="before:content-['/'] before:mx-2">
+                            <a href="/user-guide" class="hover:text-primary">User Guide</a>
+                        </li>
+                        <li class="before:content-['/'] before:mx-2 text-gray-900 dark:text-gray-100">Software</li>
+                    </ol>
+                </nav>
 
-  <script>
-    // Redirect back to main documentation page after a short delay
-    setTimeout(function() {
-      window.location.href = "/user-guide";
-    }, 2000);
-  </script>
+                <!-- Page Header -->
+                <div class="mb-12">
+                    <h1 class="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+                        Available Software on REPACSS
+                    </h1>
+                    <p class="text-xl text-gray-600 dark:text-gray-400">
+                        Software environments and modules available on the REPACSS high-performance computing system
+                    </p>
+                </div>
+
+                <!-- Introduction -->
+                <section class="mb-12">
+                    <p class="text-lg text-gray-600 dark:text-gray-400 mb-4">
+                        This document provides a formal summary of software environments currently available on the REPACSS high-performance computing system. Software is managed and accessed using the environment module framework, which allows users to dynamically configure their shell environments to access compilers, libraries, and applications relevant to their research or instructional activities.
+                    </p>
+                </section>
+
+                <!-- Table of Contents -->
+                <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-6 mb-8">
+                    <h2 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">On This Page</h2>
+                    <nav class="space-y-2">
+                        <a href="#module-locations" class="block text-primary hover:underline">Software Module Locations</a>
+                        <a href="#module-usage" class="block text-primary hover:underline">Guidance for Module Usage</a>
+                        <a href="#loading-modules" class="block text-primary hover:underline">Loading Software Modules</a>
+                        <a href="#support" class="block text-primary hover:underline">Additional Support and Documentation</a>
+                        <a href="#next" class="block text-primary hover:underline">Related Resources</a>
+                    </nav>
+                </div>
+
+                <!-- Software Module Locations Section -->
+                <section class="mb-12">
+                    <h2 id="module-locations" class="text-2xl font-semibold text-primary mb-6">
+                        Software Module Locations
+                    </h2>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">
+                        Software modules are organized within predefined repository paths. The following modules are currently available for loading and execution:
+                    </p>
+
+                    <div class="space-y-6">
+                        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                                /opt/apps/nfs/modules/zen4/rocky9.4/openmpi/4.1.6-vhun5qt/Core
+                            </h3>
+                            <div class="space-y-3">
+                                <div>
+                                    <h4 class="font-medium text-gray-900 dark:text-gray-100">fftw/3.3.10</h4>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">
+                                        Fast Fourier Transform library used in signal and image processing applications.
+                                    </p>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-900 dark:text-gray-100">hdf5/1.10.11</h4>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">
+                                        Hierarchical Data Format library for managing large and complex data collections.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                                /opt/apps/nfs/modules/zen4/rocky9.4/Core
+                            </h3>
+                            <div class="space-y-3">
+                                <div>
+                                    <h4 class="font-medium text-gray-900 dark:text-gray-100">gcc/14.2.0</h4>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">
+                                        GNU Compiler Collection supporting C, C++, and Fortran languages.
+                                    </p>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-900 dark:text-gray-100">openmpi/4.1.6</h4>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">
+                                        High-performance implementation of the Message Passing Interface (MPI) standard.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 rounded-lg p-4">
+                            <div class="flex">
+                                <div class="flex-shrink-0">
+                                    <svg class="h-5 w-5 text-blue-400" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-sm text-blue-700 dark:text-blue-200">
+                                        <strong>Note:</strong> The (L) designation indicates that the module is currently loaded in the user's active environment.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Module Usage Section -->
+                <section class="mb-12">
+                    <h2 id="module-usage" class="text-2xl font-semibold text-primary mb-6">
+                        Guidance for Module Usage
+                    </h2>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">
+                        Users are advised to utilize the following commands for listing and managing software modules:
+                    </p>
+
+                    <div class="space-y-6">
+                        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                                Display All Available Modules
+                            </h3>
+                            <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-4">
+                                <pre><code class="text-sm">module avail</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                                Display Only Default Modules
+                            </h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-3">
+                                In the case of an extensive list, users may restrict output to default modules:
+                            </p>
+                            <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-4">
+                                <pre><code class="text-sm">module --default avail
+# or
+ml -d av</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                                View Module Categories and Quantities
+                            </h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-3">
+                                To obtain a summary overview of available module categories and counts:
+                            </p>
+                            <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-4">
+                                <pre><code class="text-sm">module overview
+# or
+ml ov</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                                Discover All Installed Modules and Extensions
+                            </h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-3">
+                                To enumerate all possible software packages and extensions, regardless of default visibility:
+                            </p>
+                            <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-4">
+                                <pre><code class="text-sm">module spider</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Loading Modules Section -->
+                <section class="mb-12">
+                    <h2 id="loading-modules" class="text-2xl font-semibold text-primary mb-6">
+                        Loading Software Modules
+                    </h2>
+
+                    <div class="space-y-6">
+                        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                                Load a Module
+                            </h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-3">
+                                To access a software environment, load the corresponding module. For example:
+                            </p>
+                            <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-4">
+                                <pre><code class="text-sm">module load gcc/14.2.0</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                                Check Loaded Modules
+                            </h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-3">
+                                To verify currently loaded modules:
+                            </p>
+                            <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-4">
+                                <pre><code class="text-sm">module list</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                                Unload a Module
+                            </h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-3">
+                                To unload a module:
+                            </p>
+                            <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-4">
+                                <pre><code class="text-sm">module unload &lt;module_name&gt;</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Support Section -->
+                <section class="mb-12">
+                    <h2 id="support" class="text-2xl font-semibold text-primary mb-6">
+                        Additional Support and Documentation
+                    </h2>
+
+                    <div class="space-y-6">
+                        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                            <p class="text-gray-600 dark:text-gray-400 mb-4">
+                                Users seeking more detailed instructions for using the module system are encouraged to consult the Module System User Guide.
+                            </p>
+                            <p class="text-gray-600 dark:text-gray-400 mb-4">
+                                If software needed for your research or coursework is not listed among available modules, you may submit a request to the REPACSS support team for consideration.
+                            </p>
+                            <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-4">
+                                <h3 class="font-medium text-gray-900 dark:text-gray-100 mb-2">
+                                    For further assistance, please contact:
+                                </h3>
+                                <div class="space-y-1">
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">
+                                        <strong>REPACSS Support</strong>
+                                    </p>
+                                    <p class="text-sm">
+                                        <a href="mailto:repacss.support@ttu.edu" class="text-primary hover:underline">
+                                            repacss.support@ttu.edu
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Related Resources Section -->
+                <section class="mb-12">
+                    <h2 id="next" class="text-2xl font-semibold text-primary mb-6">
+                        Related Resources
+                    </h2>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <a href="/user-guide/getting-started" 
+                           class="block p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                            <div class="text-primary font-medium mb-2">Getting Started</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400">Learn the basics of using REPACSS</div>
+                        </a>
+                        <a href="/user-guide/running-jobs" 
+                           class="block p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                            <div class="text-primary font-medium mb-2">Running Jobs</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400">Submit and manage computational jobs</div>
+                        </a>
+                        <a href="/user-guide/python-environment" 
+                           class="block p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                            <div class="text-primary font-medium mb-2">Python Environment</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400">Set up Python environments</div>
+                        </a>
+                        <a href="/user-guide/support" 
+                           class="block p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                            <div class="text-primary font-medium mb-2">Support</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400">Get help and support</div>
+                        </a>
+                    </div>
+                </section>
+
+                <DocsFooter />
+            </div>
+        </main>
+    </div>
+</Layout>
+
+<style>
+    .docs-content h2 {
+        border-bottom: 1px solid #e5e7eb;
+        padding-bottom: 0.5rem;
+    }
+
+    .dark .docs-content h2 {
+        border-bottom-color: #374151;
+    }
+
+    .docs-content code {
+        font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    }
+</style>
