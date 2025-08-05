@@ -38,20 +38,128 @@ html {
   font-family: "Raleway", sans-serif;
 } */
 
-[data-toggle-nav][data-open-nav="true"] #line1 {
-  transform: translateY(0.375rem) rotate(40deg);
-}
-[data-toggle-nav][data-open-nav="true"] #line2 {
-  transform: scaleX(0);
-  opacity: 0;
-}
-[data-toggle-nav][data-open-nav="true"] #line3 {
-  transform: translateY(-0.375rem) rotate(-40deg);
+/* Enhanced Mobile Navigation Fixes */
+/* Hamburger animation styles */
+.hamburger-line {
+  transform-origin: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-[data-nav-overlay][data-is-visible="true"] {
-  visibility: visible;
-  display: flex;
+/* Mobile-specific hero section adjustments */
+@media (max-width: 1023px) {
+  /* Ensure hero content starts below fixed header */
+  #hero {
+    padding-top: 5rem !important;
+    min-height: calc(100vh - 5rem) !important;
+  }
+  
+  #hero > div,
+  #hero .grid {
+    min-height: calc(100vh - 5rem) !important;
+  }
+
+  /* Make sure hero text is readable */
+  #hero h1 {
+    font-size: 1.875rem !important; /* 30px */
+    line-height: 1.2 !important;
+    margin-bottom: 1rem !important;
+  }
+
+  #hero p {
+    font-size: 0.875rem !important; /* 14px */
+    line-height: 1.5 !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  /* Stack hero content properly on mobile */
+  #hero .grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+
+  /* Hero image container adjustments - UPDATED */
+  #hero .relative.overflow-hidden {
+    height: 320px !important; /* Increased height for mobile */
+    margin: 0 1rem !important; /* Add side margins */
+  }
+
+  /* Hero text container adjustments */
+  #hero .justify-center {
+    padding: 1.5rem 1rem !important;
+    text-align: center !important;
+  }
+
+  /* Make image more prominent on mobile */
+  #hero img {
+    border-radius: 0.75rem !important; /* Rounded corners */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important; /* Add shadow */
+  }
+}
+
+/* Tablet adjustments */
+@media (min-width: 641px) and (max-width: 1023px) {
+  #hero .relative.overflow-hidden {
+    height: 400px !important; /* Taller on tablets */
+    margin: 0 2rem !important;
+  }
+}
+
+/* Desktop image adjustments */
+@media (min-width: 1024px) {
+  #hero .relative.overflow-hidden {
+    min-height: 500px !important;
+  }
+  
+  #hero img {
+    object-position: center center !important;
+  }
+}
+
+/* Mobile responsive text utilities */
+@media (max-width: 640px) {
+  .mobile-stack > * {
+    width: 100% !important;
+    margin-bottom: 1rem;
+  }
+  
+  .mobile-center {
+    text-align: center !important;
+  }
+
+  /* Improve readability for mobile */
+  body {
+    font-size: 14px !important;
+  }
+}
+
+/* Ensure proper z-index stacking for mobile nav */
+.navbar-mobile {
+  z-index: 60 !important;
+}
+
+/* Enhanced overlay visibility */
+[data-nav-overlay].visible {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+[data-nav-overlay].invisible {
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+/* Mobile menu improvements */
+[data-navbar] {
+  will-change: transform;
+}
+
+/* Fix for documentation pages on mobile */
+@media (max-width: 1023px) {
+  main.flex-1 {
+    margin-left: 0 !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
 }
 
 .glass {
@@ -66,4 +174,107 @@ html {
   /* border: 2px solid rgba(255, 255, 255, 0.1); */
   box-shadow: 0 0 80px rgba(0, 0, 0, 0.25);
   /* padding: 30px 30px 30px 30px; */
+}
+
+/* Modern mobile menu with consistent solid background */
+#mobile-menu {
+  background: #374151 !important; /* Solid gray-700 */
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border: none !important;
+  box-shadow: -10px 0 25px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Menu header - same solid color */
+#mobile-menu .bg-gray-50,
+#mobile-menu .dark\\:bg-gray-800 {
+  background: #374151 !important; /* Same solid color as menu */
+  border-color: #4b5563 !important;
+}
+
+/* Menu footer - same solid color */
+#mobile-menu .border-t {
+  background: #374151 !important; /* Same solid color as menu */
+  border-color: #4b5563 !important;
+}
+
+/* Dark mode - consistent darker solid background */
+.dark #mobile-menu,
+.dark #mobile-menu .bg-gray-50,
+.dark #mobile-menu .dark\\:bg-gray-800,
+.dark #mobile-menu .border-t {
+  background: #1f2937 !important; /* Solid gray-800 for dark mode */
+  border-color: #374151 !important;
+}
+
+/* Remove overlay completely for clean slide effect */
+#mobile-menu-overlay {
+  background: rgba(0, 0, 0, 0.4) !important; /* Minimal dark overlay */
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Menu text styling for better contrast on solid background */
+#mobile-menu a {
+  color: #f9fafb !important; /* White text */
+}
+
+/* Make all menu items have consistent solid background */
+#mobile-menu ul,
+#mobile-menu ul li,
+#mobile-menu ul li a {
+  background: #374151 !important; /* Same solid color as menu header/footer */
+}
+
+/* Remove any background variations on menu items */
+#mobile-menu .flex-1 {
+  background: #374151 !important; /* Navigation area background */
+}
+
+/* Menu items hover state - slightly different shade for feedback */
+#mobile-menu a:hover {
+  background: #4b5563 !important; /* Slightly lighter gray on hover - same as before */
+  color: #ffffff !important;
+}
+
+/* Dark mode - consistent for all menu sections */
+.dark #mobile-menu ul,
+.dark #mobile-menu ul li,
+.dark #mobile-menu ul li a,
+.dark #mobile-menu .flex-1 {
+  background: #1f2937 !important; /* Same dark gray as header/footer in dark mode */
+}
+
+.dark #mobile-menu a:hover {
+  background: #374151 !important; /* Slightly lighter gray for dark mode hover */
+  color: #ffffff !important;
+}
+
+/* Ensure no border differences between sections */
+#mobile-menu ul {
+  border: none !important;
+}
+
+#mobile-menu ul li {
+  border: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Remove any padding/margin that might show different backgrounds */
+#mobile-menu .p-4 {
+  background: #374151 !important; /* Menu items container */
+}
+
+.dark #mobile-menu .p-4 {
+  background: #1f2937 !important; /* Dark mode menu items container */
+}
+
+/* Clean slide animation */
+#mobile-menu {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+#mobile-menu-overlay {
+  transition: opacity 0.3s ease !important;
 }
