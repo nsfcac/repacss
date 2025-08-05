@@ -18,7 +18,6 @@ const navItems = [
     text: "Resources",
   },
   { 
-    // href: "https://nsfcac.github.io/repacss-user-guide/",
     href: "/user-guide",
     text: "User Guide",
   },
@@ -33,70 +32,282 @@ const navItems = [
 ];
 ---
 
-<header class="fixed inset-x-0 top-0 z-50 py-2 px-6 bg-base-100/80 dark:bg-base-dark-900/80 backdrop-filter backdrop-blur-sm shadow-sm">
-  <!-- <Container> -->
-  <nav class="w-full flex justify-between gap-6 relative">
-    <!-- logo -->
+<header class="fixed inset-x-0 top-0 z-50 py-2 px-3 sm:px-6 bg-base-100/95 dark:bg-base-dark-900/95 backdrop-filter backdrop-blur-sm shadow-sm">
+  <nav class="w-full flex justify-between items-center gap-4">
+    <!-- Logo -->
     <div class="min-w-max inline-flex relative">
-      <!-- LOGO -->
-      <a href="" class="relative flex items-center gap-3">
-        <div class="relative h-7 overflow-hidden flex rounded-xl">
+      <a href="/" class="relative flex items-center gap-2">
+        <div class="relative h-6 sm:h-7 overflow-hidden flex rounded-xl">
           <img 
             src="/assets/repacss-2.png" 
             alt="Repacss Logo" 
-            class="h-7 w-auto"
+            class="h-6 sm:h-7 w-auto"
           />
         </div>
+        <span class="hidden sm:block text-lg font-semibold text-gray-900 dark:text-white">REPACSS</span>
       </a>
     </div>
 
-    <div
-      data-nav-overlay
-      aria-hidden="true"
-      class="fixed hidden inset-0 lg:!hidden bg-box-bg bg-opacity-50 backdrop-filter backdrop-blur-xl"
-    >
-    </div>
-    <div
-      data-navbar
-      class="flex h-0 overflow-hidden lg:!h-auto lg:scale-y-100 duration-300 ease-linear flex-col gap-y-6 gap-x-4 lg:flex-row w-full lg:justify-between lg:items-center absolute lg:relative top-full lg:top-0 bg-body lg:bg-transparent border-x border-x-box-border lg:border-x-0"
-    >
-      <ul
-        class="border-t border-box-border lg:border-t-0 px-6 lg:px-0 pt-6 lg:pt-0 flex flex-col lg:flex-row gap-y-4 gap-x-3 text-lg text-heading-2 w-full lg:justify-end lg:items-center"
-      >
-        {
-          navItems.map((item) => {
-            return <Navitem {...item} />;
-          })
-        }
-      </ul>
-
-    </div>
-
-    <div class="min-w-max flex items-center gap-x-3">
-      <!-- Theme Switch -->
+    <!-- Desktop navigation -->
+    <div class="hidden lg:flex items-center space-x-6">
+      {navItems.map((item) => (
+        <a 
+          href={item.href} 
+          class="text-gray-700 dark:text-gray-300 hover:text-primary transition-colors font-medium"
+        >
+          {item.text}
+        </a>
+      ))}
       <BtnThemeSwitch variant="primary" />
+    </div>
 
-      <!-- Navbar toggle -->
-      <button
-        data-toggle-nav
-        data-open-nav="false"
-        class="lg:hidden lg:invisible outline-none w-7 h-auto flex flex-col relative"
-      >
-        <span
-          id="line1"
-          class="w-6 h-0.5 rounded-full bg-heading-2 transition-all duration-300 ease-linear bg-black dark:bg-white"
-        ></span>
-        <span
-          id="line2"
-          class="w-6 origin-center mt-1 h-0.5 rounded-ful bg-heading-2 transition-all duration-300 ease-linear bg-black dark:bg-white"
-        ></span>
-        <span
-          id="line3"
-          class="w-6 mt-1 h-0.5 rounded-ful bg-heading-2 transition-all duration-300 ease-linear bg-black dark:bg-white"
-        ></span>
-        <span class="sr-only">togglenav</span>
-      </button>
+    <!-- Mobile hamburger button -->
+    <button
+      id="mobile-menu-toggle"
+      class="lg:hidden outline-none p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 z-60 relative"
+      aria-label="Toggle navigation menu"
+      type="button"
+    >
+      <div class="w-6 h-6 flex flex-col justify-center space-y-1">
+        <span class="hamburger-line w-6 h-0.5 bg-gray-800 dark:bg-white transition-all duration-300 rounded"></span>
+        <span class="hamburger-line w-6 h-0.5 bg-gray-800 dark:bg-white transition-all duration-300 rounded"></span>
+        <span class="hamburger-line w-6 h-0.5 bg-gray-800 dark:bg-white transition-all duration-300 rounded"></span>
+      </div>
+    </button>
+
+    <!-- Mobile menu overlay -->
+    <div
+      id="mobile-menu-overlay"
+      class="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden opacity-0 invisible transition-all duration-300 pointer-events-none"
+    ></div>
+
+    <!-- Mobile navigation menu -->
+    <div
+      id="mobile-menu"
+      class="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white dark:bg-gray-900 shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out z-50 lg:hidden"
+    >
+      <!-- Mobile menu header -->
+      <div class="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
+        <span class="text-lg font-semibold text-gray-900 dark:text-white">Menu</span>
+        <button 
+          id="mobile-menu-close"
+          class="p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+          aria-label="Close menu"
+          type="button"
+        >
+          <svg class="w-6 h-6 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Navigation items -->
+      <div class="flex flex-col h-full">
+        <ul class="flex flex-col p-4 space-y-2 flex-1">
+          {navItems.map((item) => (
+            <li>
+              <a 
+                href={item.href} 
+                class="mobile-nav-link block py-3 px-4 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-primary transition-colors font-medium text-lg"
+              >
+                {item.text}
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        <!-- Theme toggle in mobile menu footer -->
+        <div class="p-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
+          <div class="flex items-center justify-between">
+            <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Theme</span>
+            <button
+              class="theme-toggle outline-none p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              aria-label="Toggle theme"
+              type="button"
+            >
+              <svg id="theme-toggle-dark-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.003 8.003 0 1010.586 10.586z"></path>
+              </svg>
+              <svg id="theme-toggle-light-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2L13.09 8.26L20 9L14 14.74L15.18 21.02L10 17.77L4.82 21.02L6 14.74L0 9L6.91 8.26L10 2Z"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   </nav>
-  <!-- </Container> -->
 </header>
+
+<script is:inline>
+  // Combined mobile menu and theme functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    // ===== THEME TOGGLE FUNCTIONALITY =====
+    function initThemeToggle() {
+      const themeToggleBtns = document.querySelectorAll('.theme-toggle, #theme-toggle');
+      
+      // Get theme from localStorage or default to light
+      function getTheme() {
+        return localStorage.getItem('theme') || 
+               (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      }
+
+      // Set theme
+      function setTheme(theme) {
+        if (theme === 'dark') {
+          document.documentElement.classList.add('dark');
+          document.body.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+          document.body.classList.remove('dark');
+        }
+        localStorage.setItem('theme', theme);
+        
+        // Update all theme toggle buttons
+        updateThemeIcons(theme);
+      }
+
+      // Update theme icons
+      function updateThemeIcons(theme) {
+        const darkIcons = document.querySelectorAll('#theme-toggle-dark-icon');
+        const lightIcons = document.querySelectorAll('#theme-toggle-light-icon');
+        
+        if (theme === 'dark') {
+          lightIcons.forEach(icon => icon.classList.remove('hidden'));
+          darkIcons.forEach(icon => icon.classList.add('hidden'));
+        } else {
+          lightIcons.forEach(icon => icon.classList.add('hidden'));
+          darkIcons.forEach(icon => icon.classList.remove('hidden'));
+        }
+      }
+
+      // Initialize theme
+      setTheme(getTheme());
+
+      // Add click listeners to all theme toggle buttons
+      themeToggleBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          const currentTheme = getTheme();
+          const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+          setTheme(newTheme);
+        });
+      });
+    }
+
+    // ===== MOBILE MENU FUNCTIONALITY =====
+    function initMobileMenu() {
+      const toggleButton = document.getElementById('mobile-menu-toggle');
+      const closeButton = document.getElementById('mobile-menu-close');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const overlay = document.getElementById('mobile-menu-overlay');
+      const navLinks = document.querySelectorAll('.mobile-nav-link');
+      const hamburgerLines = document.querySelectorAll('.hamburger-line');
+
+      if (!toggleButton || !mobileMenu || !overlay) {
+        console.warn('Mobile menu elements not found');
+        return;
+      }
+
+      let isMenuOpen = false;
+
+      function openMenu() {
+        isMenuOpen = true;
+        
+        overlay.classList.remove('opacity-0', 'invisible', 'pointer-events-none');
+        overlay.classList.add('opacity-100', 'visible', 'pointer-events-auto');
+        
+        mobileMenu.classList.remove('translate-x-full');
+        mobileMenu.classList.add('translate-x-0');
+        
+        if (hamburgerLines.length >= 3) {
+          hamburgerLines[0].style.transform = 'translateY(6px) rotate(45deg)';
+          hamburgerLines[1].style.opacity = '0';
+          hamburgerLines[2].style.transform = 'translateY(-6px) rotate(-45deg)';
+        }
+        
+        document.body.style.overflow = 'hidden';
+        toggleButton.setAttribute('aria-expanded', 'true');
+      }
+
+      function closeMenu() {
+        isMenuOpen = false;
+        
+        overlay.classList.add('opacity-0', 'invisible', 'pointer-events-none');
+        overlay.classList.remove('opacity-100', 'visible', 'pointer-events-auto');
+        
+        mobileMenu.classList.add('translate-x-full');
+        mobileMenu.classList.remove('translate-x-0');
+        
+        if (hamburgerLines.length >= 3) {
+          hamburgerLines[0].style.transform = '';
+          hamburgerLines[1].style.opacity = '';
+          hamburgerLines[2].style.transform = '';
+        }
+        
+        document.body.style.overflow = '';
+        toggleButton.setAttribute('aria-expanded', 'false');
+      }
+
+      // Hamburger toggle
+      toggleButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        if (isMenuOpen) {
+          closeMenu();
+        } else {
+          openMenu();
+        }
+      });
+
+      // Close button
+      if (closeButton) {
+        closeButton.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          closeMenu();
+        });
+      }
+
+      // Overlay click
+      overlay.addEventListener('click', function(e) {
+        if (e.target === overlay) {
+          closeMenu();
+        }
+      });
+
+      // Navigation links
+      navLinks.forEach(function(link) {
+        link.addEventListener('click', function() {
+          closeMenu();
+        });
+      });
+
+      // Escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && isMenuOpen) {
+          closeMenu();
+        }
+      });
+
+      // Window resize
+      window.addEventListener('resize', function() {
+        if (window.innerWidth >= 1024 && isMenuOpen) {
+          closeMenu();
+        }
+      });
+    }
+
+    // Initialize both functionalities
+    initThemeToggle();
+    initMobileMenu();
+
+    // Re-initialize on page navigation (for Astro)
+    document.addEventListener('astro:page-load', function() {
+      initThemeToggle();
+      initMobileMenu();
+    });
+  });
+</script>
