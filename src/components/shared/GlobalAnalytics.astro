@@ -1,5 +1,14 @@
 <!-- filepath: src/components/shared/GlobalAnalytics.astro -->
 <script>
+  // Skip analytics for localhost
+  if (window.location.hostname === 'localhost' || 
+      window.location.hostname === '127.0.0.1' || 
+      window.location.hostname.includes('dev') ||
+      window.location.port === '4321') {
+    console.log('Analytics disabled for development');
+    return;
+  }
+
   // Analytics functions (inline implementation)
   function trackExternalLinkClick(url: string, context: string) {
     if (typeof window !== 'undefined' && window.gtag) {
