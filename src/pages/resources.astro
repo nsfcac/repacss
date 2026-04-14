@@ -8,114 +8,151 @@ import Container from "../components/shared/Container.astro";
         class="flex flex-col gap-y-10 md:gap-y-20 overflow-hidden pt-20 md:pt-32 px-4 md:px-8"
     >
         <!-- Header Section -->
-        <Container
-            className="mx-auto flex flex-col gap-y-4 text-left max-w-4xl -mt-8"
-        >
-            <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">
-                REPACSS Facility Overview
-            </h2>
-            <p class="text-lg text-gray-600 dark:text-gray-400">
-                The <span class="text-primary dark:text-primary-light"
-                    >REPACSS</span
-                > is a high-performance computing data center and AI infrastructure
-                designed to support intensive computational and data-driven research,
-                powered by variable energy sources. The system consists of a combination
-                of compute, GPU, and storage nodes, interconnected with high-speed
-                networking to ensure efficient data transfer and processing. The
-                facility is structured to accommodate diverse workloads, including
-                large-scale simulations, AI training, and data analytics.
-            </p>
-        </Container>
+        <section aria-labelledby="facility-overview-heading">
+            <Container
+                className="mx-auto flex flex-col gap-y-4 text-left max-w-4xl -mt-8"
+            >
+                <h1
+                    id="facility-overview-heading"
+                    class="text-2xl font-semibold text-gray-800 dark:text-gray-200"
+                >
+                    REPACSS Facility Overview
+                </h1>
+                <p class="text-lg text-gray-600 dark:text-gray-400">
+                    The <span class="text-primary dark:text-primary-light"
+                        >REPACSS</span
+                    > is a high-performance computing data center and AI infrastructure
+                    designed to support intensive computational and data-driven research,
+                    powered by variable energy sources. The system consists of a combination
+                    of compute, GPU, and storage nodes, interconnected with high-speed
+                    networking to ensure efficient data transfer and processing. The
+                    facility is structured to accommodate diverse workloads, including
+                    large-scale simulations, AI training, and data analytics.
+                </p>
+            </Container>
+        </section>
 
         <!-- System Components Section -->
-        <Container
-            className="mx-auto flex flex-col gap-y-4 text-left max-w-4xl -mt-8"
-        >
-            <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">
-                System Components
-            </h2>
-            <ul
-                class="list-disc list-inside text-lg text-gray-600 dark:text-gray-400"
+        <section aria-labelledby="system-components-heading">
+            <Container
+                className="mx-auto flex flex-col gap-y-4 text-left max-w-4xl -mt-8"
             >
-                <li>
-                    <span class="font-bold">Compute Nodes:</span> REPACSS features
-                    110 AMD-based compute nodes, each equipped with dual AMD EPYC
-                    9754 processors, totaling 256 cores and 1.5TB of DDR5 memory
-                    per node. These nodes are designed to provide robust concurrent
-                    processing capabilities for demanding scientific computations.
-                </li>
-                <li>
-                    <span class="font-bold">GPU Nodes:</span> The system incorporates
-                    8 GPU nodes, each featuring dual Intel Xeon Gold 6448Y processors
-                    and 4 NVIDIA H100 NVL GPUs with NVLink interconnects. These nodes
-                    are optimized for machine learning and deep learning applications,
-                    offering a total of 32 GPUs with 94GB of HBM memory per unit.
-                </li>
-                <li>
-                    <span class="font-bold">Storage Nodes:</span> A multi-tiered
-                    storage system is implemented with a total of 9 storage nodes,
-                    delivering a cumulative capacity of approximately 2.94 petabytes
-                    (PB). These nodes include high-speed NVMe drives and large-capacity
-                    HDDs to balance performance and storage density.
-                </li>
-                <li>
-                    <span class="font-bold">Networking & Infrastructure:</span> The
-                    infrastructure is supported by Dell PowerSwitch S5248-ON and
-                    S5232-ON switches, ensuring high-speed interconnectivity. All
-                    nodes are housed in 2U rack-mounted chassis with redundant power
-                    supplies for reliability.
-                </li>
-            </ul>
-        </Container>
+                <h2
+                    id="system-components-heading"
+                    class="text-2xl font-semibold text-gray-800 dark:text-gray-200"
+                >
+                    System Components
+                </h2>
+                <ul
+                    class="list-disc list-inside text-lg text-gray-600 dark:text-gray-400"
+                >
+                    <li>
+                        <span class="font-bold">Compute Nodes:</span> REPACSS features
+                        110 AMD-based compute nodes, each equipped with dual AMD EPYC
+                        9754 processors, totaling 256 cores and 1.5TB of DDR5 memory
+                        per node. These nodes are designed to provide robust concurrent
+                        processing capabilities for demanding scientific computations.
+                    </li>
+                    <li>
+                        <span class="font-bold">GPU Nodes:</span> The system incorporates
+                        8 GPU nodes, each featuring dual Intel Xeon Gold 6448Y processors
+                        and 4 NVIDIA H100 NVL GPUs with NVLink interconnects. These nodes
+                        are optimized for machine learning and deep learning applications,
+                        offering a total of 32 GPUs with 94GB of HBM memory per unit.
+                    </li>
+                    <li>
+                        <span class="font-bold">Storage Nodes:</span> A multi-tiered
+                        storage system is implemented with a total of 9 storage nodes,
+                        delivering a cumulative capacity of approximately 2.94 petabytes
+                        (PB). These nodes include high-speed NVMe drives and large-capacity
+                        HDDs to balance performance and storage density.
+                    </li>
+                    <li>
+                        <span class="font-bold">Networking & Infrastructure:</span> The
+                        infrastructure is supported by Dell PowerSwitch S5248-ON and
+                        S5232-ON switches, ensuring high-speed interconnectivity. All
+                        nodes are housed in 2U rack-mounted chassis with redundant power
+                        supplies for reliability.
+                    </li>
+                </ul>
+            </Container>
+        </section>
 
         <!-- System Specifications Section -->
-        <Container
-            className="mx-auto flex flex-col gap-y-4 text-left max-w-4xl -mt-8"
-        >
-            <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">
-                REPACSS System Specifications
-            </h2>
-            <div class="overflow-x-auto">
-                <table
-                    class="table-fixed w-full border-collapse border border-gray-300 dark:border-gray-700 text text-gray-600 dark:text-gray-400"
+        <section aria-labelledby="system-specifications-heading">
+            <Container
+                className="mx-auto flex flex-col gap-y-4 text-left max-w-4xl -mt-8"
+            >
+                <h2
+                    id="system-specifications-heading"
+                    class="text-2xl font-semibold text-gray-800 dark:text-gray-200"
                 >
+                    REPACSS System Specifications
+                </h2>
+                <p id="system-specifications-description" class="sr-only">
+                    Scroll horizontally on smaller screens to review the full
+                    specifications table.
+                </p>
+                <div
+                    class="overflow-x-auto focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-base-dark-900"
+                    role="region"
+                    aria-labelledby="system-specifications-heading"
+                    aria-describedby="system-specifications-description"
+                    tabindex="0"
+                >
+                    <table
+                        class="table-fixed w-full border-collapse border border-gray-300 dark:border-gray-700 text text-gray-600 dark:text-gray-400"
+                    >
+                        <caption class="sr-only">
+                            REPACSS system specifications by node type, including total
+                            nodes, processors, cores, memory, storage, and GPU details.
+                        </caption>
                     <thead>
                         <tr
                             class="bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200"
                         >
                             <th
+                                scope="col"
                                 class="w-28 border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
                                 >Node Type</th
                             >
                             <th
+                                scope="col"
                                 class="w-28 border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
                                 >Total Nodes</th
                             >
                             <th
+                                scope="col"
                                 class="w-28 border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
                                 >CPU Model</th
                             >
                             <th
+                                scope="col"
                                 class="w-32 border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
                                 >CPUs/Node</th
                             >
                             <th
+                                scope="col"
                                 class="w-34 border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
                                 >Cores/Node</th
                             >
                             <th
+                                scope="col"
                                 class="w-38 border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
                                 >Memory/Node</th
                             >
                             <th
+                                scope="col"
                                 class="w-38 border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
                                 >Storage/Node</th
                             >
                             <th
+                                scope="col"
                                 class="w-34 border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
                                 >GPUs/Node</th
                             >
                             <th
+                                scope="col"
                                 class="w-28 border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
                                 >GPU Model</th
                             >
@@ -123,9 +160,10 @@ import Container from "../components/shared/Container.astro";
                     </thead>
                     <tbody>
                         <tr>
-                            <td
+                            <th
+                                scope="row"
                                 class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
-                                >CPU Nodes</td
+                                >CPU Nodes</th
                             >
                             <td
                                 class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
@@ -153,17 +191,22 @@ import Container from "../components/shared/Container.astro";
                             >
                             <td
                                 class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
-                                >-</td
                             >
+                                <span aria-hidden="true">-</span>
+                                <span class="sr-only">Not applicable</span>
+                            </td>
                             <td
                                 class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
-                                >-</td
                             >
+                                <span aria-hidden="true">-</span>
+                                <span class="sr-only">Not applicable</span>
+                            </td>
                         </tr>
                         <tr>
-                            <td
+                            <th
+                                scope="row"
                                 class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
-                                >GPU Nodes</td
+                                >GPU Nodes</th
                             >
                             <td
                                 class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
@@ -199,9 +242,10 @@ import Container from "../components/shared/Container.astro";
                             >
                         </tr>
                         <tr>
-                            <td
+                            <th
+                                scope="row"
                                 class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
-                                >Login Nodes</td
+                                >Login Nodes</th
                             >
                             <td
                                 class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
@@ -229,17 +273,22 @@ import Container from "../components/shared/Container.astro";
                             >
                             <td
                                 class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
-                                >-</td
                             >
+                                <span aria-hidden="true">-</span>
+                                <span class="sr-only">Not applicable</span>
+                            </td>
                             <td
                                 class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
-                                >-</td
                             >
+                                <span aria-hidden="true">-</span>
+                                <span class="sr-only">Not applicable</span>
+                            </td>
                         </tr>
                         <tr>
-                            <td
+                            <th
+                                scope="row"
                                 class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
-                                >Storage Nodes</td
+                                >Storage Nodes</th
                             >
                             <td
                                 class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
@@ -267,17 +316,22 @@ import Container from "../components/shared/Container.astro";
                             >
                             <td
                                 class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
-                                >-</td
                             >
+                                <span aria-hidden="true">-</span>
+                                <span class="sr-only">Not applicable</span>
+                            </td>
                             <td
                                 class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words"
-                                >-</td
                             >
+                                <span aria-hidden="true">-</span>
+                                <span class="sr-only">Not applicable</span>
+                            </td>
                         </tr>
                         <tr>
-                            <td
+                            <th
+                                scope="row"
                                 class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words font-bold"
-                                >Total</td
+                                >Total</th
                             >
                             <td
                                 class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-center whitespace-normal break-words font-bold"
@@ -307,28 +361,36 @@ import Container from "../components/shared/Container.astro";
                             >
                         </tr>
                     </tbody>
-                </table>
-            </div>
-        </Container>
+                    </table>
+                </div>
+            </Container>
+        </section>
 
         <!-- System Components Section -->
-        <Container
-            className="mx-auto flex flex-col gap-y-4 text-left max-w-4xl -mt-8"
-        >
-            <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">
-                ACCESS-CI Resources
-            </h2>
-            <p class="text-lg text-gray-600 dark:text-gray-400">
-                Except for REPACSS computing resources, you may find additional advanced computing resources through
-                <a
-                    href="https://allocations.access-ci.org/resources "
-                    class="text-primary dark:text-primary-light underline"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    >ACCESS-CI</a
-                > to support your research.
-            </p>
-        </Container>
+        <section aria-labelledby="access-ci-resources-heading">
+            <Container
+                className="mx-auto flex flex-col gap-y-4 text-left max-w-4xl -mt-8"
+            >
+                <h2
+                    id="access-ci-resources-heading"
+                    class="text-2xl font-semibold text-gray-800 dark:text-gray-200"
+                >
+                    ACCESS-CI Resources
+                </h2>
+                <p class="text-lg text-gray-600 dark:text-gray-400">
+                    Except for REPACSS computing resources, you may find additional advanced computing resources through
+                    <a
+                        href="https://allocations.access-ci.org/resources"
+                        class="text-primary dark:text-primary-light underline"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >ACCESS-CI<span class="sr-only">
+                            (opens in a new tab)</span
+                        ></a
+                    > to support your research.
+                </p>
+            </Container>
+        </section>
     </main>
 </Layout>
 
