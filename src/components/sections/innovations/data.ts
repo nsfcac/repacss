@@ -13,18 +13,21 @@ export const innovationsSection = {
       description:
         "Effective management of data centers powered by variable energy necessitates advanced remote monitoring and control systems. REPACSS is developing sophisticated tools that enable real-time oversight and intervention, ensuring optimal performance, swift issue resolution, and seamless adaptation to the variable energy availability.",
       visual: img_control,
+      alt: "Illustration of a technician monitoring solar power systems from a laptop and multiple dashboard screens",
     },
     {
       title: "Workflow Scheduling Integration",
       description:
         "Aligning computational workloads with fluctuating energy availability is critical for efficiency. REPACSS is creating intelligent scheduling algorithms that synchronize scientific computing tasks with energy production forecasts. This integration enhances resource utilization, minimizes downtime, and leverages periods of peak energy generation.",
       visual: img_schedule,
+      alt: "Illustration of a server rack, solar panel, workflow chart, and clock representing scheduled energy management",
     },
     {
       title: "Checkpointing and Restore Techniques",
       description:
         "To safeguard ongoing computations against potential energy disruptions, REPACSS is implementing advanced checkpointing and restore methods. These techniques allow scientific applications to save their current state periodically, facilitating rapid recovery and continuity in the event of power variability, thereby ensuring data integrity and computational reliability.",
       visual: img_checkpoint,
+      alt: "Illustration of a wind turbine, server, solar panel, laptop, and status screen showing energy data transfer and checkpointing",
     },
   ],
   visual: "innovations-section-image.jpg",
