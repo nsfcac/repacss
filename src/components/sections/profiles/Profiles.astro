@@ -258,19 +258,17 @@ const { className = "" } = Astro.props;
   <!-- Postdoctoral Staff Section -->
   <Container className="mx-auto mt-16">
     <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-6 text-center">Postdoctoral Researchers and Staff</h3>
-    <div class="flex justify-center w-full max-w-6xl mx-auto">
-      <div class="profiles-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mx-auto w-full max-w-7xl">
-        {postdocs.map(member => (
-          <ProfileCard {...member} />
-        ))}
-      </div>
+    <div class="profiles-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mx-auto w-full max-w-7xl">
+      {postdocs.map(member => (
+        <ProfileCard {...member} />
+      ))}
     </div>
   </Container>
 
   <!-- Students Section -->
   <Container className="mx-auto mt-16">
     <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-6 text-center">Student Researchers</h3>
-    <div class="profiles-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mx-auto w-full max-w-7xl">
+    <div class="profiles-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 mx-auto w-full max-w-7xl">
       {students.map(member => (
         <ProfileCard {...member} />
       ))}
@@ -280,7 +278,7 @@ const { className = "" } = Astro.props;
   <!-- External Advisory Board Section -->
   <Container className="mx-auto mt-16">
     <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-6 text-center">External Advisory Board</h3>
-    <div class="profiles-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mx-auto w-full max-w-6xl">
+    <div class="profiles-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mx-auto w-full max-w-7xl">
       {advisoryBoard.map(member => (
         <ProfileCard {...member} />
       ))}
