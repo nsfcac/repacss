@@ -259,7 +259,7 @@ const { className = "" } = Astro.props;
   <Container className="mx-auto mt-16">
     <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-6 text-center">Postdoctoral Researchers and Staff</h3>
     <div class="flex justify-center w-full max-w-6xl mx-auto">
-      <div class="profiles-container grid grid-cols-1 sm:grid-cols-2 gap-12 mx-auto">
+      <div class="profiles-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mx-auto w-full max-w-7xl">
         {postdocs.map(member => (
           <ProfileCard {...member} />
         ))}
@@ -270,7 +270,7 @@ const { className = "" } = Astro.props;
   <!-- Students Section -->
   <Container className="mx-auto mt-16">
     <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-6 text-center">Student Researchers</h3>
-    <div class="profiles-container grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-4 mx-auto w-full max-w-5xl">
+    <div class="profiles-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mx-auto w-full max-w-7xl">
       {students.map(member => (
         <ProfileCard {...member} />
       ))}
