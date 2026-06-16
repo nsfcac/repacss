@@ -28,9 +28,14 @@ import TatineniMahi from './assets/TatineniMahi.jpg';
 import fernandaFoertter from './assets/fernandaFoertter.jpg';
 import andrewGrimshaw from './assets/andrewGrimshaw.jpg';
 import batuhan from './assets/SencerBatuhan.jpg';
+// import jonhSill from './assets/redraider.jpg';
+// import felixPerez from './assets/redraider.jpg';
+// import rupakKadel from './assets/redraider.jpg';
+// import jaechang from './assets/redraider.jpg';
 
 // add actual images for placeholders
 import placeholderProfile from './assets/generic-avatar.jpg';
+import redraider from './assets/redraider.jpg';
 
 // Faculty members
 const faculty = [
@@ -86,7 +91,7 @@ const faculty = [
   
 ];
 
-// Postdoctoral staff
+// Postdoctoral researchers and staff
 const postdocs = [
   {
     photo: ElhamHojati,
@@ -101,28 +106,21 @@ const postdocs = [
     position: 'Postdoctoral Researcher',
     description: 'Computer Science',
     website: 'https://lijie.me'
+  },
+  {
+    photo: redraider,
+    name: 'John Sill',
+    position: 'Server Administrator III',
+    description: 'Computer Science',
+     website: '#'
   }
   
 ];
 // Student researchers
 const students = [
   {
-    photo: manoj,
-    name: 'Manoj Khatri',
-    position: 'Master Student',
-    description: 'Computer Science and HPCC',
-    website: '#'
-  },
-  {
-    photo: ashlesha,
-    name: 'Ashlesha Malla',
-    position: 'PhD Student',
-    description: 'Computer Science',
-    website: '#'
-  },
-  {
-    photo: PhornsawanRoemsri,
-    name: 'Phornsawan Roemsri',
+    photo: yongjian,
+    name: 'Yongjian Zhao',
     position: 'PhD Student',
     description: 'Computer Science',
     website: '#'
@@ -135,6 +133,27 @@ const students = [
     website: '#'
   },
   {
+    photo: ashlesha,
+    name: 'Ashlesha Malla',
+    position: 'PhD Student',
+    description: 'Computer Science',
+    website: '#'
+  },
+  {
+    photo: redraider,
+    name: 'Rupak Kadel',
+    position: 'PhD Student',
+    description: 'Computer Science',
+    website: '#'
+  },
+  {
+    photo: redraider,
+    name: 'Felix Perez',
+    position: 'PhD Student',
+    description: 'Computer Science',
+    website: '#'
+  },
+  {
     photo: samuel,
     name: 'Samuel Abiola',
     position: 'PhD Student',
@@ -142,15 +161,8 @@ const students = [
     website: '#'
   },
   {
-    photo: yongjian,
-    name: 'Yongjian Zhao',
-    position: 'PhD Student',
-    description: 'Computer Science',
-    website: '#'
-  },
-  {
-    photo: chenxu,
-    name: 'Chenxu Niu',
+    photo: PhornsawanRoemsri,
+    name: 'Phornsawan Roemsri',
     position: 'PhD Student',
     description: 'Computer Science',
     website: '#'
@@ -165,6 +177,13 @@ const students = [
   {
     photo: batuhan,
     name: 'Batuhan Sencer',
+    position: 'Undergraduate Student',
+    description: 'Computer Science',
+    website: '#'
+  },
+  {
+    photo: redraider,
+    name: 'Jaechang Kim',
     position: 'Undergraduate Student',
     description: 'Computer Science',
     website: '#'
@@ -238,7 +257,7 @@ const { className = "" } = Astro.props;
 
   <!-- Postdoctoral Staff Section -->
   <Container className="mx-auto mt-16">
-    <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-6 text-center">Postdoctoral Staff</h3>
+    <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-6 text-center">Postdoctoral Researchers and Staff</h3>
     <div class="flex justify-center w-full max-w-6xl mx-auto">
       <div class="profiles-container grid grid-cols-1 sm:grid-cols-2 gap-12 mx-auto">
         {postdocs.map(member => (
