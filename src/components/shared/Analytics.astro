@@ -1,20 +1,27 @@
-<!-- filepath: src/components/shared/Analytics.astro -->
 ---
 const GA_ID = import.meta.env.PUBLIC_GA_ID || 'G-837FYSF17X';
+const analyticsSrc = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
 ---
 
 {GA_ID && (
   <>
     <!-- Google tag (gtag.js) -->
-    <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
-    <script define:vars={{ GA_ID }}>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', GA_ID, {
-        page_title: document.title,
-        page_location: window.location.href,
-      });
+    <script is:inline async src={analyticsSrc}></script>
+    <meta name="ga-id" content={GA_ID} />
+    <script>
+      const gaId = document.querySelector<HTMLMetaElement>('meta[name="ga-id"]')?.content;
+
+      if (gaId) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(...args: unknown[]) {
+          window.dataLayer.push(args);
+        }
+        gtag('js', new Date());
+        gtag('config', gaId, {
+          page_title: document.title,
+          page_location: window.location.href,
+        });
+      }
     </script>
   </>
 )}
