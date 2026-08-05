@@ -17,6 +17,7 @@
 
 @custom-variant dark (&:is(.dark *));
 
+
 @theme {
   /*
     v3 defined these sizes as bare strings, which emitted font-size only and let
@@ -33,6 +34,8 @@
   --text-lg--line-height: inherit;
   --text-xl: 24px;
   --text-xl--line-height: inherit;
+
+  --breakpoint-midmd: 880px;
 
   --color-base-50: #f9f9f9;
   --color-base-100: #efefef;
@@ -114,7 +117,6 @@
   --color-cta-950: #442604;
   --color-cta: #ffd700;
 
-  --breakpoint-midmd: 880px;
 
   --shadow-aesthetic: 0 3px 10px rgb(0, 0, 0, 0.2);
   --shadow-dark: inset 0 1px 0 0 #ffffff0d;
