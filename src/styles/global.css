@@ -35,7 +35,16 @@
   --text-xl: 24px;
   --text-xl--line-height: inherit;
 
-  --breakpoint-midmd: 880px;
+  /*
+    55rem, not 880px, though they are the same width. v4 orders breakpoint
+    variants by value but cannot compare across units, so a px breakpoint sorts
+    ahead of the rem-based defaults -- `midmd:` was emitted before `sm:` and lost
+    to it, rendering the featured card image at sm:h-96 (384px) instead of
+    midmd:h-full (500px). In rem it sorts between md (48rem) and lg (64rem),
+    which is where v3 had it. rem in a media query always resolves against the
+    initial 16px font size, so this stays 880px regardless of any html font-size.
+  */
+  --breakpoint-midmd: 55rem;
 
   --color-base-50: #f9f9f9;
   --color-base-100: #efefef;
