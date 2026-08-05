@@ -1,8 +1,17 @@
+/*
+  Declarations that a Tailwind utility also sets on the same element have been
+  removed from this file. Under v3 this stylesheet loaded before Tailwind, so
+  those utilities won at equal specificity and these values never applied. v4
+  emits utilities into a cascade layer, which unlayered CSS outranks, so they
+  would now win and change the rendering. What remains is only what actually
+  took effect under v3.
+*/
+
 /* Profiles container grid */
 .profiles-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 1rem;
+  /* grid-template-columns and gap removed: the markup sets
+     `grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8` (32px, not 16px). */
   padding: 1rem;
 }
 
@@ -15,8 +24,8 @@
   min-height: 350px; /* Set a consistent minimum height */
   padding: 1.5rem;
   background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* border-radius and box-shadow removed: the markup sets `rounded-lg` (8px,
+     not 12px) and `shadow-lg`. padding/background match p-6 and bg-white. */
 }
 .profile-card:hover {
   transform: scale(1.05);
@@ -36,12 +45,13 @@
 }
 
 .profile-position {
-  color: #777;
+  /* color removed: the markup sets `text-gray-500`. margin-bottom likewise
+     comes from `mb-2` (0.5rem), so only the top margin is kept here. */
   font-size: 1rem;
-  margin: 0.25rem 0;
+  margin-top: 0.25rem;
 }
 
 .profile-description {
+  /* color removed: the markup sets `text-gray-600`. */
   font-size: 0.9rem;
-  color: #555;
 }
