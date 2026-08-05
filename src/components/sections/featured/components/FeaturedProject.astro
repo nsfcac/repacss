@@ -30,26 +30,26 @@ const { title, description, location, visual } = Astro.props;
       />
     </div>
     <svg
-      class="absolute top-[-1px] start-0 fill-base dark:fill-base-dark-800"
+      class="absolute -top-px inset-s-0 fill-base dark:fill-base-dark-800"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 400 75"
     >
       <path d="M0 0l400 0L400 75 0 25Z"></path>
     </svg>
     <p
-      class="absolute top-0 end-0 m-3 start-end text-sm text-primary-900/50 dark:text-primary/70 font-semibold"
+      class="absolute top-0 inset-e-0 m-3 start-end text-sm text-primary-900/50 dark:text-primary/70 font-semibold"
     >
       {location}
     </p>
     <svg
-      class="absolute bottom-[-1px] start-0 fill-base dark:fill-base-dark-800"
+      class="absolute -bottom-px inset-s-0 fill-base dark:fill-base-dark-800"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 -50 400 50"
     >
       <path d="M0 0l400 0L0-50Z"></path>
     </svg>
   </div>
-  <div class="grid grid-cols-1 content-between w-full h-full p-6">
+  <div class="grid grid-cols-1 gap-4 content-between w-full h-full p-6">
     <Title3 className="dark:opacity-70">
       {title}
     </Title3>

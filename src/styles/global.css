@@ -1,0 +1,154 @@
+@import 'tailwindcss';
+
+/*
+  These hand-written stylesheets stay UNLAYERED on purpose.
+
+  Under v3 they were plain <link> tags loaded before Tailwind, so Tailwind won at
+  equal specificity while their more specific rules (e.g. `.cover-container img`,
+  which fixes gallery tiles to 300px) still beat utilities. Putting them in a
+  cascade layer below Tailwind reproduces the first half of that but not the
+  second: layer order outranks specificity, so those intentional overrides would
+  silently lose. Unlayered keeps specificity meaningful, which is what the rules
+  were written against.
+*/
+@import './legacy/custom.css';
+@import './legacy/gallery.css';
+@import './legacy/about.css';
+
+@custom-variant dark (&:is(.dark *));
+
+
+@theme {
+  /*
+    v3 defined these sizes as bare strings, which emitted font-size only and let
+    line-height inherit the unitless 1.5 from Preflight (so `text-lg` computed to
+    20px/30px). v4 pairs every --text-* with a default --text-*--line-height ratio,
+    which shifted every line box. `inherit` restores the v3 behaviour: the unitless
+    1.5 is inherited and recomputed against each element's own font-size.
+  */
+  --text-sm: 14px;
+  --text-sm--line-height: inherit;
+  --text-base: 18px;
+  --text-base--line-height: inherit;
+  --text-lg: 20px;
+  --text-lg--line-height: inherit;
+  --text-xl: 24px;
+  --text-xl--line-height: inherit;
+
+  /*
+    55rem, not 880px, though they are the same width. v4 orders breakpoint
+    variants by value but cannot compare across units, so a px breakpoint sorts
+    ahead of the rem-based defaults -- `midmd:` was emitted before `sm:` and lost
+    to it, rendering the featured card image at sm:h-96 (384px) instead of
+    midmd:h-full (500px). In rem it sorts between md (48rem) and lg (64rem),
+    which is where v3 had it. rem in a media query always resolves against the
+    initial 16px font size, so this stays 880px regardless of any html font-size.
+  */
+  --breakpoint-midmd: 55rem;
+
+  --color-base-50: #f9f9f9;
+  --color-base-100: #efefef;
+  --color-base-200: #e6e6e6;
+  --color-base-300: #dbdbdb;
+  --color-base-400: #d1d1d1;
+  --color-base-500: #c7c7c7;
+  --color-base-600: #bdbdbd;
+  --color-base-700: #b3b3b3;
+  --color-base-800: #a8a8a8;
+  --color-base-900: #9e9e9e;
+  --color-base-950: #949494;
+  --color-base: #f9f9f9;
+
+  --color-base-dark-50: #808080;
+  --color-base-dark-100: #757575;
+  --color-base-dark-200: #6b6b6b;
+  --color-base-dark-300: #616161;
+  --color-base-dark-400: #575757;
+  --color-base-dark-500: #4d4d4d;
+  --color-base-dark-600: #424242;
+  --color-base-dark-700: #383838;
+  --color-base-dark-800: #2e2e2e;
+  --color-base-dark-900: #242424;
+  --color-base-dark-950: #1a1a1a;
+  --color-base-dark: #1a1a1a;
+
+  --color-accent-50: #ffffff;
+  --color-accent-100: #c7c7c7;
+  --color-accent-200: #b3b3b3;
+  --color-accent-300: #949494;
+  --color-accent-400: #707070;
+  --color-accent-500: #545454;
+  --color-accent-600: #3d3d3d;
+  --color-accent-700: #292929;
+  --color-accent-800: #1c1c1c;
+  --color-accent-900: #141414;
+  --color-accent-950: #000000;
+  --color-accent: #000000;
+  --color-accent-light: #ffffff;
+  --color-accent-dark: #000000;
+
+  --color-primary-50: #ffecec;
+  --color-primary-100: #ffcfcf;
+  --color-primary-200: #ffa8a8;
+  --color-primary-300: #ff7b7b;
+  --color-primary-400: #ff4f4f;
+  --color-primary-500: #e90802;
+  --color-primary-600: #cc0702;
+  --color-primary-700: #aa0502;
+  --color-primary-800: #880401;
+  --color-primary-900: #600200;
+  --color-primary-950: #3b0000;
+  --color-primary: #e90802;
+
+  --color-secondary-50: #edfaff;
+  --color-secondary-100: #d6f2ff;
+  --color-secondary-200: #b5eaff;
+  --color-secondary-300: #83dfff;
+  --color-secondary-400: #48cbff;
+  --color-secondary-500: #1eadff;
+  --color-secondary-600: #068fff;
+  --color-secondary-700: #007bff;
+  --color-secondary-800: #085ec5;
+  --color-secondary-900: #0d519b;
+  --color-secondary-950: #0e315d;
+  --color-secondary: #1eadff;
+
+  --color-cta-50: #ffffe7;
+  --color-cta-100: #feffc1;
+  --color-cta-200: #fffd86;
+  --color-cta-300: #fff441;
+  --color-cta-400: #ffe60d;
+  --color-cta-500: #ffd700;
+  --color-cta-600: #d19e00;
+  --color-cta-700: #a67102;
+  --color-cta-800: #89580a;
+  --color-cta-900: #74480f;
+  --color-cta-950: #442604;
+  --color-cta: #ffd700;
+
+
+  --shadow-aesthetic: 0 3px 10px rgb(0, 0, 0, 0.2);
+  --shadow-dark: inset 0 1px 0 0 #ffffff0d;
+
+  --font-sans:
+    Raleway, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}

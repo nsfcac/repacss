@@ -47,7 +47,7 @@ const title = "Running Jobs - REPACSS User Guide";
                             <h4 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">
                                 Interactive Jobs
                             </h4>
-                            <div class="bg-gray-100 dark:bg-gray-800 rounded p-3 mt-3">
+                            <div class="bg-gray-100 dark:bg-gray-800 rounded-sm p-3 mt-3">
                                 <code class="text-sm">
                                     interactive -c 8 -p h100
                                 </code>
@@ -58,7 +58,7 @@ const title = "Running Jobs - REPACSS User Guide";
                             <h4 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">
                                 Batch Jobs
                             </h4>
-                            <div class="bg-gray-100 dark:bg-gray-800 rounded p-3 mt-3">
+                            <div class="bg-gray-100 dark:bg-gray-800 rounded-sm p-3 mt-3">
                                 <code class="text-sm">
                                     sbatch job.sh<br>
                                     sbatch -p zen4 job.sh<br>
@@ -84,7 +84,7 @@ const title = "Running Jobs - REPACSS User Guide";
                             <h4 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">
                                 Basic Template
                             </h4>
-                            <div class="bg-gray-100 dark:bg-gray-800 rounded p-3 mt-3">
+                            <div class="bg-gray-100 dark:bg-gray-800 rounded-sm p-3 mt-3">
                                 <pre class="text-sm"><code>#!/bin/bash
 #SBATCH --job-name=test
 #SBATCH --output=test.out
@@ -107,7 +107,7 @@ module load
                             <h4 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">
                                 Python Template
                             </h4>
-                            <div class="bg-gray-100 dark:bg-gray-800 rounded p-3 mt-3">
+                            <div class="bg-gray-100 dark:bg-gray-800 rounded-sm p-3 mt-3">
                                 <pre class="text-sm"><code>#!/bin/bash
 #SBATCH --job-name=python_job
 #SBATCH --output=python_job.out
@@ -134,7 +134,7 @@ python script.py</code></pre>
                             <h4 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">
                                 GPU Template
                             </h4>
-                            <div class="bg-gray-100 dark:bg-gray-800 rounded p-3 mt-3">
+                            <div class="bg-gray-100 dark:bg-gray-800 rounded-sm p-3 mt-3">
                                 <pre class="text-sm"><code>#!/bin/bash
 #SBATCH --job-name=gpu_test
 #SBATCH --output=gpu_test.out
@@ -168,9 +168,9 @@ module load cuda
                                 Submission
                             </h3>
                             <div class="space-y-2 text-sm">
-                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">sbatch job.sh</code> - Submit job</div>
-                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">sbatch --array=1-10 job.sh</code> - Array jobs</div>
-                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">sbatch --dependency=afterok:12345 job.sh</code> - Job dependencies</div>
+                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-sm">sbatch job.sh</code> - Submit job</div>
+                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-sm">sbatch --array=1-10 job.sh</code> - Array jobs</div>
+                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-sm">sbatch --dependency=afterok:12345 job.sh</code> - Job dependencies</div>
                             </div>
                         </div>
 
@@ -180,9 +180,9 @@ module load cuda
                                 Monitoring
                             </h3>
                             <div class="space-y-2 text-sm">
-                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">squeue -u $USER</code> - Your jobs</div>
-                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">squeue -p zen4</code> - Zen4 partition</div>
-                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">squeue -p h100</code> - H100 partition</div>
+                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-sm">squeue -u $USER</code> - Your jobs</div>
+                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-sm">squeue -p zen4</code> - Zen4 partition</div>
+                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-sm">squeue -p h100</code> - H100 partition</div>
                             </div>
                         </div>
 
@@ -192,9 +192,9 @@ module load cuda
                                 Control
                             </h3>
                             <div class="space-y-2 text-sm">
-                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">scancel 12345</code> - Cancel specific job</div>
-                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">scancel -u $USER</code> - Cancel all your jobs</div>
-                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">scancel -p zen4</code> - Cancel partition jobs</div>
+                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-sm">scancel 12345</code> - Cancel specific job</div>
+                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-sm">scancel -u $USER</code> - Cancel all your jobs</div>
+                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-sm">scancel -p zen4</code> - Cancel partition jobs</div>
                             </div>
                         </div>
                     </div>
@@ -227,7 +227,7 @@ module load cuda
                     </h2>
                     <div class="grid md:grid-cols-2 gap-4">
                         <a href="/user-guide/system-overview" 
-                           class="group p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-primary transition-all duration-200 hover:shadow-sm">
+                           class="group p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-primary transition-all duration-200 hover:shadow-xs">
                             <h4 class="font-medium text-primary group-hover:text-primary-400 mb-1">
                                 System Overview
                             </h4>
@@ -237,7 +237,7 @@ module load cuda
                         </a>
 
                         <a href="/user-guide/software" 
-                           class="group p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-primary transition-all duration-200 hover:shadow-sm">
+                           class="group p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-primary transition-all duration-200 hover:shadow-xs">
                             <h4 class="font-medium text-primary group-hover:text-primary-400 mb-1">
                                 Software
                             </h4>
@@ -247,7 +247,7 @@ module load cuda
                         </a>
 
                         <a href="/user-guide/file-management" 
-                           class="group p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-primary transition-all duration-200 hover:shadow-sm">
+                           class="group p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-primary transition-all duration-200 hover:shadow-xs">
                             <h4 class="font-medium text-primary group-hover:text-primary-400 mb-1">
                                 File Management
                             </h4>
@@ -257,7 +257,7 @@ module load cuda
                         </a>
 
                         <a href="/user-guide/python-environment-setup" 
-                           class="group p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-primary transition-all duration-200 hover:shadow-sm">
+                           class="group p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-primary transition-all duration-200 hover:shadow-xs">
                             <h4 class="font-medium text-primary group-hover:text-primary-400 mb-1">
                                 Python Environment Setup
                             </h4>

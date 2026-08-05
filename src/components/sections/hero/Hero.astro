@@ -33,7 +33,7 @@ const { className = "" } = Astro.props;
 <section class=`relative  ${className} w-full h-[60vh]` id="hero">
     <div class="w-full h-[60vh] pt-[80px]">
         <div
-            class="w-full h-full grid grid-cols-1 md:grid-cols-2 justify-end bg-base-100 dark:bg-base-dark-900"
+            class="w-full h-full grid grid-cols-1 md:grid-cols-2 gap-4 justify-end bg-base-100 dark:bg-base-dark-900"
         >
             <div class="justify-center flex flex-col text-center md:ml-auto">
                 <Title className="">
@@ -58,7 +58,7 @@ const { className = "" } = Astro.props;
                     className="w-full h-full object-cover"
                 />
                 <svg
-                    class="fill-base-100 dark:fill-base-dark-900 z-10 absolute top-0 start-0 h-full hidden md:block"
+                    class="fill-base-100 dark:fill-base-dark-900 z-10 absolute top-0 inset-s-0 h-full hidden md:block"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 500 400"
                 >

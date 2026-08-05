@@ -93,7 +93,10 @@ import Profiles from "../components/sections/profiles/Profiles.astro";
                     <span class="text-2xl font-semibold text-gray-800 dark:text-gray-200">Funded by NSF</span>
                 </div>
                 
-                <div class="space-y-3 text-base text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+                <!-- text-[18px] not text-base: the theme defines both a `base` color and a
+                     `base` font size, and in v4 the color namespace wins, so `text-base`
+                     resolves to a color utility and would silently drop the 18px size. -->
+                <div class="space-y-3 text-[18px] text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
                     <p>
                         This project is supported by the <strong>National Science Foundation</strong> 
                         under Grant No. 

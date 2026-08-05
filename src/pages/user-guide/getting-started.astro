@@ -124,7 +124,7 @@ const title = "Getting Started - REPACSS User Guide";
                                     <li>Open MobaXterm and create a new SSH session</li>
                                     <li>Enter the following connection details:</li>
                                 </ol>
-                                <div class="bg-gray-100 dark:bg-gray-800 rounded p-3 mt-3">
+                                <div class="bg-gray-100 dark:bg-gray-800 rounded-sm p-3 mt-3">
                                     <code class="text-sm">
                                         Host: repacss.ttu.edu<br>
                                         Username: your_eRaider_username
@@ -141,7 +141,7 @@ const title = "Getting Started - REPACSS User Guide";
                                     <li>Open Terminal</li>
                                     <li>Type in the following command:</li>
                                 </ol>
-                                <div class="bg-gray-100 dark:bg-gray-800 rounded p-3 mt-3">
+                                <div class="bg-gray-100 dark:bg-gray-800 rounded-sm p-3 mt-3">
                                     <code class="text-sm">
                                         ssh username@repacss.ttu.edu
                                     </code>
@@ -157,7 +157,7 @@ const title = "Getting Started - REPACSS User Guide";
                             <p class="text-gray-600 dark:text-gray-400 mb-3">
                                 After entering your password, you'll see the welcome message:
                             </p>
-                            <pre class="bg-gray-100 dark:bg-gray-800 p-4 rounded text-sm overflow-x-auto">
+                            <pre class="bg-gray-100 dark:bg-gray-800 p-4 rounded-sm text-sm overflow-x-auto">
 ***************************************************************
             Welcome to the REPACSS HPC Cluster
 
@@ -184,7 +184,7 @@ const title = "Getting Started - REPACSS User Guide";
                         <h3 class="text-xl font-medium text-gray-900 dark:text-gray-100 mb-4">
                             Environment Setup
                         </h3>
-                        <div class="bg-gray-100 dark:bg-gray-800 rounded p-4">
+                        <div class="bg-gray-100 dark:bg-gray-800 rounded-sm p-4">
                             <pre class="text-sm"><code># Load required modules
 module load &lt;module_name&gt;
 
@@ -209,9 +209,9 @@ source ~/.bashrc
                                 Navigation
                             </h3>
                             <div class="space-y-2 text-sm">
-                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">pwd</code> - Current directory</div>
-                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">ls</code> - List files</div>
-                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">cd</code> - Change directory</div>
+                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-sm">pwd</code> - Current directory</div>
+                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-sm">ls</code> - List files</div>
+                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-sm">cd</code> - Change directory</div>
                             </div>
                         </div>
 
@@ -221,10 +221,10 @@ source ~/.bashrc
                                 File Operations
                             </h3>
                             <div class="space-y-2 text-sm">
-                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">cp</code> - Copy files</div>
-                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">mv</code> - Move files</div>
-                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">rm</code> - Remove files</div>
-                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">mkdir</code> - Create directory</div>
+                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-sm">cp</code> - Copy files</div>
+                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-sm">mv</code> - Move files</div>
+                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-sm">rm</code> - Remove files</div>
+                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-sm">mkdir</code> - Create directory</div>
                             </div>
                         </div>
 
@@ -234,10 +234,10 @@ source ~/.bashrc
                                 Job Management
                             </h3>
                             <div class="space-y-2 text-sm">
-                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">sbatch script.sh</code> - Submit a job</div>
-                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">squeue -u username</code> - Check job status</div>
-                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">scancel job_id</code> - Cancel a job</div>
-                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">sinfo</code> - Check cluster status</div>
+                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-sm">sbatch script.sh</code> - Submit a job</div>
+                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-sm">squeue -u username</code> - Check job status</div>
+                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-sm">scancel job_id</code> - Cancel a job</div>
+                                <div><code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-sm">sinfo</code> - Check cluster status</div>
                             </div>
                         </div>
                     </div>
@@ -251,7 +251,7 @@ source ~/.bashrc
                     <div class="grid md:grid-cols-2 gap-4">
                         <a href="https://github.com/nsfcac/repacss-user-guide/blob/main/src/quick-links/system-overview.md" 
                            target="_blank" 
-                           class="group p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-primary transition-all duration-200 hover:shadow-sm">
+                           class="group p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-primary transition-all duration-200 hover:shadow-xs">
                             <h4 class="font-medium text-primary group-hover:text-primary-400 mb-1">
                                 System Overview
                             </h4>
@@ -262,7 +262,7 @@ source ~/.bashrc
 
                         <a href="https://github.com/nsfcac/repacss-user-guide/blob/main/src/quick-links/running-jobs.md" 
                            target="_blank" 
-                           class="group p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-primary transition-all duration-200 hover:shadow-sm">
+                           class="group p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-primary transition-all duration-200 hover:shadow-xs">
                             <h4 class="font-medium text-primary group-hover:text-primary-400 mb-1">
                                 Running Jobs
                             </h4>
@@ -273,7 +273,7 @@ source ~/.bashrc
 
                         <a href="https://github.com/nsfcac/repacss-user-guide/blob/main/src/quick-links/file-management.md" 
                            target="_blank" 
-                           class="group p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-primary transition-all duration-200 hover:shadow-sm">
+                           class="group p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-primary transition-all duration-200 hover:shadow-xs">
                             <h4 class="font-medium text-primary group-hover:text-primary-400 mb-1">
                                 File Management
                             </h4>
@@ -284,7 +284,7 @@ source ~/.bashrc
 
                         <a href="https://github.com/nsfcac/repacss-user-guide/blob/main/src/quick-links/software.md" 
                            target="_blank" 
-                           class="group p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-primary transition-all duration-200 hover:shadow-sm">
+                           class="group p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-primary transition-all duration-200 hover:shadow-xs">
                             <h4 class="font-medium text-primary group-hover:text-primary-400 mb-1">
                                 Software
                             </h4>

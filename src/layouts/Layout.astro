@@ -3,6 +3,7 @@ import Navbar from "./Navbar.astro";
 import Footer from "./Footer.astro";
 import Analytics from "../components/shared/Analytics.astro";
 import GlobalAnalytics from "../components/shared/GlobalAnalytics.astro";
+import "../styles/global.css";
 
 export interface Props {
   title: string;
@@ -27,10 +28,6 @@ const { title } = Astro.props;
       href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/style/custom.css" />
-    <link rel="stylesheet" href="/style/gallery.css" />
-    <link rel="stylesheet" href="/style/about.css" />
-
      <!-- Analytics -->
     <Analytics />
     <!-- GLOBAL ANALYTICS -->
@@ -109,12 +106,12 @@ const { title } = Astro.props;
         if (toggleMenu.getAttribute("data-open-nav") === "false") {
           toggleMenu.setAttribute("data-open-nav", "true");
           overlayNav.setAttribute("data-is-visible", "true");
-          document.body.classList.add("!overflow-y-hidden");
+          document.body.classList.add("overflow-y-hidden!");
           navbar.style.height = `${navbar.scrollHeight}px`;
         } else {
           toggleMenu.setAttribute("data-open-nav", "false");
           overlayNav.setAttribute("data-is-visible", "false");
-          document.body.classList.remove("!overflow-y-hidden");
+          document.body.classList.remove("overflow-y-hidden!");
           navbar.style.height = "0px";
         }
       });
@@ -122,14 +119,14 @@ const { title } = Astro.props;
       navbar.addEventListener("click", () => {
         toggleMenu.setAttribute("data-open-nav", "false");
         overlayNav.setAttribute("data-is-visible", "false");
-        document.body.classList.remove("!overflow-y-hidden");
+        document.body.classList.remove("overflow-y-hidden!");
         navbar.style.height = "0px";
       });
 
       overlayNav.addEventListener("click", () => {
         toggleMenu.setAttribute("data-open-nav", "false");
         overlayNav.setAttribute("data-is-visible", "false");
-        document.body.classList.remove("!overflow-y-hidden");
+        document.body.classList.remove("overflow-y-hidden!");
         navbar.style.height = "0px";
       });
     }
