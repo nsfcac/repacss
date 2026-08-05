@@ -43,13 +43,13 @@ const getVariantStyle = (
   if (variant === "gradient") {
     classList = `border-transparent  `;
     if (color === "primary") {
-      classList += `bg-gradient-to-br from-primary-400 to-primary-600 hover:from-primary-500 hover:to-primary-700 active:from-primary-600 active:to-primary-800 disabled:from-primary-100 disabled:to-primary-300 `;
+      classList += `bg-linear-to-br from-primary-400 to-primary-600 hover:from-primary-500 hover:to-primary-700 active:from-primary-600 active:to-primary-800 disabled:from-primary-100 disabled:to-primary-300 `;
       classList += `text-accent disabled:text-primary-700 `;
     } else if (color === "secondary") {
-      classList += `bg-gradient-to-br from-secondary-400 to-secondary-600 hover:from-secondary-500 hover:to-secondary-700 active:from-secondary-600 active:to-secondary-800 disabled:from-secondary-100 disabled:to-secondary-300 `;
+      classList += `bg-linear-to-br from-secondary-400 to-secondary-600 hover:from-secondary-500 hover:to-secondary-700 active:from-secondary-600 active:to-secondary-800 disabled:from-secondary-100 disabled:to-secondary-300 `;
       classList += `text-secondary-700 `;
     } else if (color === "cta") {
-      classList += `bg-gradient-to-br from-cta-400 to-cta-600 hover:from-cta-500 hover:to-cta-700 active:from-cta-600 active:to-cta-800 disabled:from-cta-100 disabled:to-cta-300 `;
+      classList += `bg-linear-to-br from-cta-400 to-cta-600 hover:from-cta-500 hover:to-cta-700 active:from-cta-600 active:to-cta-800 disabled:from-cta-100 disabled:to-cta-300 `;
       classList += `text-cta-700 `;
     }
     return classList;
@@ -57,7 +57,7 @@ const getVariantStyle = (
 };
 
 const base =
-  "rounded-lg outline-none relative overflow-hidden px-6 py-3 border";
+  "rounded-lg outline-hidden relative overflow-hidden px-6 py-3 border";
 const animation = `duration-300 ease-linear`;
 ---
 

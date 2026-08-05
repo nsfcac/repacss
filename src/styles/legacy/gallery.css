@@ -1,9 +1,14 @@
 /* Gallery Page Styles */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1rem;
-}
+
+/*
+  A bare `.grid` rule used to live here. It collided with Tailwind's own `.grid`
+  utility on every page. Under v3 Tailwind's stylesheet loaded last and won at
+  equal specificity, so the rule never actually applied; under v4 it would win
+  (unlayered CSS beats Tailwind's cascade layers) and broke the homepage hero
+  by forcing its 2-column grid into auto-fill tracks. Every element in this
+  codebase that uses `grid` also sets explicit `grid-cols-*` utilities, so the
+  rule was dead weight — removed rather than re-scoped.
+*/
 
 .cover-container {
   position: relative;
