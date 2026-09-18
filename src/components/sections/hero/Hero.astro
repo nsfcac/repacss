@@ -31,7 +31,7 @@ const { className = "" } = Astro.props;
 ---
 
 <section class=`relative  ${className} w-full h-[60vh]` id="hero">
-    <div class="w-full h-[60vh] pt-[80px]">
+    <div class="w-full h-auto pt-[80px]">
         <div
             class="w-full h-full grid grid-cols-1 md:grid-cols-2 gap-4 justify-end bg-base-100 dark:bg-base-dark-900"
         >
@@ -51,7 +51,7 @@ const { className = "" } = Astro.props;
                     {heroSection.subheading3}
                 </SubTitle>
             </div>
-            <div class="flex relative pt-8 md:p-0 overflow-hidden">
+            <div class="block relative pt-8 md:p-0 overflow-hidden">
                 <LazyImage
                     src={heroImg}
                     alt="Row of black REPACSS server racks in a data center room with exposed ceiling pipes overhead"
