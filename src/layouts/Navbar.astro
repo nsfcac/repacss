@@ -3,6 +3,7 @@ import Container from "../components/shared/Container.astro";
 import Navitem from "../components/shared/Navitem.astro";
 import BtnLink from "../components/shared/BtnLink.astro";
 import BtnThemeSwitch from "../components/shared/BtnThemeSwitch.astro";
+import { text } from "node:stream/consumers";
 
 const navItems = [
   {
@@ -16,6 +17,13 @@ const navItems = [
   {
     href: "/resources",
     text: "Resources",
+    children: [
+      { href: "/resources#facility-overview-heading", text: "Facility Overview"},
+      // { href: "/resources#system-components-heading", text: "System Components"},
+      // { href: "/resources#system-specifications-heading", text: "System Specifications"},
+      // { href: "/resources#access-ci-resources-heading", text: "ACCESS CI Resources"},
+      { href: "/job-script-generator", text: "Job Script Generator"}
+    ],
   },
   { 
     href: "https://nsfcac.github.io/repacss-user-guide/index.html",
@@ -48,8 +56,8 @@ const navItems = [
     </div>
 
     <!-- Desktop navigation -->
-    <div class="hidden lg:flex items-center space-x-6">
-      {navItems.map((item) => (
+     <div class="hidden lg:flex items-center space-x-6">
+      <!--{navItems.map((item) => (
         <a 
           href={item.href} 
           class="text-gray-700 dark:text-gray-300 hover:text-primary transition-colors font-medium"
@@ -57,6 +65,39 @@ const navItems = [
           {item.text}
         </a>
       ))}
+      
+     -->
+      {navItems.map((item) =>
+        item.children ? (
+          <div class="relative group">
+            <a
+              href={item.href}
+              class="inline-flex items-center gap-1 text-gray-700 dark:text-gray-300 hover:text-primary transition-colors font-medium"
+            >
+              {item.text}
+              <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </a>
+            {/* pt-2 instead of mt-2 so the hover isn't lost crossing the gap */}
+            <div class="absolute left-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200">
+              <ul class="min-w-56 py-2 rounded-md shadow-lg bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700">
+                {item.children.map((child) => (
+                  <li>
+                    <a href={child.href} class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-primary">
+                      {child.text}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ) : (
+          <a href={item.href} class="text-gray-700 dark:text-gray-300 hover:text-primary transition-colors font-medium">
+            {item.text}
+          </a>
+        )
+      )}
       <BtnThemeSwitch variant="primary" />
     </div>
 
