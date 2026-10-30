@@ -32,5 +32,10 @@
   },
   "volta": {
     "node": "24.15.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "fast-uri": "3.1.6"
+    }
   }
 }
