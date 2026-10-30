@@ -1,0 +1,282 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Container from "../components/shared/Container.astro";
+
+// Per-node hardware limits, kept in sync with /resources
+const partitions = {
+  zen4: { label: "zen4 (CPU, AMD EPYC 9754)", nodes: 110, cores: 256, memGB: 1536, gpus: 0 },
+  h100: { label: "h100 (GPU, 4x NVIDIA H100 NVL)", nodes: 8, cores: 64, memGB: 512, gpus: 4 },
+};
+
+const inputClass =
+    "w-full rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 px-3 py-2 text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-primary";
+const labelClass = "block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1";
+const checkboxClass =
+    "peer h-5 w-5 shrink-0 cursor-pointer appearance-none rounded border-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 transition-colors hover:border-primary checked:border-primary checked:bg-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-900";
+const checkboxLabelClass =
+    "inline-flex cursor-pointer select-none items-center gap-3 text-gray-700 dark:text-gray-300";
+const dropdownClass = 
+    "w-full appearance-none cursor-pointer rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 pl-3 pr-10 py-2 leading-normal text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-primary";
+---
+
+<Layout title="Job Script Generator">
+  <main class="flex flex-col gap-y-10 overflow-hidden pt-20 md:pt-32 px-4 md:px-8 pb-20">
+    <section aria-labelledby="jsg-heading">
+      <Container className="mx-auto flex flex-col gap-y-4 text-left max-w-6xl -mt-8">
+        <h1 id="jsg-heading" class="text-2xl font-semibold text-gray-800 dark:text-gray-200">
+          Job Script Generator
+        </h1>
+        <p class="text-lg text-gray-600 dark:text-gray-400">
+          Fill in the form to build a Slurm batch script for REPACSS. The script updates as you
+          type. Copy or download it, then submit it with <code class="font-mono">sbatch job.sh</code>.
+        </p>
+      </Container>
+    </section>
+
+    <section>
+      <Container className="mx-auto max-w-6xl">
+        <div class="grid gap-8 lg:grid-cols-2">
+          <form id="jsg-form" class="flex flex-col gap-5" onsubmit="return false">
+            <div class="relative">
+              <label for="partition" class={labelClass}>Partition</label>
+              <select id="partition" name="partition" class={dropdownClass}>
+                {Object.entries(partitions).map(([key, p]) => (
+                  <option value={key}>{p.label}</option>
+                ))}
+              </select>
+                <svg class="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500 dark:text-gray-400"
+                        fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              <p id="partition-info" class="mt-1 text-xs text-gray-500 dark:text-gray-400"></p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label for="jobName" class={labelClass}>Job name</label>
+                <input id="jobName" name="jobName" type="text" value="my_job" class={inputClass} />
+              </div>
+              <!-- <div>
+                <label for="account" class={labelClass}>Account (optional)</label>
+                <input id="account" name="account" type="text" placeholder="e.g. my_project" class={inputClass} />
+              </div> -->
+            </div>
+
+            <div class="grid grid-cols-3 gap-4">
+              <div>
+                <label for="hours" class={labelClass}>Hours</label>
+                <input id="hours" name="hours" type="number" min="0" value="1" class={inputClass} />
+              </div>
+              <div>
+                <label for="minutes" class={labelClass}>Minutes</label>
+                <input id="minutes" name="minutes" type="number" min="0" max="59" value="0" class={inputClass} />
+              </div>
+              <div>
+                <label for="nodes" class={labelClass}>Nodes</label>
+                <input id="nodes" name="nodes" type="number" min="1" value="1" class={inputClass} />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-4">
+              <div>
+                <label for="tasksPerNode" class={labelClass}>Tasks / node</label>
+                <input id="tasksPerNode" name="tasksPerNode" type="number" min="1" value="1" class={inputClass} />
+              </div>
+              <div>
+                <label for="cpusPerTask" class={labelClass}>CPUs / task</label>
+                <input id="cpusPerTask" name="cpusPerTask" type="number" min="1" value="1" class={inputClass} />
+              </div>
+              <div>
+                <label for="gpusPerNode" class={labelClass}>GPUs / node</label>
+                <input id="gpusPerNode" name="gpusPerNode" type="number" min="0" value="0" class={inputClass} />
+              </div>
+            </div>
+
+            <div>
+              <label for="mem" class={labelClass}>Memory per node in GB (leave blank for default)</label>
+              <input id="mem" name="mem" type="number" min="1" placeholder="e.g. 64" class={inputClass} />
+            </div>
+
+            <div class="flex flex-col gap-2">
+              {[
+                { id: "openmp", checked: false, text: "Set OpenMP environment variables (OMP_NUM_THREADS, binding)" },
+                { id: "useSrun", checked: true, text: "Launch with srun" },
+              ].map((cb) => (
+                <label class={checkboxLabelClass}>
+                  <span class="relative inline-flex">
+                    <input id={cb.id} name={cb.id} type="checkbox" checked={cb.checked} class={checkboxClass} />
+                    <svg
+                      class="pointer-events-none absolute inset-0 m-auto h-3.5 w-3.5 text-white opacity-0 transition-opacity peer-checked:opacity-100"
+                      fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24" aria-hidden="true"
+                    >
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </span>
+                  {cb.text}
+                </label>
+              ))}
+            </div>
+
+            <!-- <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label for="mailType" class={labelClass}>Email notifications</label>
+                <select id="mailType" name="mailType" class={inputClass}>
+                  <option value="">None</option>
+                  <option value="BEGIN,END,FAIL">Begin, end, fail</option>
+                  <option value="END,FAIL">End, fail</option>
+                  <option value="FAIL">Fail only</option>
+                </select>
+              </div>
+              <div>
+                <label for="mailUser" class={labelClass}>Email address</label>
+                <input id="mailUser" name="mailUser" type="email" placeholder="eraider@ttu.edu" class={inputClass} />
+              </div>
+            </div> -->
+
+            <div>
+              <label for="modules" class={labelClass}>Modules to load (space separated)</label>
+              <input id="modules" name="modules" type="text" value="gcc" class={inputClass} />
+            </div>
+
+            <div>
+              <label for="command" class={labelClass}>Executable and arguments</label>
+              <input id="command" name="command" type="text" value="./my_program" class={inputClass} />
+            </div>
+          </form>
+
+          <div class="flex flex-col gap-3 lg:sticky lg:top-24 self-start w-full">
+            <div class="flex items-center justify-between">
+              <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200">job.sh</h2>
+              <div class="flex gap-2">
+                <button id="copyBtn" type="button" class="rounded-md bg-primary px-3 py-1.5 text-sm font-medium text-white hover:opacity-90">
+                  Copy
+                </button>
+                <button id="downloadBtn" type="button" class="rounded-md border border-primary px-3 py-1.5 text-sm font-medium text-primary hover:bg-primary hover:text-white">
+                  Download
+                </button>
+              </div>
+            </div>
+            <ul id="warnings" class="flex flex-col gap-1 text-sm text-amber-600 dark:text-amber-400"></ul>
+            <pre class="overflow-x-auto rounded-md bg-gray-900 p-4 text-sm leading-relaxed text-gray-100"><code id="output" class="font-mono"></code></pre>
+            <p id="summary" class="text-sm text-gray-500 dark:text-gray-400"></p>
+          </div>
+        </div>
+      </Container>
+    </section>
+  </main>
+</Layout>
+
+<script is:inline define:vars={{ partitions }}>
+  const form = document.getElementById("jsg-form");
+  const output = document.getElementById("output");
+  const warningsEl = document.getElementById("warnings");
+  const summaryEl = document.getElementById("summary");
+  const partitionInfo = document.getElementById("partition-info");
+  const gpusInput = document.getElementById("gpusPerNode");
+
+  const val = (id) => document.getElementById(id)?.value.trim() ?? "";
+  const num = (id, fallback = 0) => {
+    const n = parseInt(val(id), 10);
+    return Number.isFinite(n) && n >= 0 ? n : fallback;
+  };
+  const checked = (id) => document.getElementById(id).checked;
+  const pad = (n) => String(n).padStart(2, "0");
+
+  function build() {
+    const p = partitions[val("partition")];
+    const nodes = Math.max(1, num("nodes", 1));
+    const tasksPerNode = Math.max(1, num("tasksPerNode", 1));
+    const cpusPerTask = Math.max(1, num("cpusPerTask", 1));
+    const gpusPerNode = p.gpus ? num("gpusPerNode", 0) : 0;
+    const mem = num("mem", 0);
+    const jobName = val("jobName") || "my_job";
+    const warnings = [];
+
+    gpusInput.disabled = p.gpus === 0;
+    gpusInput.max = p.gpus;
+    partitionInfo.textContent = `${p.nodes} nodes · ${p.cores} cores · ${p.memGB} GB RAM${p.gpus ? ` · ${p.gpus} GPUs` : ""} per node`;
+
+    if (nodes > p.nodes) warnings.push(`This partition only has ${p.nodes} nodes.`);
+    if (tasksPerNode * cpusPerTask > p.cores)
+      warnings.push(`Tasks * CPUs per task (${tasksPerNode * cpusPerTask}) exceeds ${p.cores} cores per node.`);
+    if (gpusPerNode > p.gpus) warnings.push(`Nodes in this partition have at most ${p.gpus} GPUs.`);
+    if (p.gpus && gpusPerNode === 0) warnings.push("You selected the GPU partition but requested no GPUs.");
+    if (mem > p.memGB) warnings.push(`Requested memory exceeds ${p.memGB} GB per node.`);
+    // if (val("mailType") && !val("mailUser")) warnings.push("Add an email address to receive notifications.");
+
+    const lines = [
+      "#!/bin/bash",
+      `#SBATCH --job-name=${jobName}`,
+      `#SBATCH --partition=${val("partition")}`,
+    ];
+    // if (val("account")) lines.push(`#SBATCH --account=${val("account")}`);
+    lines.push(
+      `#SBATCH --time=${pad(num("hours"))}:${pad(Math.min(59, num("minutes")))}:00`,
+      `#SBATCH --nodes=${nodes}`,
+      `#SBATCH --ntasks-per-node=${tasksPerNode}`,
+      `#SBATCH --cpus-per-task=${cpusPerTask}`,
+    );
+    if (gpusPerNode > 0) lines.push(`#SBATCH --gres=gpu:${gpusPerNode}`);
+    if (mem > 0) lines.push(`#SBATCH --mem=${mem}G`);
+    lines.push(`#SBATCH --output=${jobName}_%j.out`, `#SBATCH --error=${jobName}_%j.err`);
+    // if (val("mailType")) {
+    //   lines.push(`#SBATCH --mail-type=${val("mailType")}`);
+    //   if (val("mailUser")) lines.push(`#SBATCH --mail-user=${val("mailUser")}`);
+    // }
+
+    const modules = val("modules").split(/\s+/).filter(Boolean);
+    if (modules.length) lines.push("", "module purge", ...modules.map((m) => `module load ${m}`));
+
+    if (checked("openmp")) {
+      lines.push(
+        "",
+        `export OMP_NUM_THREADS=${cpusPerTask}`,
+        "export OMP_PLACES=threads",
+        "export OMP_PROC_BIND=spread",
+      );
+    }
+
+    const cmd = val("command") || "./my_program";
+    lines.push(
+      "",
+      checked("useSrun")
+        ? `srun -n ${nodes * tasksPerNode} -c ${cpusPerTask} --cpu-bind=cores ${cmd}`
+        : cmd,
+    );
+
+    output.textContent = lines.join("\n") + "\n";
+    warningsEl.innerHTML = "";
+    warnings.forEach((w) => {
+      const li = document.createElement("li");
+      li.textContent = `⚠ ${w}`;
+      warningsEl.appendChild(li);
+    });
+    summaryEl.textContent = `Total: ${nodes * tasksPerNode} tasks, ${nodes * tasksPerNode * cpusPerTask} CPU cores${
+      gpusPerNode ? `, ${nodes * gpusPerNode} GPUs` : ""
+    }.`;
+  }
+
+  form.addEventListener("input", build);
+  form.addEventListener("change", build);
+
+  document.getElementById("copyBtn").addEventListener("click", async (e) => {
+    try {
+      await navigator.clipboard.writeText(output.textContent);
+      e.target.textContent = "Copied!";
+    } catch {
+      e.target.textContent = "Copy failed";
+    }
+    setTimeout(() => (e.target.textContent = "Copy"), 1500);
+  });
+
+  document.getElementById("downloadBtn").addEventListener("click", () => {
+    const blob = new Blob([output.textContent], { type: "text/x-shellscript" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "job.sh";
+    a.click();
+    URL.revokeObjectURL(a.href);
+  });
+
+  build();
+</script>
