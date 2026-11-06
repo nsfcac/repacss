@@ -19,3 +19,6 @@ pnpm-debug.log*
 
 # macOS-specific files
 .DS_Store
+
+# source master, hosted on YouTube (over GitHub 100 MB limit)
+public/videos/REPACSS_photons_to_tokens.mp4

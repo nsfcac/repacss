@@ -1,0 +1,33 @@
+---
+import Container from "../../shared/Container.astro";
+import GradiantText from "../../shared/GradiantText.astro";
+import SubTitle2 from "../../shared/SubTitle2.astro";
+import Title2 from "../../shared/Title2.astro";
+---
+
+<section id="video">
+  <Container className="flex flex-col items-center text-center">
+    <Title2>Photons to Tokens</Title2>
+    <SubTitle2>
+      The Journey from <GradiantText>Sunlight to AI</GradiantText>
+    </SubTitle2>
+    <iframe
+      id="yt-player"
+      class="w-full max-w-5xl aspect-video rounded-3xl bg-black"
+      src="https://www.youtube-nocookie.com/embed/kr9z6iTR3A0?enablejsapi=1"
+      title="REPACSS: Photons to Tokens"
+      loading="lazy"
+      allow="encrypted-media; fullscreen; picture-in-picture"
+      allowfullscreen
+      referrerpolicy="strict-origin-when-cross-origin"></iframe>
+  </Container>
+</section>
+
+<!-- YouTube has no embed setting to force captions off, so clear the track when the captions module loads. -->
+<script is:inline>
+  window.onYouTubeIframeAPIReady = () =>
+    new YT.Player("yt-player", {
+      events: { onApiChange: (e) => e.target.setOption("captions", "track", {}) },
+    });
+</script>
+<script is:inline src="https://www.youtube.com/iframe_api" async></script>
