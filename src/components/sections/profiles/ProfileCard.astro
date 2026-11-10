@@ -1,23 +1,21 @@
 ---
 // src/components/sections/profiles/ProfileCard.astro
+import { Image } from "astro:assets";
 const { photo, name, position, description, website } = Astro.props;
-const photoUrl = (typeof photo === 'object' && photo.src) ? photo.src : photo;
+// '#' is a placeholder for "no website"; don't open the current page in a new tab.
+const Tag = website && website !== '#' ? 'a' : 'div';
 ---
 
-{website ? (
-  <a href={website} target="_blank" rel="noopener noreferrer" class="profile-link">
-  <div class="profile-card bg-white rounded-lg shadow-lg p-6 text-center">
-    <img src={photoUrl} alt={`${name} photo`} class="profile-photo rounded-full mx-auto mb-4 object-cover shadow-md" />
-    <h2 class="profile-name text-lg font-semibold text-gray-800">{name}</h2>
-    <p class="profile-position text text-gray-500 mb-2">{position}</p>
-    <p class="profile-description text text-gray-600">{description}</p>
+<Tag
+  data-reveal="zoom"
+  class="profile-link block h-full"
+  {...(Tag === 'a' && { href: website, target: '_blank', rel: 'noopener noreferrer' })}
+>
+  <div class="profile-card lift h-full bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 text-center">
+    <!-- 240px square: sharp at 2x for the 120px circle, a few KB instead of the original upload. -->
+    <Image src={photo} alt={`${name} photo`} width={240} height={240} format="webp" class="profile-photo rounded-full mx-auto mb-4 object-cover shadow-md" />
+    <h2 class="profile-name text-lg font-semibold text-gray-800 dark:text-gray-100">{name}</h2>
+    <p class="profile-position text text-gray-500 dark:text-gray-400 mb-2">{position}</p>
+    <p class="profile-description text text-gray-600 dark:text-gray-300">{description}</p>
   </div>
-  </a>
-) : (
-<div class="profile-card bg-white rounded-lg shadow-lg p-6 text-center">
-  <img src={photoUrl} alt={`${name} photo`} class="profile-photo rounded-full mx-auto mb-4 object-cover shadow-md" />
-  <h2 class="profile-name text-lg font-semibold text-gray-800">{name}</h2>
-  <p class="profile-position text text-gray-500 mb-2">{position}</p>
-  <p class="profile-description text text-gray-600">{description}</p>
-</div>
-)}
+</Tag>

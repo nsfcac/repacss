@@ -246,7 +246,7 @@ const { className = "" } = Astro.props;
 
   <!-- Faculty Section -->
   <Container className="mx-auto mt-12">
-    <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-6 text-center">Faculty</h3>
+    <h3 data-reveal class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-6 text-center">Faculty</h3>
     <div class="profiles-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mx-auto w-full max-w-7xl">
       {faculty.map(member => (
         <ProfileCard {...member} />
@@ -256,8 +256,8 @@ const { className = "" } = Astro.props;
 
   <!-- Postdoctoral Staff Section -->
   <Container className="mx-auto mt-16">
-    <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-6 text-center">Postdoctoral Researchers and Staff</h3>
-    <div class="profiles-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 mx-auto w-full max-w-7xl">
+    <h3 data-reveal class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-6 text-center">Postdoctoral Researchers and Staff</h3>
+    <div class="profiles-container grid grid-cols-1 sm:grid-cols-2 gap-8 mx-auto w-full max-w-3xl">
       {postdocs.map(member => (
         <ProfileCard {...member} />
       ))}
@@ -266,7 +266,7 @@ const { className = "" } = Astro.props;
 
   <!-- Students Section -->
   <Container className="mx-auto mt-16">
-    <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-6 text-center">Student Researchers</h3>
+    <h3 data-reveal class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-6 text-center">Student Researchers</h3>
     <div class="profiles-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 mx-auto w-full max-w-7xl">
       {students.map(member => (
         <ProfileCard {...member} />
@@ -276,7 +276,7 @@ const { className = "" } = Astro.props;
 
   <!-- External Advisory Board Section -->
   <Container className="mx-auto mt-16">
-    <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-6 text-center">External Advisory Board</h3>
+    <h3 data-reveal class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-6 text-center">External Advisory Board</h3>
     <div class="profiles-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mx-auto w-full max-w-7xl">
       {advisoryBoard.map(member => (
         <ProfileCard {...member} />

@@ -13,14 +13,12 @@
 .cover-container {
   position: relative;
   overflow: hidden;
-  border-radius: 8px;
 }
 
 .cover-container img {
   width: 100%;
-  height: 300px; /* Fixed height */
+  /* height comes from the aspect-[3/2] utility on the img */
   object-fit: cover; /* Maintain aspect ratio and crop excess */
-  border-radius: 0.5rem; /* Optional: Rounded corners */
   transition: transform 0.3s ease-in-out;
 }
 
@@ -52,11 +50,9 @@
   margin: 0;
 }
 
+/* Item spacing and break-inside live on .masonry-item in [group].astro. */
 .masonry img {
-  width: 100%;
-  margin-bottom: 1rem;
   display: block;
-  break-inside: avoid;
 }
 
 /* Responsive adjustments */

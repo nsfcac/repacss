@@ -4,12 +4,26 @@ import Footer from "./Footer.astro";
 import Analytics from "../components/shared/Analytics.astro";
 import GlobalAnalytics from "../components/shared/GlobalAnalytics.astro";
 import "../styles/global.css";
+import { getImage } from "astro:assets";
+import heroImg from "../components/sections/hero/assets/racks-raw.jpeg";
 
 export interface Props {
-  title: string;
+  /** Page name; " | REPACSS" is appended. Omit on the home page. */
+  title?: string;
+  /** One or two sentences for search results and link previews. */
+  description?: string;
 }
 
-const { title } = Astro.props;
+const {
+  title,
+  description = "REPACSS is an NSF-funded high-performance computing data center and AI infrastructure at Texas Tech University, powered by variable renewable energy.",
+} = Astro.props;
+const fullTitle = title ? `${title} | REPACSS` : "REPACSS: Renewable Energy Powered Advanced Computing";
+const canonical = new URL(Astro.url.pathname, Astro.site);
+// Link previews (Slack, LinkedIn, X, email) want a 1.91:1 image. The source photo is
+// 1024px wide and Astro will not upscale, so use 1024x536 rather than 1200x630.
+const ogImage = await getImage({ src: heroImg, width: 1024, height: 536, format: "jpg" });
+const ogImageUrl = new URL(ogImage.src, Astro.site);
 ---
 
 <!doctype html>
@@ -17,13 +31,36 @@ const { title } = Astro.props;
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/assets/favicon-2.svg" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
-    <meta
-      name="REPACSS"
-      content="Empowering Scientific Discovery through Renewable Energy Powered Advanced Computing Systems and Services"
-    />
-    <title>{title}</title>
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="REPACSS" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content={String(ogImage.attributes.width ?? 1024)} />
+    <meta property="og:image:height" content={String(ogImage.attributes.height ?? 536)} />
+    <meta property="og:image:alt" content="Row of REPACSS server racks in the data center" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script is:inline>
+      // Apply the theme before first paint so dark-mode visitors never see a light flash.
+      // A saved choice wins; otherwise follow the OS. Only <html> carries the class.
+      (() => {
+        let saved = null;
+        try { saved = localStorage.getItem("theme"); } catch {}
+        const dark = saved ? saved === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.classList.toggle("dark", dark);
+      })();
+    </script>
+    <script is:inline>
+      // Opt in to scroll reveals only when they can run; otherwise content stays visible.
+      if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches)
+        document.documentElement.classList.add("reveal-ready");
+    </script>
     <link
       href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap"
       rel="stylesheet"
@@ -34,63 +71,56 @@ const { title } = Astro.props;
     <GlobalAnalytics />
   </head>
   <body
-    class="overflow-hidden overflow-y-auto bg-base dark:bg-base-dark text-accent dark:text-accent-light min-h-screen"
+    class="flex flex-col overflow-hidden overflow-y-auto bg-base dark:bg-base-dark text-accent dark:text-accent-light min-h-screen"
   >
     <Navbar />
-    <slot />
+    <!-- flex-1 pushes the footer to the bottom on short pages -->
+    <div class="flex-1">
+      <slot />
+    </div>
     <Footer />
+    <script is:inline>
+      if (document.documentElement.classList.contains("reveal-ready")) {
+        const io = new IntersectionObserver((entries) => {
+          for (const e of entries) if (e.isIntersecting) { e.target.classList.add("is-visible"); io.unobserve(e.target); }
+        }, { rootMargin: "0px 0px -8% 0px" });
+        document.querySelectorAll("[data-reveal]").forEach((el) => {
+          // Stagger siblings that come into view together (e.g. a row of cards).
+          const i = [...el.parentElement.children].filter((c) => c.hasAttribute("data-reveal")).indexOf(el);
+          el.style.setProperty("--reveal-delay", `${(i % 5) * 90}ms`);
+          io.observe(el);
+        });
+      }
+    </script>
   </body>
   <script>
-    detectSystemTheme();
+    // One handler for every theme button (desktop bulb and mobile menu).
+    const root = document.documentElement;
+    const media = matchMedia("(prefers-color-scheme: dark)");
+    const buttons = document.querySelectorAll<HTMLButtonElement>("[data-switch-theme]");
 
-    const switchTheme = document.querySelector(
-      "[data-switch-theme]"
-    ) as HTMLButtonElement;
-    switchTheme.addEventListener("click", (e) => {
-      e.preventDefault();
-      changeThemeManually();
+    function apply(dark: boolean) {
+      root.classList.toggle("dark", dark);
+      buttons.forEach((b) => b.setAttribute("aria-label", dark ? "Switch to light theme" : "Switch to dark theme"));
+    }
+
+    apply(root.classList.contains("dark"));
+
+    buttons.forEach((b) =>
+      b.addEventListener("click", (e) => {
+        e.preventDefault();
+        const dark = !root.classList.contains("dark");
+        apply(dark);
+        // Only an explicit click is remembered; until then the site tracks the OS.
+        try { localStorage.setItem("theme", dark ? "dark" : "light"); } catch {}
+      }),
+    );
+
+    media.addEventListener("change", (e) => {
+      let saved = null;
+      try { saved = localStorage.getItem("theme"); } catch {}
+      if (!saved) apply(e.matches);
     });
-
-    function changeThemeManually() {
-      const localAppTheme = localStorage.getItem("theme");
-      // Whenever the user explicitly chooses dark mode, previously it was light mode
-      if (localAppTheme === "light") {
-        changeThemeToDark();
-      }
-      // Whenever the user explicitly chooses light mode, previously it was dark mode
-      if (localAppTheme === "dark") {
-        changeThemeToLight();
-      }
-      if (!localAppTheme) {
-        console.log("previously it was not set");
-        // Whenever the user explicitly chooses to respect the OS preference
-        detectSystemTheme(true);
-      }
-    }
-
-    function detectSystemTheme(manual = false) {
-      if (
-        localStorage.getItem("theme") === "dark" ||
-        (!("theme" in localStorage) &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches)
-      ) {
-        document.documentElement.classList.add("dark");
-        if (manual) localStorage.setItem("theme", "dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-        if (manual) localStorage.setItem("theme", "light");
-      }
-    }
-
-    function changeThemeToDark() {
-      localStorage.setItem("theme", "dark");
-      document.documentElement.classList.add("dark");
-    }
-
-    function changeThemeToLight() {
-      localStorage.setItem("theme", "light");
-      document.documentElement.classList.remove("dark");
-    }
   </script>
   <script>
     const toggleMenu = document.querySelector(

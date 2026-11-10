@@ -19,10 +19,10 @@ const dropdownClass =
     "w-full appearance-none cursor-pointer rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 pl-3 pr-10 py-2 leading-normal text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-primary";
 ---
 
-<Layout title="Job Script Generator">
-  <main class="flex flex-col gap-y-10 overflow-hidden pt-20 md:pt-32 px-4 md:px-8 pb-20">
+<Layout title="Job Script Generator" description="Build a Slurm batch script for REPACSS in your browser: pick a partition, set time, nodes, tasks and GPUs, then copy or download job.sh.">
+  <main class="flex flex-col gap-y-10 overflow-hidden pt-24 md:pt-32 px-4 md:px-8 pb-20">
     <section aria-labelledby="jsg-heading">
-      <Container className="mx-auto flex flex-col gap-y-4 text-left max-w-6xl -mt-8">
+      <Container className="mx-auto flex flex-col gap-y-4 text-left max-w-6xl">
         <h1 id="jsg-heading" class="text-2xl font-semibold text-gray-800 dark:text-gray-200">
           Job Script Generator
         </h1>
@@ -35,7 +35,7 @@ const dropdownClass =
 
     <section>
       <Container className="mx-auto max-w-6xl">
-        <div class="grid gap-8 lg:grid-cols-2">
+        <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
           <form id="jsg-form" class="flex flex-col gap-5" onsubmit="return false">
             <div class="relative">
               <label for="partition" class={labelClass}>Partition</label>
@@ -251,8 +251,9 @@ const dropdownClass =
       li.textContent = `⚠ ${w}`;
       warningsEl.appendChild(li);
     });
-    summaryEl.textContent = `Total: ${nodes * tasksPerNode} tasks, ${nodes * tasksPerNode * cpusPerTask} CPU cores${
-      gpusPerNode ? `, ${nodes * gpusPerNode} GPUs` : ""
+    const n = (count, word) => `${count} ${word}${count === 1 ? "" : "s"}`;
+    summaryEl.textContent = `Total: ${n(nodes * tasksPerNode, "task")}, ${n(nodes * tasksPerNode * cpusPerTask, "CPU core")}${
+      gpusPerNode ? `, ${n(nodes * gpusPerNode, "GPU")}` : ""
     }.`;
   }
 

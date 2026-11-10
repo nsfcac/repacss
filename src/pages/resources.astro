@@ -3,14 +3,14 @@ import Layout from "../layouts/Layout.astro";
 import Container from "../components/shared/Container.astro";
 ---
 
-<Layout title="Facility Overview">
+<Layout title="Facility Overview" description="REPACSS hardware at a glance: 110 AMD EPYC 9754 compute nodes, 8 GPU nodes with 32 NVIDIA H100 NVL GPUs, about 3 PB of storage, and full system specifications.">
     <main
-        class="flex flex-col gap-y-10 md:gap-y-20 overflow-hidden pt-20 md:pt-32 px-4 md:px-8"
+        class="flex flex-col gap-y-12 overflow-hidden pt-24 md:pt-32 px-4 md:px-8"
     >
         <!-- Header Section -->
         <section aria-labelledby="facility-overview-heading">
             <Container
-                className="mx-auto flex flex-col gap-y-4 text-left max-w-4xl -mt-8"
+                className="mx-auto flex flex-col gap-y-4 text-left max-w-4xl" data-reveal
             >
                 <h1
                     id="facility-overview-heading"
@@ -35,7 +35,7 @@ import Container from "../components/shared/Container.astro";
         <!-- System Components Section -->
         <section aria-labelledby="system-components-heading">
             <Container
-                className="mx-auto flex flex-col gap-y-4 text-left max-w-4xl -mt-8"
+                className="mx-auto flex flex-col gap-y-4 text-left max-w-4xl" data-reveal
             >
                 <h2
                     id="system-components-heading"
@@ -44,7 +44,7 @@ import Container from "../components/shared/Container.astro";
                     System Components
                 </h2>
                 <ul
-                    class="list-disc list-inside text-lg text-gray-600 dark:text-gray-400"
+                    class="list-disc pl-6 space-y-1 text-lg text-gray-600 dark:text-gray-400"
                 >
                     <li>
                         <span class="font-bold">Compute Nodes:</span> REPACSS features
@@ -81,7 +81,7 @@ import Container from "../components/shared/Container.astro";
         <!-- System Specifications Section -->
         <section aria-labelledby="system-specifications-heading">
             <Container
-                className="mx-auto flex flex-col gap-y-4 text-left max-w-4xl -mt-8"
+                className="mx-auto flex flex-col gap-y-4 text-left max-w-4xl" data-reveal
             >
                 <h2
                     id="system-specifications-heading"
@@ -94,14 +94,14 @@ import Container from "../components/shared/Container.astro";
                     specifications table.
                 </p>
                 <div
-                    class="overflow-x-auto focus:outline-hidden focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-base-dark-900"
+                    class="relative overflow-x-auto focus:outline-hidden focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-base-dark-900"
                     role="region"
                     aria-labelledby="system-specifications-heading"
                     aria-describedby="system-specifications-description"
                     tabindex="0"
                 >
                     <table
-                        class="table-fixed w-full border-collapse border border-gray-300 dark:border-gray-700 text text-gray-600 dark:text-gray-400"
+                        class="table-fixed w-full min-w-[56rem] border-collapse border border-gray-300 dark:border-gray-700 text text-gray-600 dark:text-gray-400"
                     >
                         <caption class="sr-only">
                             REPACSS system specifications by node type, including total
@@ -369,7 +369,7 @@ import Container from "../components/shared/Container.astro";
         <!-- System Components Section -->
         <section aria-labelledby="access-ci-resources-heading">
             <Container
-                className="mx-auto flex flex-col gap-y-4 text-left max-w-4xl -mt-8"
+                className="mx-auto flex flex-col gap-y-4 text-left max-w-4xl" data-reveal
             >
                 <h2
                     id="access-ci-resources-heading"
@@ -378,8 +378,7 @@ import Container from "../components/shared/Container.astro";
                     ACCESS-CI Resources
                 </h2>
                 <p class="text-lg text-gray-600 dark:text-gray-400">
-                    Except for REPACSS computing resources, you may find additional advanced computing resources through
-                    <a
+                    Beyond REPACSS computing resources, you can find additional advanced computing resources through <a
                         href="https://allocations.access-ci.org/resources"
                         class="text-primary dark:text-primary-light underline"
                         target="_blank"

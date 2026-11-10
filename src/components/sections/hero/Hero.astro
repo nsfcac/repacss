@@ -8,19 +8,8 @@ import Title from "../../shared/Title.astro";
 import LazyImage from "../../shared/LazyImage.astro";
 
 const heroSection = {
-    headline1: "Accelerating",
-    headline2: "Discovery,",
-    headline3: "Reducing",
-    headline4: "Costs,",
-    headline5: "Improving",
-    headline6: "Efficiency",
-    subheading1:
-        "Focuses on developing a high-performance computing data center and",
-    subheading2:
-        "AI infrastructure prototype that demonstrates the feasibility of using variable energy",
-    subheading3:
-        "for advanced computing tasks, with the goal of reducing costs and improving efficiency.",
-    backgroundImage: "hero-background-image.jpg",
+    subheading:
+        "Focuses on developing a high-performance computing data center and AI infrastructure prototype that demonstrates the feasibility of using variable energy for advanced computing tasks, with the goal of reducing costs and improving efficiency.",
 };
 
 export interface Props {
@@ -30,35 +19,30 @@ export interface Props {
 const { className = "" } = Astro.props;
 ---
 
-<section class=`relative  ${className} w-full min-h-[60vh]` id="hero">
-    <div class="w-full h-auto pt-[80px]">
+<section class=`relative ${className} w-full bg-base-100 dark:bg-base-dark-900` id="hero">
+    <div class="w-full h-auto pt-14 lg:pt-20">
         <div
-            class="w-full h-full grid grid-cols-1 md:grid-cols-2 gap-4 justify-end bg-base-100 dark:bg-base-dark-900"
+            class="w-full h-full grid grid-cols-1 lg:grid-cols-2 gap-4 justify-end bg-base-100 dark:bg-base-dark-900"
         >
-            <div class="justify-center flex flex-col text-center md:ml-auto">
-                <Title className="">
-                    {heroSection.headline1}
-                    <GradiantText>{" " + heroSection.headline2}<br /></GradiantText>
-                    <GradiantText>{heroSection.headline3}</GradiantText>
-                    {heroSection.headline4}<br />
-                    {heroSection.headline5}
-                    <GradiantText>{heroSection.headline6}</GradiantText>
+            <div class="justify-center flex flex-col text-center px-6 pt-10 pb-6 lg:py-8">
+                <Title className="hero-rise text-3xl! sm:text-5xl! lg:text-4xl! xl:text-5xl! 2xl:text-6xl!">
+                    Accelerating <GradiantText>Discovery,</GradiantText><br />
+                    <GradiantText>Reducing</GradiantText> Costs,<br />
+                    Improving <GradiantText>Efficiency</GradiantText>
                 </Title>
-                <SubTitle className="mt-6 leading-8 italic">
-                    {heroSection.subheading1}
-                    <br />
-                    {heroSection.subheading2}<br />
-                    {heroSection.subheading3}
+                <SubTitle className="hero-rise [--d:200ms] mt-6 leading-7 sm:leading-8 italic max-w-2xl mx-auto text-lg! sm:text-xl!">
+                    {heroSection.subheading}
                 </SubTitle>
             </div>
-            <div class="block relative pt-8 md:p-0 overflow-hidden">
+            <!-- Keep the full width so every rack shows; only ceiling and floor get trimmed. -->
+            <div class="relative overflow-hidden w-full aspect-[4/3] max-h-[min(60vh,560px)] self-center">
                 <LazyImage
                     src={heroImg}
                     alt="Row of black REPACSS server racks in a data center room with exposed ceiling pipes overhead"
-                    className="w-full h-full object-cover"
+                    className="hero-zoom absolute inset-0 w-full h-full object-cover object-[50%_60%]"
                 />
                 <svg
-                    class="fill-base-100 dark:fill-base-dark-900 z-10 absolute top-0 inset-s-0 h-full hidden md:block"
+                    class="fill-base-100 dark:fill-base-dark-900 z-10 absolute top-0 inset-s-0 h-full hidden lg:block"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 500 400"
                 >

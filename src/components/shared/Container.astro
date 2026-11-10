@@ -4,7 +4,7 @@ export interface Props {
   size?: "full" | "wide" | "medium" | "narrow";
 }
 
-const { className, size = "wide" } = Astro.props;
+const { className, size = "wide", ...attrs } = Astro.props;
 let widthClasses = "max-w-7xl";
 
 if (size === "full") {
@@ -19,6 +19,7 @@ if (size === "full") {
 ---
 
 <div
+  {...attrs}
   class={`mx-auto px-5 sm:px-8 md:px-14 lg:px-5 ${className} ${widthClasses}`}
 >
   <slot />

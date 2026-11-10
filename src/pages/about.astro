@@ -1,16 +1,18 @@
 ---
+import { Image } from "astro:assets";
+import nsfLogo from "../assets/nsf-logo.png";
 import Layout from "../layouts/Layout.astro";
 import Container from "../components/shared/Container.astro";
 import Profiles from "../components/sections/profiles/Profiles.astro";
 ---
 
-<Layout title="About Us">
+<Layout title="About Us" description="The vision, mission and team behind REPACSS, an NSF-funded project (Award 2404438) at Texas Tech University exploring variable renewable energy for scientific computing.">
     <main
-        class="flex flex-col gap-y-10 md:gap-y-40 overflow-hidden pt-20 md:pt-32 px-4 md:px-8"
+        class="flex flex-col gap-y-16 overflow-hidden pt-24 md:pt-32 px-4 md:px-8"
     >
         <!-- Vision Section -->
         <Container
-            className="mx-auto flex flex-col gap-y-4 text-left max-w-4xl -mt-8"
+            className="mx-auto flex flex-col gap-y-4 text-left max-w-4xl" data-reveal
         >
             <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">
                 Our Vision
@@ -45,24 +47,24 @@ import Profiles from "../components/sections/profiles/Profiles.astro";
 
         <!-- Mission Section -->
         <Container
-            className="mx-auto flex flex-col gap-y-4 text-left max-w-4xl -mt-24"
+            className="mx-auto flex flex-col gap-y-4 text-left max-w-4xl" data-reveal
         >
             <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">
                 Our Mission
             </h2>
             <ul
-                class="list-disc list-inside text-lg text-gray-600 dark:text-gray-400"
+                class="list-disc pl-6 space-y-1 text-lg text-gray-600 dark:text-gray-400"
             >
                 <li>
                     Deploy a modern computing facility to tackle R&D challenges
-                    in varaible energy market.
+                    in variable energy market.
                 </li>
                 <li>
                     Develop tools for remote data center control, automation,
                     and scientific workflow management.
                 </li>
                 <li>
-                    Study barriers and tradeoffs in varaible energy and predict
+                    Study barriers and tradeoffs in variable energy and predict
                     scientific workloads based on energy production.
                 </li>
                 <li>
@@ -86,10 +88,10 @@ import Profiles from "../components/sections/profiles/Profiles.astro";
         </Container>
 
         <!-- NSF Funding Notice -->
-        <Container className="mx-auto max-w-3xl -mt-24">
+        <Container className="mx-auto max-w-3xl" data-reveal>
             <div class="text-center py-8 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 rounded-lg">
                 <div class="flex flex-col items-center gap-4 mb-6">
-                    <img src="/images/nsf-logo.png" alt="NSF Logo" class="h-20 w-auto drop-shadow-lg" />
+                    <Image src={nsfLogo} alt="NSF Logo" height={160} format="webp" class="h-20 w-auto drop-shadow-lg" />
                     <span class="text-2xl font-semibold text-gray-800 dark:text-gray-200">Funded by NSF</span>
                 </div>
                 
@@ -98,12 +100,10 @@ import Profiles from "../components/sections/profiles/Profiles.astro";
                      resolves to a color utility and would silently drop the 18px size. -->
                 <div class="space-y-3 text-[18px] text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
                     <p>
-                        This project is supported by the <strong>National Science Foundation</strong> 
-                        under Grant No. 
-                        <strong class="text-primary text-lg">
-                            <a href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=2404438" 
-                             target="_blank" >2404438</a>
-                        </strong>.
+                        This project is supported by the <strong>National Science Foundation</strong> under Grant No.&nbsp;<a
+                            href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=2404438"
+                            target="_blank" rel="noopener noreferrer"
+                            class="font-bold text-primary text-lg">2404438</a>.
                     </p>
                     <p class="text-sm italic">
                         Any opinions, findings, and conclusions or recommendations expressed in this material 
@@ -113,8 +113,7 @@ import Profiles from "../components/sections/profiles/Profiles.astro";
                 
                 <div class="mt-6 pt-4 border-t border-gray-200 dark:border-gray-600">
                     <p class="text-sm text-gray-600 dark:text-gray-400">
-                        <strong>Project Period:</strong> 2024-2029 • 
-                        <a href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=2404438" 
+                        <strong>Project Period:</strong> 2024–2029 &bull; <a href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=2404438" 
                            target="_blank" 
                            rel="noopener noreferrer"
                            class="text-primary hover:underline font-medium">
@@ -126,7 +125,7 @@ import Profiles from "../components/sections/profiles/Profiles.astro";
         </Container>
 
         <!-- Profiles Section -->
-        <Profiles className="mx-auto -mt-36" />
+        <Profiles className="mx-auto" />
     </main>
 
     <script>
