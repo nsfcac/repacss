@@ -1,19 +1,42 @@
 ---
 import Container from "../components/shared/Container.astro";
+
+const links = [
+  { href: "https://guide.repacss.org/", text: "User Guide", external: true },
+  { href: "/resources", text: "Facility Overview" },
+  { href: "/job-script-generator", text: "Job Script Generator" },
+  { href: "mailto:repacss.support@ttu.edu", text: "repacss.support@ttu.edu" },
+];
 ---
 
 <div class="relative mt-16 bg-base-200 dark:bg-base-dark-800">
-  <footer class="relative pt-28 rounded-t-3xl">
-    <div class="py-2 relative">
-      <Container>
-        <div
-          class="flex justify-center items-center gap-6 md:text-lg text-heading-3"
-        >
-          <div>
-            &copy; <span id="year">2026</span> Texas Tech University. All rights reserved.
-          </div>
-        </div>
-      </Container>
-    </div>
+  <footer class="relative py-8">
+    <Container className="flex flex-col items-center gap-4 text-center">
+      <nav aria-label="Footer">
+        <ul class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
+          {links.map((l) => (
+            <li>
+              <a
+                href={l.href}
+                class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary"
+                {...(l.external && { target: "_blank", rel: "noopener noreferrer" })}
+              >
+                {l.text}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      <p class="text-sm text-gray-600 dark:text-gray-400">
+        Supported by the National Science Foundation under <a
+          href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=2404438"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="underline hover:text-primary">Award No. 2404438</a>.
+      </p>
+      <p class="md:text-lg text-heading-3">
+        &copy; <span id="year">2026</span> Texas Tech University. All rights reserved.
+      </p>
+    </Container>
   </footer>
 </div>

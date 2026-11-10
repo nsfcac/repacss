@@ -20,16 +20,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between; /* Ensures even spacing */
-  min-height: 350px; /* Set a consistent minimum height */
+  justify-content: flex-start;
+  /* height comes from h-full so cards in a row match */
   padding: 1.5rem;
-  background-color: #ffffff;
   /* border-radius and box-shadow removed: the markup sets `rounded-lg` (8px,
      not 12px) and `shadow-lg`. padding/background match p-6 and bg-white. */
 }
-.profile-card:hover {
-  transform: scale(1.05);
-}
+/* hover lift comes from the `lift` utility in global.css */
 
 .profile-photo {
   width: 120px;

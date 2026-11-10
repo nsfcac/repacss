@@ -45,76 +45,6 @@ html {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Mobile-specific hero section adjustments */
-@media (max-width: 1023px) {
-  /* Ensure hero content starts below fixed header */
-  #hero {
-    padding-top: 5rem !important;
-    min-height: calc(100vh - 5rem) !important;
-  }
-  
-  #hero > div,
-  #hero .grid {
-    min-height: calc(100vh - 5rem) !important;
-  }
-
-  /* Make sure hero text is readable */
-  #hero h1 {
-    font-size: 1.875rem !important; /* 30px */
-    line-height: 1.2 !important;
-    margin-bottom: 1rem !important;
-  }
-
-  #hero p {
-    font-size: 0.875rem !important; /* 14px */
-    line-height: 1.5 !important;
-    margin-bottom: 1.5rem !important;
-  }
-
-  /* Stack hero content properly on mobile */
-  #hero .grid {
-    grid-template-columns: 1fr !important;
-    gap: 1rem !important;
-  }
-
-  /* Hero image container adjustments - UPDATED */
-  #hero .relative.overflow-hidden {
-    height: 320px !important; /* Increased height for mobile */
-    margin: 0 1rem !important; /* Add side margins */
-  }
-
-  /* Hero text container adjustments */
-  #hero .justify-center {
-    padding: 1.5rem 1rem !important;
-    text-align: center !important;
-  }
-
-  /* Make image more prominent on mobile */
-  #hero img {
-    border-radius: 0.75rem !important; /* Rounded corners */
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important; /* Add shadow */
-  }
-}
-
-/* Tablet adjustments */
-@media (min-width: 641px) and (max-width: 1023px) {
-  #hero .relative.overflow-hidden {
-    height: 400px !important; /* Taller on tablets */
-    margin: 0 2rem !important;
-  }
-}
-
-/* Desktop image adjustments */
-@media (min-width: 1024px) {
-  #hero .relative.overflow-hidden {
-    min-height: 500px !important;
-  }
-  
-  #hero img {
-    object-position: center center !important;
-  }
-}
-
 /* Mobile responsive text utilities */
 @media (max-width: 640px) {
   .mobile-stack > * {
@@ -186,8 +116,7 @@ html {
 }
 
 /* Menu header - same solid color */
-#mobile-menu .bg-gray-50,
-#mobile-menu .dark\\:bg-gray-800 {
+#mobile-menu .bg-gray-50 {
   background: #374151 !important; /* Same solid color as menu */
   border-color: #4b5563 !important;
 }
@@ -201,7 +130,6 @@ html {
 /* Dark mode - consistent darker solid background */
 .dark #mobile-menu,
 .dark #mobile-menu .bg-gray-50,
-.dark #mobile-menu .dark\\:bg-gray-800,
 .dark #mobile-menu .border-t {
   background: #1f2937 !important; /* Solid gray-800 for dark mode */
   border-color: #374151 !important;
@@ -268,6 +196,21 @@ html {
 
 .dark #mobile-menu .p-4 {
   background: #1f2937 !important; /* Dark mode menu items container */
+}
+
+/* The menu is dark in both themes, so its labels and icons are light in both too. */
+#mobile-menu span,
+#mobile-menu svg {
+  color: #f9fafb !important;
+}
+#mobile-menu button:hover {
+  background: #4b5563 !important;
+}
+
+/* Current page in the mobile menu: red accent bar and lighter red text. */
+#mobile-menu a[aria-current="page"] {
+  color: #ff7b7b !important;
+  box-shadow: inset 3px 0 0 #e90802;
 }
 
 /* Clean slide animation */

@@ -18,6 +18,7 @@ const { className } = Astro.props;
 <section id="innovations" class=`${className}`>
   <Container
     className="mx-auto flex flex-col items-center justify-center text-center"
+    data-reveal
   >
     <Title2>{innovationsSection.title}</Title2>
     <SubTitle2>
@@ -28,27 +29,35 @@ const { className } = Astro.props;
   <Container>
     {
       innovationsSection.innovations.map((solution, index: number) => {
-        const oddIndex = index % 2 === 0;
-        const flexRow = oddIndex ? "midmd:flex-row-reverse" : "midmd:flex-row";
-        const bgColor = "";
+        // Even rows put the image on the right. Both halves hug the centre line so
+        // every image/text pair has the same gap and the text centres on its image.
+        const imageRight = index % 2 === 0;
         return (
-          <div class={`${bgColor}  pb-32`}>
+          <div class="pb-16 md:pb-20 last:pb-0">
             <div
-              class={`flex flex-col gap-10 lg:gap-12 ${flexRow} mx-auto max-w-7xl w-full`}
+              class={`flex flex-col items-center gap-10 midmd:gap-16 ${imageRight ? "midmd:flex-row-reverse" : "midmd:flex-row"} mx-auto max-w-6xl w-full`}
             >
-              <div class="max-w-md mx-auto midmd:max-w-none lg:mx-0 lg:pr-10 xl:pr-2 flex w-11/12 midmd:w-5/12 lg:w-1/2 midmd:h-auto">
-                <div class="w-full max-h-[50vh] sm:h-96 midmd:h-full relative">
+              <div
+                data-reveal={imageRight ? "right" : "left"}
+                class={`flex w-11/12 midmd:w-1/2 justify-center ${imageRight ? "midmd:justify-start" : "midmd:justify-end"}`}
+              >
+                <div class="group w-full max-w-md lg:max-w-[500px] aspect-square relative overflow-hidden rounded-3xl">
                   <LazyImage
                     src={solution.visual}
                     alt={solution.alt}
                     width="500"
-                    class="rounded-3xl object-cover h-full "
+                    class="w-full h-full rounded-3xl object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                   />
                 </div>
               </div>
-              <div class="max-w-md mx-auto w-11/12 flex-1 flex midmd:w-7/12 lg:w-1/2 flex-col">
-                <Title3>{solution.title}</Title3>
-                <Paragraph className="mt-3 ">{solution.description}</Paragraph>
+              <div
+                data-reveal
+                class={`flex w-11/12 midmd:w-1/2 justify-center ${imageRight ? "midmd:justify-end" : "midmd:justify-start"}`}
+              >
+                <div class="max-w-md">
+                  <Title3>{solution.title}</Title3>
+                  <Paragraph className="mt-3">{solution.description}</Paragraph>
+                </div>
               </div>
             </div>
           </div>
